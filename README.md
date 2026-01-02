@@ -192,6 +192,14 @@ Output: Individual article HTML files for embedding
 npm run build:both
 ```
 
+### Testing locally
+
+You need to serve the files by an HTTP server, for example with `python -m http.server 3000` or `npx serve`.
+
+```bash
+npx serve out -l 3000
+```
+
 ## 🚢 Deployment
 
 ### Vercel (Recommended)
