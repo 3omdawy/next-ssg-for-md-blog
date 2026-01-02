@@ -1,7 +1,7 @@
 ---
 title: "Web Performance: Build Faster Websites & Web Applications 🚀"
 date: "2024-12-28"
-author: "Yoga"
+author: "Emad"
 tags: ["performance", "web-vitals", "optimization", "frontend"]
 category: "Performance"
 description: "A comprehensive guide to web performance concepts, metrics (Core Web Vitals), and debugging strategies for building faster websites."

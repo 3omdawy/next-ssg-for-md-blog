@@ -25,7 +25,11 @@ export default async function Home() {
       <section>
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold">Latest Posts</h2>
-          <Link href="/blog" className="text-primary hover:underline">
+          <Link
+            prefetch={false}
+            href="/blog"
+            className="text-primary hover:underline"
+          >
             View all →
           </Link>
         </div>
@@ -36,7 +40,11 @@ export default async function Home() {
               key={post.slug}
               className="border-b border-border pb-8 last:border-0"
             >
-              <Link href={`/blog/${post.slug}`} className="group">
+              <Link
+                prefetch={false}
+                href={`/blog/${post.slug}`}
+                className="group"
+              >
                 <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
                   {post.frontmatter.title}
                 </h3>

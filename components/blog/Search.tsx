@@ -75,6 +75,7 @@ export function Search({ posts }: SearchProps) {
               <div className="py-2">
                 {results.map((post) => (
                   <Link
+                    prefetch={false}
                     key={post.slug}
                     href={`/blog/${post.slug}`}
                     className="block px-4 py-3 hover:bg-muted transition-colors"

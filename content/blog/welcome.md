@@ -1,7 +1,7 @@
 ---
 title: "Welcome to the Tech Blog"
 date: "2024-12-28"
-author: "Yoga"
+author: "Emad"
 tags: ["welcome", "meta"]
 category: "General"
 description: "Welcome to our technical blog! Learn about what we'll be covering and how this blog is built."

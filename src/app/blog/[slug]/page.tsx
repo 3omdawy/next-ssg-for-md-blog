@@ -67,6 +67,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <div className="flex flex-wrap gap-2 mb-4">
                 {post.frontmatter.category && (
                   <Link
+                    prefetch={false}
                     href={`/categories/${post.frontmatter.category}`}
                     className="text-sm font-medium text-primary hover:underline"
                   >
@@ -124,6 +125,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <div className="flex flex-wrap gap-2">
                   {post.frontmatter.tags.map((tag) => (
                     <Link
+                      prefetch={false}
                       key={tag}
                       href={`/tags/${tag}`}
                       className="px-3 py-1 text-sm bg-muted text-foreground rounded-full hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"

@@ -1,7 +1,7 @@
 ---
 title: "Thinking in React"
 date: "2024-12-15"
-author: "Yoga"
+author: "Emad"
 tags: ["react", "frontend", "tutorial", "state-management"]
 category: "React"
 description: "A comprehensive guide to designing and implementing React applications following best practices - from component hierarchy to performance optimization."

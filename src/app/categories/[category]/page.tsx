@@ -46,7 +46,11 @@ export default async function CategoryPage({ params }: PageProps) {
             key={post.slug}
             className="border-b border-border pb-8 last:border-0"
           >
-            <Link href={`/blog/${post.slug}`} className="group">
+            <Link
+              prefetch={false}
+              href={`/blog/${post.slug}`}
+              className="group"
+            >
               <h2 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
                 {post.frontmatter.title}
               </h2>
@@ -76,6 +80,7 @@ export default async function CategoryPage({ params }: PageProps) {
               <div className="flex flex-wrap gap-2">
                 {post.frontmatter.tags.map((t) => (
                   <Link
+                    prefetch={false}
                     key={t}
                     href={`/tags/${t}`}
                     className="px-2 py-1 text-xs bg-muted text-foreground rounded hover:bg-muted/80 transition-colors"

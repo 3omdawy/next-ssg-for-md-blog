@@ -1,7 +1,7 @@
 ---
 title: "Web Security Essentials 🛡️"
 date: "2024-12-28"
-author: "Yoga"
+author: "Emad"
 tags: ["security", "owasp", "best-practices", "frontend", "backend"]
 category: "Security"
 description: "A concise and practical guide to web security concepts, common attacks (SQL Injection, XSS, CSRF), and best practices for secure web development."
