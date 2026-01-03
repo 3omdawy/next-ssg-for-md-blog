@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import config from "@/config";
 import ArticleContent from "@/components/blog/ArticleContent";
-import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
+import { getAllPostSlugs, getPostBySlug, getSeriesNavigation } from "@/lib/posts";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import Link from "next/link";
 
@@ -46,6 +46,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const isEmbeddable = config.buildMode === "embeddable";
 
+  // Get series navigation if post is part of a series
+  const seriesNav = !isEmbeddable ? await getSeriesNavigation(slug) : { prev: null, next: null };
+
   // For embeddable mode, return just the content
   if (isEmbeddable) {
     return (
@@ -64,6 +67,21 @@ export default async function BlogPostPage({ params }: PageProps) {
           <article>
             {/* Post Header */}
             <header className="mb-8 border-b border-border pb-8">
+              {/* Series Badge */}
+              {post.series && post.seriesSlug && (
+                <div className="mb-4">
+                  <Link
+                    href={`/series/${post.seriesSlug}`}
+                    className="inline-flex items-center gap-2 px-3 py-1 text-sm font-medium bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    Part of: {post.series}
+                  </Link>
+                </div>
+              )}
+
               <div className="flex flex-wrap gap-2 mb-4">
                 {post.frontmatter.category && (
                   <Link
@@ -115,6 +133,41 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             {/* Post Content */}
             <ArticleContent content={post.content} />
+
+            {/* Series Navigation */}
+            {(seriesNav.prev || seriesNav.next) && (
+              <div className="mt-12 pt-8 border-t border-border">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
+                  Series Navigation
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {seriesNav.prev ? (
+                    <Link
+                      href={`/blog/${seriesNav.prev.slug}`}
+                      className="group border border-border rounded-lg p-4 hover:border-primary hover:shadow-md transition-all"
+                    >
+                      <div className="text-sm text-gray-500 mb-1">← Previous</div>
+                      <div className="font-semibold group-hover:text-primary transition-colors">
+                        {seriesNav.prev.frontmatter.title}
+                      </div>
+                    </Link>
+                  ) : (
+                    <div></div>
+                  )}
+                  {seriesNav.next && (
+                    <Link
+                      href={`/blog/${seriesNav.next.slug}`}
+                      className="group border border-border rounded-lg p-4 hover:border-primary hover:shadow-md transition-all text-right"
+                    >
+                      <div className="text-sm text-gray-500 mb-1">Next →</div>
+                      <div className="font-semibold group-hover:text-primary transition-colors">
+                        {seriesNav.next.frontmatter.title}
+                      </div>
+                    </Link>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Post Footer / Tags */}
             {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
