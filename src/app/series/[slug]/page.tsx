@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation";
-import { getAllSeries, getPostsBySeries } from "@/lib/posts";
-import Link from "next/link";
-import config from "@/config";
+import { notFound } from 'next/navigation';
+import { getAllSeries, getPostsBySeries } from '@/lib/posts';
+import Link from 'next/link';
+import config from '@/config';
 
 interface PageProps {
   params: Promise<{
@@ -9,8 +9,13 @@ interface PageProps {
   }>;
 }
 
+// Disable dynamic params for static export
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const allSeries = await getAllSeries();
+  console.log('Generating static params for series:', allSeries.map(s => s.slug));
+  
   return allSeries.map((series) => ({
     slug: series.slug,
   }));
@@ -23,14 +28,13 @@ export async function generateMetadata({ params }: PageProps) {
 
   if (!series) {
     return {
-      title: "Series Not Found",
+      title: 'Series Not Found',
     };
   }
 
   return {
     title: `${series.name} | ${config.site.name}`,
-    description:
-      series.description || `All articles in the ${series.name} series`,
+    description: series.description || `All articles in the ${series.name} series`,
   };
 }
 
@@ -49,7 +53,6 @@ export default async function SeriesDetailPage({ params }: PageProps) {
     <div className="container mx-auto px-4 py-16 max-w-4xl">
       <nav className="mb-6">
         <Link
-          prefetch={false}
           href="/series"
           className="text-sm text-primary hover:underline"
         >
@@ -58,7 +61,7 @@ export default async function SeriesDetailPage({ params }: PageProps) {
       </nav>
 
       <h1 className="text-4xl font-bold mb-4">{series.name}</h1>
-
+      
       {series.description && (
         <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
           {series.description}
@@ -66,8 +69,7 @@ export default async function SeriesDetailPage({ params }: PageProps) {
       )}
 
       <div className="text-sm text-gray-500 dark:text-gray-500 mb-8">
-        {posts.length} {posts.length === 1 ? "article" : "articles"} in this
-        series
+        {posts.length} {posts.length === 1 ? 'article' : 'articles'} in this series
       </div>
 
       <div className="space-y-6">
@@ -80,13 +82,13 @@ export default async function SeriesDetailPage({ params }: PageProps) {
               <div className="flex-shrink-0">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <span className="text-primary font-bold">
-                    {String(index + 1).padStart(2, "0")}
+                    {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
               </div>
 
               <div className="flex-1 min-w-0">
-                <Link href={`/blog/${post.slug}`} prefetch={false}>
+                <Link href={`/blog/${post.slug}`}>
                   <h2 className="text-2xl font-bold mb-2 hover:text-primary transition-colors">
                     {post.frontmatter.title}
                   </h2>
@@ -101,34 +103,31 @@ export default async function SeriesDetailPage({ params }: PageProps) {
                 <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-500">
                   {post.frontmatter.date && (
                     <time dateTime={post.frontmatter.date}>
-                      {new Date(post.frontmatter.date).toLocaleDateString(
-                        "en-US",
-                        {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        }
-                      )}
+                      {new Date(post.frontmatter.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
                     </time>
                   )}
 
-                  {post.readingTime && <span>{post.readingTime}</span>}
+                  {post.readingTime && (
+                    <span>{post.readingTime}</span>
+                  )}
 
-                  {post.frontmatter.tags &&
-                    post.frontmatter.tags.length > 0 && (
-                      <div className="flex gap-2">
-                        {post.frontmatter.tags.map((tag) => (
-                          <Link
-                            prefetch={false}
-                            key={tag}
-                            href={`/tags/${tag}`}
-                            className="text-primary hover:underline"
-                          >
-                            #{tag}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                  {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+                    <div className="flex gap-2">
+                      {post.frontmatter.tags.map((tag) => (
+                        <Link
+                          key={tag}
+                          href={`/tags/${tag}`}
+                          className="text-primary hover:underline"
+                        >
+                          #{tag}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
