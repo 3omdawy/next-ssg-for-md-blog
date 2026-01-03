@@ -15,12 +15,21 @@ interface PageProps {
   }>;
 }
 
+// Disable dynamic params for static export
+export const dynamicParams = false;
+
 // Generate static params for all blog posts
 export async function generateStaticParams() {
   const slugs = getAllPostSlugs();
-  return slugs.map((slug) => ({
-    slug: slug.split("/"), // Convert "folder/post" to ["folder", "post"]
-  }));
+  console.log('Generating static params for slugs:', slugs);
+  
+  return slugs.map((slug) => {
+    const slugArray = slug.split("/");
+    console.log(`Mapping slug "${slug}" to array:`, slugArray);
+    return {
+      slug: slugArray, // Convert "folder/post" to ["folder", "post"]
+    };
+  });
 }
 
 // Generate metadata for each post
@@ -44,6 +53,8 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug: slugArray } = await params;
   const slug = slugArray.join("/");
+  console.log('Rendering blog post with slug:', slug);
+  
   const post = await getPostBySlug(slug);
 
   if (!post) {
