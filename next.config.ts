@@ -6,8 +6,9 @@ const nextConfig: NextConfig = {
   // Enable static HTML export
   output: 'export',
   
-  // Add trailing slashes for better static hosting compatibility
-  trailingSlash: true,
+  // Disable trailing slashes for simpler static hosting
+  // This generates /blog/post.html instead of /blog/post/index.html
+  trailingSlash: false,
   
   // Configure images for static export
   images: {
@@ -22,5 +23,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-

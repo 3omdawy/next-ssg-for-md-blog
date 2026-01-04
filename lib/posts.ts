@@ -13,20 +13,87 @@ import {
   extractTableOfContents,
   contentDirectory,
 } from './markdown';
-import type { Post, PostMetadata, PostFrontmatter } from '../types';
+import type { Post, PostMetadata, PostFrontmatter, Series } from '../types';
+
+/**
+ * Normalize path to use forward slashes (for cross-platform compatibility)
+ * Windows uses backslashes, but URLs always use forward slashes
+ */
+function normalizePath(filePath: string): string {
+  return filePath.split(path.sep).join('/');
+}
+
+/**
+ * Recursively get all markdown files from a directory
+ */
+function getMarkdownFilesRecursive(dir: string, baseDir: string = dir): string[] {
+  if (!fs.existsSync(dir)) {
+    return [];
+  }
+
+  const files: string[] = [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    
+    if (entry.isDirectory()) {
+      // Recursively scan subdirectories
+      files.push(...getMarkdownFilesRecursive(fullPath, baseDir));
+    } else if (entry.isFile() && (entry.name.endsWith('.md') || entry.name.endsWith('.mdx'))) {
+      // Get relative path from base directory and normalize to forward slashes
+      const relativePath = path.relative(baseDir, fullPath);
+      files.push(normalizePath(relativePath));
+    }
+  }
+
+  return files;
+}
+
+/**
+ * Extract series information from file path
+ * If file is in a subdirectory, use the directory name as series
+ */
+function extractSeriesInfo(filePath: string): { series?: string; seriesSlug?: string } {
+  // Always use forward slashes for splitting
+  const normalizedPath = normalizePath(filePath);
+  const parts = normalizedPath.split('/');
+  
+  // If the file is in a subdirectory (not at root level)
+  if (parts.length > 1) {
+    const seriesFolder = parts[0];
+    // Convert folder name to human-readable format
+    // e.g., "01-react-basics" -> "React Basics"
+    const series = seriesFolder
+      .replace(/^\d+-/, '') // Remove leading numbers
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+    
+    return {
+      series,
+      seriesSlug: seriesFolder,
+    };
+  }
+  
+  return {};
+}
+
+/**
+ * Convert file path to slug
+ * For nested files: folder/file.md -> folder/file
+ * For root files: file.md -> file
+ */
+function filePathToSlug(filePath: string): string {
+  return filePath.replace(/\.mdx?$/, '');
+}
 
 /**
  * Get all post slugs from the content directory
  */
 export function getAllPostSlugs(): string[] {
-  if (!fs.existsSync(contentDirectory)) {
-    return [];
-  }
-
-  const files = fs.readdirSync(contentDirectory);
-  return files
-    .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'))
-    .map((file) => file.replace(/\.mdx?$/, ''));
+  const files = getMarkdownFilesRecursive(contentDirectory);
+  return files.map(filePathToSlug);
 }
 
 /**
@@ -34,8 +101,15 @@ export function getAllPostSlugs(): string[] {
  */
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
-    const mdPath = path.join(contentDirectory, `${slug}.md`);
-    const mdxPath = path.join(contentDirectory, `${slug}.mdx`);
+    // Convert slug to file path (handle both forward slashes and URL-encoded backslashes)
+    const normalizedSlug = slug.replace(/%5C/g, '/').replace(/\\/g, '/');
+    
+    // Convert forward slashes to platform-specific separators for file system access
+    const fsPath = normalizedSlug.split('/').join(path.sep);
+    
+    // Try both .md and .mdx extensions
+    const mdPath = path.join(contentDirectory, `${fsPath}.md`);
+    const mdxPath = path.join(contentDirectory, `${fsPath}.mdx`);
     
     let filePath: string;
     if (fs.existsSync(mdPath)) {
@@ -59,13 +133,27 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     const excerpt = frontmatter.description || generateExcerpt(content);
     const tableOfContents = extractTableOfContents(content);
 
+    // Extract series info from file path (relative to content directory)
+    const relativePath = path.relative(contentDirectory, filePath);
+    const normalizedRelativePath = normalizePath(relativePath);
+    const seriesInfo = extractSeriesInfo(normalizedRelativePath);
+
+    // Merge series info from folder with frontmatter (frontmatter takes precedence)
+    const series = frontmatter.series || seriesInfo.series;
+    const seriesSlug = seriesInfo.seriesSlug;
+
     return {
-      slug,
-      frontmatter,
+      slug: normalizedSlug, // Always use forward slashes in slug
+      frontmatter: {
+        ...frontmatter,
+        series,
+      },
       content: htmlContent,
       excerpt,
       readingTime,
       tableOfContents,
+      series,
+      seriesSlug,
     };
   } catch (error) {
     console.error(`Error reading post ${slug}:`, error);
@@ -97,11 +185,13 @@ export async function getAllPosts(includeContent: boolean = false): Promise<Post
  */
 export async function getAllPostsMetadata(): Promise<PostMetadata[]> {
   const posts = await getAllPosts();
-  return posts.map(({ slug, frontmatter, excerpt, readingTime }) => ({
+  return posts.map(({ slug, frontmatter, excerpt, readingTime, series, seriesSlug }) => ({
     slug,
     frontmatter,
     excerpt,
     readingTime,
+    series,
+    seriesSlug,
   }));
 }
 
@@ -123,6 +213,65 @@ export async function getPostsByCategory(category: string): Promise<Post[]> {
   return allPosts.filter((post) =>
     post.frontmatter.category === category
   );
+}
+
+/**
+ * Get posts by series
+ */
+export async function getPostsBySeries(seriesSlug: string): Promise<Post[]> {
+  const allPosts = await getAllPosts();
+  const seriesPosts = allPosts.filter((post) => post.seriesSlug === seriesSlug);
+  
+  // Sort by seriesOrder if available, otherwise by date
+  return seriesPosts.sort((a, b) => {
+    if (a.frontmatter.seriesOrder !== undefined && b.frontmatter.seriesOrder !== undefined) {
+      return a.frontmatter.seriesOrder - b.frontmatter.seriesOrder;
+    }
+    // Fall back to date sorting
+    const dateA = new Date(a.frontmatter.date).getTime();
+    const dateB = new Date(b.frontmatter.date).getTime();
+    return dateA - dateB;
+  });
+}
+
+/**
+ * Get all series with their posts
+ */
+export async function getAllSeries(): Promise<Series[]> {
+  const allPosts = await getAllPostsMetadata();
+  const seriesMap = new Map<string, PostMetadata[]>();
+
+  // Group posts by series
+  allPosts.forEach((post) => {
+    if (post.seriesSlug) {
+      if (!seriesMap.has(post.seriesSlug)) {
+        seriesMap.set(post.seriesSlug, []);
+      }
+      seriesMap.get(post.seriesSlug)!.push(post);
+    }
+  });
+
+  // Convert to Series array
+  const series: Series[] = [];
+  seriesMap.forEach((posts, slug) => {
+    // Sort posts by seriesOrder or date
+    const sortedPosts = posts.sort((a, b) => {
+      if (a.frontmatter.seriesOrder !== undefined && b.frontmatter.seriesOrder !== undefined) {
+        return a.frontmatter.seriesOrder - b.frontmatter.seriesOrder;
+      }
+      const dateA = new Date(a.frontmatter.date).getTime();
+      const dateB = new Date(b.frontmatter.date).getTime();
+      return dateA - dateB;
+    });
+
+    series.push({
+      name: posts[0].series || slug,
+      slug,
+      posts: sortedPosts,
+    });
+  });
+
+  return series.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**
@@ -183,4 +332,44 @@ export async function getRelatedPosts(
     .sort((a, b) => b.score - a.score);
 
   return postsWithScores.slice(0, limit).map(({ post }) => post);
+}
+
+/**
+ * Get next and previous posts in a series
+ */
+export async function getSeriesNavigation(
+  slug: string
+): Promise<{ prev: PostMetadata | null; next: PostMetadata | null }> {
+  const currentPost = await getPostBySlug(slug);
+  
+  if (!currentPost || !currentPost.seriesSlug) {
+    return { prev: null, next: null };
+  }
+
+  const seriesPosts = await getPostsBySeries(currentPost.seriesSlug);
+  const currentIndex = seriesPosts.findIndex((post) => post.slug === slug);
+
+  if (currentIndex === -1) {
+    return { prev: null, next: null };
+  }
+
+  const prev = currentIndex > 0 ? {
+    slug: seriesPosts[currentIndex - 1].slug,
+    frontmatter: seriesPosts[currentIndex - 1].frontmatter,
+    excerpt: seriesPosts[currentIndex - 1].excerpt,
+    readingTime: seriesPosts[currentIndex - 1].readingTime,
+    series: seriesPosts[currentIndex - 1].series,
+    seriesSlug: seriesPosts[currentIndex - 1].seriesSlug,
+  } : null;
+
+  const next = currentIndex < seriesPosts.length - 1 ? {
+    slug: seriesPosts[currentIndex + 1].slug,
+    frontmatter: seriesPosts[currentIndex + 1].frontmatter,
+    excerpt: seriesPosts[currentIndex + 1].excerpt,
+    readingTime: seriesPosts[currentIndex + 1].readingTime,
+    series: seriesPosts[currentIndex + 1].series,
+    seriesSlug: seriesPosts[currentIndex + 1].seriesSlug,
+  } : null;
+
+  return { prev, next };
 }
