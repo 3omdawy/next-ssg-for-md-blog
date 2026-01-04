@@ -10,6 +10,28 @@
   --border: #e5e7eb;
 }
 
+/* Dark mode colors - applied when .dark class is on html element */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary: #60a5fa;
+  --accent: #a78bfa;
+  --muted: #1f2937;
+  --border: #374151;
+}
+
+/* Also support system preference for users without saved preference */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --primary: #60a5fa;
+    --accent: #a78bfa;
+    --muted: #1f2937;
+    --border: #374151;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -19,17 +41,6 @@
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #60a5fa;
-    --accent: #a78bfa;
-    --muted: #1f2937;
-    --border: #374151;
-  }
 }
 
 body {
@@ -47,6 +58,11 @@ body {
   --tw-prose-code: var(--accent);
   --tw-prose-pre-bg: var(--muted);
   --tw-prose-quotes: var(--foreground);
+  --tw-prose-counters: var(--foreground);
+  --tw-prose-bullets: var(--foreground);
+  --tw-prose-hr: var(--border);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
 }
 
 .prose code {
@@ -54,6 +70,7 @@ body {
   padding: 0.2em 0.4em;
   border-radius: 0.25rem;
   font-size: 0.875em;
+  color: var(--accent);
 }
 
 .prose pre {
@@ -64,10 +81,61 @@ body {
 .prose pre code {
   background: transparent;
   padding: 0;
+  color: var(--foreground);
 }
 
-/* Smooth transitions */
+.prose a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  opacity: 0.8;
+}
+
+.prose strong {
+  color: var(--foreground);
+}
+
+.prose blockquote {
+  border-left-color: var(--border);
+  color: var(--foreground);
+}
+
+.prose hr {
+  border-color: var(--border);
+}
+
+.prose table {
+  border-color: var(--border);
+}
+
+.prose thead {
+  border-bottom-color: var(--border);
+}
+
+.prose tbody tr {
+  border-bottom-color: var(--border);
+}
+
+/* Syntax highlighting adjustments for dark mode */
+.dark .prose pre {
+  background: #1e293b !important;
+}
+
+.dark .prose code {
+  background: #1e293b;
+}
+
+/* Smooth transitions for theme switching */
 * {
-  transition: background-color 0.2s ease, border-color 0.2s ease,
-    color 0.2s ease;
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Disable transitions on theme script elements to prevent flash */
+html.dark,
+html:not(.dark) {
+  transition: none !important;
 }
