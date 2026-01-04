@@ -1,5 +1,6 @@
 import Link from "next/link";
 import config from "@/config";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   return (
@@ -13,29 +14,26 @@ export function Header() {
           {config.site.name}
         </Link>
 
-        <nav className="flex items-center gap-6 text-sm font-medium">
-          <Link
-            prefetch={false}
-            href="/blog"
-            className="hover:text-primary transition-colors"
-          >
-            Blog
-          </Link>
-          <Link
-            prefetch={false}
-            href="/series"
-            className="hover:text-primary transition-colors"
-          >
-            Series
-          </Link>
-          <Link
-            prefetch={false}
-            href="/about"
-            className="hover:text-primary transition-colors"
-          >
-            About
-          </Link>
-        </nav>
+        <div className="flex items-center gap-6">
+          <nav className="flex items-center gap-6 text-sm font-medium">
+            <Link
+              prefetch={false}
+              href="/blog"
+              className="hover:text-primary transition-colors"
+            >
+              Blog
+            </Link>
+            <Link
+              prefetch={false}
+              href="/about"
+              className="hover:text-primary transition-colors"
+            >
+              About
+            </Link>
+          </nav>
+          
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
