@@ -16,6 +16,14 @@ import {
 import type { Post, PostMetadata, PostFrontmatter, Series } from '../types';
 
 /**
+ * Normalize path to use forward slashes (for cross-platform compatibility)
+ * Windows uses backslashes, but URLs always use forward slashes
+ */
+function normalizePath(filePath: string): string {
+  return filePath.split(path.sep).join('/');
+}
+
+/**
  * Recursively get all markdown files from a directory
  */
 function getMarkdownFilesRecursive(dir: string, baseDir: string = dir): string[] {
@@ -33,9 +41,9 @@ function getMarkdownFilesRecursive(dir: string, baseDir: string = dir): string[]
       // Recursively scan subdirectories
       files.push(...getMarkdownFilesRecursive(fullPath, baseDir));
     } else if (entry.isFile() && (entry.name.endsWith('.md') || entry.name.endsWith('.mdx'))) {
-      // Get relative path from base directory
+      // Get relative path from base directory and normalize to forward slashes
       const relativePath = path.relative(baseDir, fullPath);
-      files.push(relativePath);
+      files.push(normalizePath(relativePath));
     }
   }
 
@@ -47,7 +55,9 @@ function getMarkdownFilesRecursive(dir: string, baseDir: string = dir): string[]
  * If file is in a subdirectory, use the directory name as series
  */
 function extractSeriesInfo(filePath: string): { series?: string; seriesSlug?: string } {
-  const parts = filePath.split(path.sep);
+  // Always use forward slashes for splitting
+  const normalizedPath = normalizePath(filePath);
+  const parts = normalizedPath.split('/');
   
   // If the file is in a subdirectory (not at root level)
   if (parts.length > 1) {
@@ -91,9 +101,15 @@ export function getAllPostSlugs(): string[] {
  */
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
+    // Convert slug to file path (handle both forward slashes and URL-encoded backslashes)
+    const normalizedSlug = slug.replace(/%5C/g, '/').replace(/\\/g, '/');
+    
+    // Convert forward slashes to platform-specific separators for file system access
+    const fsPath = normalizedSlug.split('/').join(path.sep);
+    
     // Try both .md and .mdx extensions
-    const mdPath = path.join(contentDirectory, `${slug}.md`);
-    const mdxPath = path.join(contentDirectory, `${slug}.mdx`);
+    const mdPath = path.join(contentDirectory, `${fsPath}.md`);
+    const mdxPath = path.join(contentDirectory, `${fsPath}.mdx`);
     
     let filePath: string;
     if (fs.existsSync(mdPath)) {
@@ -119,14 +135,15 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
     // Extract series info from file path (relative to content directory)
     const relativePath = path.relative(contentDirectory, filePath);
-    const seriesInfo = extractSeriesInfo(relativePath);
+    const normalizedRelativePath = normalizePath(relativePath);
+    const seriesInfo = extractSeriesInfo(normalizedRelativePath);
 
     // Merge series info from folder with frontmatter (frontmatter takes precedence)
     const series = frontmatter.series || seriesInfo.series;
     const seriesSlug = seriesInfo.seriesSlug;
 
     return {
-      slug,
+      slug: normalizedSlug, // Always use forward slashes in slug
       frontmatter: {
         ...frontmatter,
         series,
