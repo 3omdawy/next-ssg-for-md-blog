@@ -201,7 +201,8 @@ a:hover {
 }
 
 .bg-surface:hover,
-.hover\:bg-surface:hover {
+.hover\:bg-surface:hover,
+.hover\:bg-surface-hover:hover {
   background-color: var(--color-surface-hover);
 }
 
@@ -212,6 +213,16 @@ a:hover {
 
 .text-muted {
   color: var(--color-text-muted);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-primary-hover,
+.hover\:text-primary:hover,
+.hover\:text-primary-hover:hover {
+  color: var(--color-primary-hover);
 }
 
 /* Border colors */
