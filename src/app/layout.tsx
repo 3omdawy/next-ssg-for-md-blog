@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/layout/Header";
+import { ThemeScript } from "@/components/layout/ThemeScript";
 import config from "@/config";
 import "./globals.css";
 
@@ -27,7 +28,10 @@ export default function RootLayout({
   const isEmbeddable = config.buildMode === "embeddable";
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
