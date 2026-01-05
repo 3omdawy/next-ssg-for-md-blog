@@ -22,14 +22,14 @@ export default async function BlogIndexPage() {
         {posts.map((post) => (
           <article
             key={post.slug}
-            className="border-b border-border pb-8 last:border-0"
+            className="border-b border-custom pb-8 last:border-0"
           >
             {/* Series Badge */}
             {post.series && post.seriesSlug && (
               <Link
                 prefetch={false}
                 href={`/series/${post.seriesSlug}`}
-                className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline mb-2"
+                className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover transition-colors mb-2"
               >
                 <svg
                   className="w-3 h-3"
@@ -58,7 +58,7 @@ export default async function BlogIndexPage() {
               </h2>
             </Link>
 
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400 mb-3">
+            <div className="flex flex-wrap gap-4 text-sm text-secondary mb-3">
               {post.frontmatter.date && (
                 <time dateTime={post.frontmatter.date}>
                   {new Date(post.frontmatter.date).toLocaleDateString("en-US", {
@@ -73,7 +73,7 @@ export default async function BlogIndexPage() {
             </div>
 
             {post.excerpt && (
-              <p className="text-gray-700 dark:text-gray-300 mb-4">
+              <p className="text-secondary mb-4">
                 {post.excerpt}
               </p>
             )}
@@ -83,7 +83,7 @@ export default async function BlogIndexPage() {
                 {post.frontmatter.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 text-xs bg-muted text-foreground rounded"
+                    className="px-3 py-1 text-xs bg-surface hover:bg-surface-hover rounded-full transition-colors"
                   >
                     {tag}
                   </span>
@@ -94,7 +94,7 @@ export default async function BlogIndexPage() {
         ))}
 
         {posts.length === 0 && (
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-secondary">
             No blog posts yet. Check back soon!
           </p>
         )}
