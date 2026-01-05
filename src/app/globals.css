@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Configure dark mode variant for Tailwind v4 */
+@variant dark (.dark &);
+
 @theme {
   /* Font families */
   --font-sans: var(--font-geist-sans);
