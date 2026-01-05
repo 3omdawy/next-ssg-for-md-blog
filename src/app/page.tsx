@@ -16,7 +16,7 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="mb-12">
         <h1 className="text-5xl font-bold mb-4">{config.site.name}</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400">
+        <p className="text-xl text-secondary">
           {config.site.description}
         </p>
       </section>
@@ -28,7 +28,7 @@ export default async function Home() {
           <Link
             prefetch={false}
             href="/blog"
-            className="text-primary hover:underline"
+            className="text-primary hover:text-primary-hover transition-colors"
           >
             View all →
           </Link>
@@ -38,7 +38,7 @@ export default async function Home() {
           {latestPosts.map((post) => (
             <article
               key={post.slug}
-              className="border-b border-border pb-8 last:border-0"
+              className="border-b border-custom pb-8 last:border-0"
             >
               <Link
                 prefetch={false}
@@ -50,7 +50,7 @@ export default async function Home() {
                 </h3>
               </Link>
 
-              <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400 mb-3">
+              <div className="flex flex-wrap gap-4 text-sm text-secondary mb-3">
                 {post.frontmatter.date && (
                   <time dateTime={post.frontmatter.date}>
                     {new Date(post.frontmatter.date).toLocaleDateString(
@@ -68,7 +68,7 @@ export default async function Home() {
               </div>
 
               {post.excerpt && (
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                <p className="text-secondary mb-4">
                   {post.excerpt}
                 </p>
               )}
@@ -78,7 +78,7 @@ export default async function Home() {
                   {post.frontmatter.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 text-xs bg-muted text-foreground rounded"
+                      className="px-3 py-1 text-xs bg-surface hover:bg-surface-hover rounded-full transition-colors"
                     >
                       {tag}
                     </span>
@@ -89,7 +89,7 @@ export default async function Home() {
           ))}
 
           {latestPosts.length === 0 && (
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-secondary">
               No blog posts yet. Check back soon!
             </p>
           )}
