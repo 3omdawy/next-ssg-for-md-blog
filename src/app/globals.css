@@ -2,133 +2,14 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* Light mode colors (default) */
-  --color-background: #ffffff;
-  --color-foreground: #171717;
-  --color-primary: #3b82f6;
-  --color-accent: #8b5cf6;
-  --color-muted: #f3f4f6;
-  --color-border: #e5e7eb;
-  
   /* Font families */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-/* Dark mode color overrides */
-@media (prefers-color-scheme: dark) {
-  @theme {
-    --color-background: #0a0a0a;
-    --color-foreground: #ededed;
-    --color-primary: #60a5fa;
-    --color-accent: #a78bfa;
-    --color-muted: #1f2937;
-    --color-border: #374151;
-  }
-}
-
-/* Manual dark mode class overrides (takes precedence) */
-.dark {
-  --color-background: #0a0a0a;
-  --color-foreground: #ededed;
-  --color-primary: #60a5fa;
-  --color-accent: #a78bfa;
-  --color-muted: #1f2937;
-  --color-border: #374151;
-}
-
-/* Light mode class (explicit) */
-.light {
-  --color-background: #ffffff;
-  --color-foreground: #171717;
-  --color-primary: #3b82f6;
-  --color-accent: #8b5cf6;
-  --color-muted: #f3f4f6;
-  --color-border: #e5e7eb;
-}
-
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  @apply bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100;
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-}
-
-/* Custom prose styles for blog content */
-.prose {
-  --tw-prose-body: var(--color-foreground);
-  --tw-prose-headings: var(--color-foreground);
-  --tw-prose-links: var(--color-primary);
-  --tw-prose-bold: var(--color-foreground);
-  --tw-prose-code: var(--color-accent);
-  --tw-prose-pre-bg: var(--color-muted);
-  --tw-prose-quotes: var(--color-foreground);
-  --tw-prose-counters: var(--color-foreground);
-  --tw-prose-bullets: var(--color-foreground);
-  --tw-prose-hr: var(--color-border);
-  --tw-prose-th-borders: var(--color-border);
-  --tw-prose-td-borders: var(--color-border);
-}
-
-.prose code {
-  background: var(--color-muted);
-  padding: 0.2em 0.4em;
-  border-radius: 0.25rem;
-  font-size: 0.875em;
-  color: var(--color-accent);
-}
-
-.prose pre {
-  background: var(--color-muted) !important;
-  border: 1px solid var(--color-border);
-}
-
-.prose pre code {
-  background: transparent;
-  padding: 0;
-  color: var(--color-foreground);
-}
-
-.prose a {
-  color: var(--color-primary);
-  text-decoration: underline;
-}
-
-.prose a:hover {
-  opacity: 0.8;
-}
-
-.prose strong {
-  color: var(--color-foreground);
-}
-
-.prose blockquote {
-  border-left-color: var(--color-border);
-  color: var(--color-foreground);
-}
-
-.prose hr {
-  border-color: var(--color-border);
-}
-
-.prose table {
-  border-color: var(--color-border);
-}
-
-.prose thead {
-  border-bottom-color: var(--color-border);
-}
-
-.prose tbody tr {
-  border-bottom-color: var(--color-border);
-}
-
-/* Syntax highlighting adjustments for dark mode */
-.dark .prose pre {
-  background: #1e293b !important;
-}
-
-.dark .prose code {
-  background: #1e293b;
 }
 
 /* Smooth transitions for theme switching */
@@ -138,7 +19,7 @@ body {
   transition-duration: 200ms;
 }
 
-/* Disable transitions on initial load to prevent flash */
+/* Disable transitions on html element to prevent flash */
 html {
   transition: none !important;
 }
