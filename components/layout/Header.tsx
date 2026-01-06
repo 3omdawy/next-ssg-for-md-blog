@@ -25,13 +25,20 @@ export function Header() {
             </Link>
             <Link
               prefetch={false}
+              href="/series"
+              className="hover:text-primary transition-colors"
+            >
+              Series
+            </Link>
+            <Link
+              prefetch={false}
               href="/about"
               className="hover:text-primary transition-colors"
             >
               About
             </Link>
           </nav>
-          
+
           <ThemeToggle />
         </div>
       </div>

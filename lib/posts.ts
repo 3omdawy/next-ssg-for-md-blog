@@ -40,7 +40,9 @@ function getMarkdownFilesRecursive(dir: string, baseDir: string = dir): string[]
     if (entry.isDirectory()) {
       // Recursively scan subdirectories
       files.push(...getMarkdownFilesRecursive(fullPath, baseDir));
-    } else if (entry.isFile() && (entry.name.endsWith('.md') || entry.name.endsWith('.mdx'))) {
+    } else if (entry.isFile() && 
+               (entry.name.endsWith('.md') || entry.name.endsWith('.mdx')) && 
+               entry.name.toLowerCase() !== 'readme.md') {
       // Get relative path from base directory and normalize to forward slashes
       const relativePath = path.relative(baseDir, fullPath);
       files.push(normalizePath(relativePath));
@@ -172,10 +174,16 @@ export async function getAllPosts(includeContent: boolean = false): Promise<Post
 
   // Filter out null posts and sort by date (newest first)
   return posts
-    .filter((post): post is Post => post !== null)
+    .filter((post): post is Post => post !== null && !!post.frontmatter.date)
     .sort((a, b) => {
       const dateA = new Date(a.frontmatter.date).getTime();
       const dateB = new Date(b.frontmatter.date).getTime();
+      
+      // Handle invalid dates
+      if (isNaN(dateA) && isNaN(dateB)) return 0;
+      if (isNaN(dateA)) return 1;
+      if (isNaN(dateB)) return -1;
+      
       return dateB - dateA;
     });
 }

@@ -1,6 +1,6 @@
 ---
 title: "Advanced Series Usage"
-date: "2024-01-16"
+date: "2025-01-06"
 author: "Blog Author"
 tags: ["tutorial", "examples", "advanced"]
 description: "Advanced tips for using the series feature effectively"
