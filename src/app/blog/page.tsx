@@ -73,9 +73,7 @@ export default async function BlogIndexPage() {
             </div>
 
             {post.excerpt && (
-              <p className="text-secondary mb-4">
-                {post.excerpt}
-              </p>
+              <p className="text-secondary mb-4">{post.excerpt}</p>
             )}
 
             {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
@@ -94,9 +92,7 @@ export default async function BlogIndexPage() {
         ))}
 
         {posts.length === 0 && (
-          <p className="text-secondary">
-            No blog posts yet. Check back soon!
-          </p>
+          <p className="text-secondary">No blog posts yet. Check back soon!</p>
         )}
       </div>
     </div>
