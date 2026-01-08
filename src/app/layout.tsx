@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_Arabic } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { ThemeScript } from "@/components/layout/ThemeScript";
 import config from "@/config";
@@ -15,6 +15,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const notoSansArabic = Noto_Sans_Arabic({
+  variable: "--font-noto-arabic",
+  subsets: ["arabic"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: config.site.name,
   description: config.site.description,
@@ -26,14 +32,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const isEmbeddable = config.buildMode === "embeddable";
+  
+  // Determine direction and language based on config
+  const direction = config.language === 'ar' ? 'rtl' : 'ltr';
+  const language = config.language === 'ar' ? 'ar' : config.language === 'default' ? 'en' : 'en';
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={language} dir={direction} suppressHydrationWarning>
       <head>
         <ThemeScript />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSansArabic.variable} antialiased min-h-screen flex flex-col`}
       >
         {!isEmbeddable && <Header />}
 

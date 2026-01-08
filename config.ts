@@ -14,6 +14,10 @@ export const config = {
     url: process.env.SITE_URL || 'http://localhost:3000',
     author: 'Emad Ashraf',
   },
+
+  // Language and direction configuration
+  // Options: 'ar' for Arabic (RTL), 'ltr' for explicit LTR, or 'default' for auto-detect per post
+  language: (process.env.LANGUAGE || 'default') as 'ar' | 'ltr' | 'default',
 } as const;
 
 export default config;

@@ -8,6 +8,7 @@
   /* Font families */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-arabic: var(--font-noto-arabic);
   
   /* ============================================
    * LIGHT THEME COLORS
@@ -89,6 +90,14 @@ body {
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
 }
 
+/* Apply Arabic font when html has lang="ar" or dir="rtl" */
+html[lang="ar"] body,
+html[dir="rtl"] body,
+.lang-ar,
+[dir="rtl"] {
+  font-family: var(--font-arabic), var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
 /* Links */
 a {
   color: var(--color-primary);
@@ -96,6 +105,35 @@ a {
 
 a:hover {
   color: var(--color-primary-hover);
+}
+
+/* ============================================
+ * RTL SUPPORT
+ * ============================================ */
+
+/* RTL adjustments for common elements */
+[dir="rtl"] .prose ul,
+[dir="rtl"] .prose ol {
+  padding-inline-start: 1.625em;
+  padding-inline-end: 0;
+}
+
+[dir="rtl"] .prose blockquote {
+  border-inline-start-width: 4px;
+  border-inline-end-width: 0;
+  padding-inline-start: 1em;
+  padding-inline-end: 0;
+}
+
+/* Ensure proper text alignment in RTL */
+[dir="rtl"] {
+  text-align: start;
+}
+
+/* RTL-aware margins and paddings */
+[dir="rtl"] .prose > * {
+  margin-inline-start: 0;
+  margin-inline-end: 0;
 }
 
 /* ============================================
@@ -115,6 +153,11 @@ a:hover {
   --tw-prose-hr: var(--color-border);
   --tw-prose-th-borders: var(--color-border);
   --tw-prose-td-borders: var(--color-border);
+}
+
+/* Apply Arabic font to prose content when in Arabic */
+.prose.lang-ar {
+  font-family: var(--font-arabic), var(--font-sans), system-ui, -apple-system, sans-serif;
 }
 
 /* Inline code */
@@ -138,6 +181,12 @@ a:hover {
   background-color: transparent;
   color: var(--color-text);
   padding: 0;
+}
+
+/* Code blocks should always be LTR */
+.prose pre {
+  direction: ltr;
+  text-align: left;
 }
 
 /* Links in prose */
@@ -166,6 +215,13 @@ a:hover {
   border-left-width: 4px;
   color: var(--color-text-secondary);
   font-style: italic;
+}
+
+/* RTL blockquotes */
+[dir="rtl"] .prose blockquote {
+  border-left-width: 0;
+  border-right-width: 4px;
+  border-right-color: var(--color-blockquote);
 }
 
 /* Horizontal rules */

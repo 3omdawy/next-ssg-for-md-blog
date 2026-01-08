@@ -11,6 +11,7 @@ export interface PostFrontmatter {
   image?: string;
   draft?: boolean;
   category?: string;
+  language?: 'ar' | 'en' | string; // Language of the post content
   // New fields for series support
   series?: string; // Name of the series this post belongs to
   seriesOrder?: number; // Order within the series
