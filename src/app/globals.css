@@ -338,6 +338,25 @@ a:hover {
 }
 
 /* ============================================
+ * EMBEDDABLE MODE ADJUSTMENTS
+ * ============================================ */
+
+.mode-embeddable nav.sticky {
+  top: 1rem !important; /* No header, so stick closer to top */
+  max-height: calc(100vh - 2rem) !important;
+}
+
+.mode-embeddable .article-embed-wrapper {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  max-width: 80rem; /* 6xl equivalent */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ============================================
  * SMOOTH TRANSITIONS
  * ============================================ */
 
