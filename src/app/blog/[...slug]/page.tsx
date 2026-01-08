@@ -6,6 +6,7 @@ import {
   getPostBySlug,
   getSeriesNavigation,
 } from "@/lib/posts";
+import { isArabicText } from "@/lib/markdown";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import Link from "next/link";
 
@@ -21,8 +22,8 @@ export const dynamicParams = false;
 // Generate static params for all blog posts
 export async function generateStaticParams() {
   const slugs = getAllPostSlugs();
-  console.log('Generating static params for slugs:', slugs);
-  
+  console.log("Generating static params for slugs:", slugs);
+
   return slugs.map((slug) => {
     const slugArray = slug.split("/");
     console.log(`Mapping slug "${slug}" to array:`, slugArray);
@@ -53,8 +54,8 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug: slugArray } = await params;
   const slug = slugArray.join("/");
-  console.log('Rendering blog post with slug:', slug);
-  
+  console.log("Rendering blog post with slug:", slug);
+
   const post = await getPostBySlug(slug);
 
   if (!post) {
@@ -77,9 +78,20 @@ export default async function BlogPostPage({ params }: PageProps) {
     );
   }
 
+  // Determine direction based on frontmatter or content detection
+  const shouldBeRTL =
+    post.frontmatter.language === "ar" ||
+    post.frontmatter.language === "arabic" ||
+    isArabicText(post.content);
+
   // For standalone mode, return full page with metadata and TOC
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
+    <div
+      className={`container mx-auto px-4 py-8 max-w-6xl ${
+        shouldBeRTL ? "lang-ar" : ""
+      }`}
+      dir={shouldBeRTL ? "rtl" : "ltr"}
+    >
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
         {/* Main Content */}
         <div className="lg:col-span-3">
@@ -136,7 +148,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   >
                     <span className="sr-only">Published on</span>
                     {new Date(post.frontmatter.date).toLocaleDateString(
-                      "en-US",
+                      shouldBeRTL ? "ar-EG" : "en-US",
                       {
                         year: "numeric",
                         month: "long",
@@ -153,9 +165,19 @@ export default async function BlogPostPage({ params }: PageProps) {
                   </span>
                 )}
 
-                {post.readingTime && (
+                {post.readingTime !== undefined && (
                   <span className="flex items-center gap-2">
-                    {post.readingTime}
+                    {shouldBeRTL
+                      ? post.readingTime === 0
+                        ? "أقل من دقيقة للقراءة"
+                        : post.readingTime === 1
+                        ? "دقيقة للقراءة"
+                        : post.readingTime === 2
+                        ? "دقيقتين للقراءة"
+                        : `${post.readingTime} ${
+                            post.readingTime <= 10 ? "دقائق" : "دقيقة"
+                          } للقراءة`
+                      : `${post.readingTime} min read`}
                   </span>
                 )}
               </div>
@@ -168,7 +190,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {(seriesNav.prev || seriesNav.next) && (
               <div className="mt-12 pt-8 border-t border-border">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                  Series Navigation
+                  {shouldBeRTL ? "باقي السلسلة" : "Series Navigation"}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {seriesNav.prev ? (
@@ -178,7 +200,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                       className="group border border-border rounded-lg p-4 hover:border-primary hover:shadow-md transition-all"
                     >
                       <div className="text-sm text-gray-500 mb-1">
-                        ← Previous
+                        {shouldBeRTL ? "السابق →" : "← Previous"}
                       </div>
                       <div className="font-semibold group-hover:text-primary transition-colors">
                         {seriesNav.prev.frontmatter.title}
@@ -193,7 +215,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                       href={`/blog/${seriesNav.next.slug}`}
                       className="group border border-border rounded-lg p-4 hover:border-primary hover:shadow-md transition-all text-right"
                     >
-                      <div className="text-sm text-gray-500 mb-1">Next →</div>
+                      <div className="text-sm text-gray-500 mb-1">
+                        {shouldBeRTL ? "← التالي" : "Next →"}
+                      </div>
                       <div className="font-semibold group-hover:text-primary transition-colors">
                         {seriesNav.next.frontmatter.title}
                       </div>
@@ -207,7 +231,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
               <div className="mt-12 pt-8 border-t border-border">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                  Tags
+                  {shouldBeRTL ? "المواضيع" : "Tags"}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {post.frontmatter.tags.map((tag) => (

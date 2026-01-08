@@ -24,13 +24,14 @@ A modern, high-performance static blog built with Next.js 16, featuring full RTL
 The blog now supports RTL languages with configurable behavior:
 
 **In `config.ts`:**
+
 ```typescript
 export const config = {
   // ... other config
-  
+
   // Language and direction configuration
   // Options: 'ar' for Arabic (RTL), 'ltr' for explicit LTR, or 'default' for auto-detect per post
-  language: (process.env.LANGUAGE || 'default') as 'ar' | 'ltr' | 'default',
+  language: (process.env.LANGUAGE || "default") as "ar" | "ltr" | "default",
 };
 ```
 
@@ -49,18 +50,19 @@ You can specify the language for individual posts in the frontmatter:
 title: "مرحباً بك في المدونة التقنية"
 date: "2026-01-08"
 author: "عماد أشرف"
-language: "ar"  # This post will be rendered in RTL
+language: "ar" # This post will be rendered in RTL
 ---
 ```
 
 **Language field:**
+
 - `"ar"` or `"arabic"` - Renders post in RTL with Arabic font
 - `"en"` or omitted - Renders post in LTR
 - Auto-detection also works by analyzing content
 
 ### Features
 
-✅ Beautiful Arabic typography with Noto Sans Arabic font  
+✅ Beautiful Arabic typography with Cairo font  
 ✅ Proper RTL text alignment and flow  
 ✅ RTL-aware UI elements (borders, margins, padding)  
 ✅ Code blocks remain LTR (as they should be)  
@@ -71,6 +73,7 @@ language: "ar"  # This post will be rendered in RTL
 ### Examples
 
 Check out:
+
 - `content/blog/arabic-sample-post.md` - A complete Arabic blog post example
 - `content/blog/welcome.md` - English blog post (unchanged)
 
@@ -99,20 +102,22 @@ Open [http://localhost:3000](http://localhost:3000) to see your blog.
 ### Configuration
 
 1. **Site Configuration** - Edit `config.ts`:
+
 ```typescript
 export const config = {
-  buildMode: 'standalone', // or 'embeddable'
+  buildMode: "standalone", // or 'embeddable'
   site: {
-    name: 'Your Blog Name',
-    description: 'Your blog description',
-    url: 'https://yourdomain.com',
-    author: 'Your Name',
+    name: "Your Blog Name",
+    description: "Your blog description",
+    url: "https://yourdomain.com",
+    author: "Your Name",
   },
-  language: 'default', // 'ar' for RTL, 'ltr' for LTR, 'default' for auto-detect
+  language: "default", // 'ar' for RTL, 'ltr' for LTR, 'default' for auto-detect
 };
 ```
 
 2. **Environment Variables** (optional):
+
 ```bash
 BUILD_MODE=standalone
 SITE_NAME="Tech Blog"
@@ -135,7 +140,7 @@ author: "Your Name"
 tags: ["tag1", "tag2"]
 category: "Category Name"
 description: "Brief description"
-language: "ar"  # Optional: 'ar' for Arabic/RTL
+language: "ar" # Optional: 'ar' for Arabic/RTL
 draft: false
 ---
 
@@ -177,6 +182,7 @@ content/blog/
 ```
 
 Or use frontmatter:
+
 ```yaml
 series: "My Series Name"
 seriesOrder: 1
@@ -226,6 +232,7 @@ npm run build:both
 ## Customization
 
 See [CUSTOMIZATION.md](CUSTOMIZATION.md) for detailed customization guide including:
+
 - Theme colors
 - Typography
 - Layout modifications
@@ -240,7 +247,7 @@ See [CUSTOMIZATION.md](CUSTOMIZATION.md) for detailed customization guide includ
 - **Search**: Fuse.js
 - **Syntax Highlighting**: highlight.js
 - **Typography**: @tailwindcss/typography
-- **Fonts**: Geist Sans, Geist Mono, Noto Sans Arabic
+- **Fonts**: Geist Sans, Geist Mono, Cairo
 - **Language**: TypeScript
 
 ## License

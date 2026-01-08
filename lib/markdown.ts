@@ -47,13 +47,12 @@ export async function markdownToHtml(markdown: string): Promise<string> {
 }
 
 /**
- * Calculate reading time for content
+ * Calculate reading time for content in minutes
  */
-export function calculateReadingTime(content: string): string {
+export function calculateReadingTime(content: string): number {
   const wordsPerMinute = 200;
   const words = content.trim().split(/\s+/).length;
-  const minutes = Math.ceil(words / wordsPerMinute);
-  return `${minutes} min read`;
+  return Math.ceil(words / wordsPerMinute);
 }
 
 /**
@@ -83,20 +82,49 @@ export function generateExcerpt(content: string, length: number = 160): string {
 export function extractTableOfContents(markdown: string) {
   const headingRegex = /^(#{1,6})\s+(.+)$/gm;
   const headings = [];
+  const slugCounts: Record<string, number> = {};
   let match;
 
   while ((match = headingRegex.exec(markdown)) !== null) {
     const level = match[1].length;
     const text = match[2].trim();
-    const id = text
+    
+    // Improved slugification for Unicode (Arabic, etc.)
+    let slug = text
       .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
+      .replace(/\s+/g, '-')                         // Replace spaces with -
+      .replace(/[^\p{L}\p{N}-]+/gu, '')             // Remove non-word characters (preserving Unicode letters)
+      .replace(/-+/g, '-')                          // Replace multiple - with single -
+      .replace(/^-+|-+$/g, '');                     // Trim - from start and end
 
-    headings.push({ id, text, level });
+    // Fallback for strings that become empty after slugification
+    if (!slug) slug = 'heading';
+
+    // Handle duplicate IDs (match github-slugger behavior used by rehype-slug)
+    let finalId = slug;
+    if (slugCounts[slug] !== undefined) {
+      slugCounts[slug]++;
+      finalId = `${slug}-${slugCounts[slug]}`;
+    } else {
+      slugCounts[slug] = 0;
+    }
+
+    headings.push({ id: finalId, text, level });
   }
 
   return headings;
+}
+
+/**
+ * Detects if text is primarily Arabic
+ */
+export function isArabicText(text: string): boolean {
+  // Arabic Unicode range: U+0600 to U+06FF
+  const arabicChars = (text.match(/[\u0600-\u06FF]/g) || []).length;
+  const totalChars = text.replace(/\s/g, '').length;
+  
+  // If more than 30% of non-whitespace characters are Arabic, consider it Arabic text
+  return totalChars > 0 && (arabicChars / totalChars) > 0.3;
 }
 
 export { contentDirectory };

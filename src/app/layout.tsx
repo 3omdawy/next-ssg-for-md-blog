@@ -1,24 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans_Arabic } from "next/font/google";
+import { Cairo } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { ThemeScript } from "@/components/layout/ThemeScript";
 import config from "@/config";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const notoSansArabic = Noto_Sans_Arabic({
-  variable: "--font-noto-arabic",
-  subsets: ["arabic"],
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["arabic", "latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -32,19 +23,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const isEmbeddable = config.buildMode === "embeddable";
-  
+
   // Determine direction and language based on config
-  const direction = config.language === 'ar' ? 'rtl' : 'ltr';
-  const language = config.language === 'ar' ? 'ar' : config.language === 'default' ? 'en' : 'en';
+  const direction = config.language === "ar" ? "rtl" : "ltr";
+  const language =
+    config.language === "ar"
+      ? "ar"
+      : config.language === "default"
+      ? "en"
+      : "en";
 
   return (
-    <html lang={language} dir={direction} suppressHydrationWarning>
+    <html
+      lang={language}
+      dir={direction}
+      className={`${cairo.className} ${cairo.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <ThemeScript />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoSansArabic.variable} antialiased min-h-screen flex flex-col`}
-      >
+      <body className="antialiased min-h-screen flex flex-col">
         {!isEmbeddable && <Header />}
 
         <main className="flex-1">{children}</main>

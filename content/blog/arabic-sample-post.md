@@ -32,7 +32,7 @@ draft: false
 - **Markdown/MDX** لسهولة كتابة المحتوى
 - **Tailwind CSS** للتنسيق
 - **TypeScript** لضمان سلامة الأنواع
-- **Noto Sans Arabic** خط عربي جميل وواضح
+- **Cairo** خط عربي جميل وواضح
 
 ### الميزات الرئيسية
 

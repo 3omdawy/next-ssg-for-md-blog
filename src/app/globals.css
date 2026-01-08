@@ -6,9 +6,10 @@
 
 @theme {
   /* Font families */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-arabic: var(--font-noto-arabic);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-arabic: var(--font-cairo);
   
   /* ============================================
    * LIGHT THEME COLORS
@@ -43,6 +44,13 @@
   --color-code-bg: #f1f5f9;
   --color-code-text: #7c3aed;
   --color-blockquote: #e2e8f0;
+}
+
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-arabic: var(--font-cairo);
 }
 
 /* ============================================
@@ -88,6 +96,13 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), var(--font-sans), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* Apply Arabic font when html has lang="ar" or dir="rtl" */
@@ -95,7 +110,13 @@ html[lang="ar"] body,
 html[dir="rtl"] body,
 .lang-ar,
 [dir="rtl"] {
-  font-family: var(--font-arabic), var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-arabic), "Cairo", var(--font-sans), system-ui, -apple-system, sans-serif !important;
+}
+
+html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3,
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3,
+.lang-ar h1, .lang-ar h2, .lang-ar h3 {
+  font-family: var(--font-arabic), "Cairo", var(--font-heading), var(--font-sans), system-ui, sans-serif !important;
 }
 
 /* Links */
@@ -142,7 +163,7 @@ a:hover {
 
 .prose {
   --tw-prose-body: var(--color-text);
-  --tw-prose-headings: var(--color-text);
+  --tw-prose-headings: var(--font-heading);
   --tw-prose-links: var(--color-primary);
   --tw-prose-bold: var(--color-text);
   --tw-prose-code: var(--color-code-text);
@@ -157,7 +178,7 @@ a:hover {
 
 /* Apply Arabic font to prose content when in Arabic */
 .prose.lang-ar {
-  font-family: var(--font-arabic), var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-arabic), "Cairo", var(--font-sans), system-ui, -apple-system, sans-serif !important;
 }
 
 /* Inline code */
@@ -250,6 +271,16 @@ a:hover {
 /* ============================================
  * CUSTOM UTILITY CLASSES
  * ============================================ */
+
+/* Custom utility classes */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
 
 /* Surface colors */
 .bg-surface {

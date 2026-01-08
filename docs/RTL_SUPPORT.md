@@ -19,9 +19,9 @@ In `config.ts`, set the language option:
 ```typescript
 export const config = {
   // ... other settings
-  
+
   // Language and direction configuration
-  language: 'default', // 'ar' | 'ltr' | 'default'
+  language: "default", // 'ar' | 'ltr' | 'default'
 };
 ```
 
@@ -29,14 +29,12 @@ export const config = {
 
 - **`'ar'`** - Arabic/RTL mode for entire site
   - Layout renders right-to-left
-  - Uses Noto Sans Arabic font
+  - Uses Cairo font
   - Header, footer, and all UI elements are RTL
-  
 - **`'ltr'`** - Explicit LTR mode
   - Forces left-to-right layout
   - Uses Geist Sans font
   - Standard Western layout
-  
 - **`'default'`** (recommended) - Auto-detect per post
   - Main layout uses config or defaults to LTR
   - Individual posts detect their own direction
@@ -57,11 +55,12 @@ Add `language` field to post frontmatter:
 ```yaml
 ---
 title: "Your Post Title"
-language: "ar"  # or "en", "arabic", etc.
+language: "ar" # or "en", "arabic", etc.
 ---
 ```
 
 **Supported values:**
+
 - `"ar"` or `"arabic"` - Renders in RTL
 - `"en"` or `"english"` - Renders in LTR
 - Omit for auto-detection
@@ -90,6 +89,7 @@ const language = config.language === 'ar' ? 'ar' : 'en';
 ```
 
 This applies to:
+
 - Header navigation
 - Footer
 - Page layouts
@@ -101,11 +101,11 @@ Each article can have its own direction:
 
 ```typescript
 // Auto-detect or use frontmatter
-const shouldBeRTL = language === 'ar' || isArabicText(content);
+const shouldBeRTL = language === "ar" || isArabicText(content);
 
 if (shouldBeRTL) {
-  articleRef.current.setAttribute('dir', 'rtl');
-  articleRef.current.classList.add('lang-ar');
+  articleRef.current.setAttribute("dir", "rtl");
+  articleRef.current.classList.add("lang-ar");
 }
 ```
 
@@ -116,13 +116,19 @@ if (shouldBeRTL) {
 The following classes are automatically applied:
 
 **RTL Detection:**
+
 ```css
 /* Applied to RTL articles */
-[dir="rtl"] { /* RTL-specific styles */ }
-.lang-ar { font-family: var(--font-arabic); }
+[dir="rtl"] {
+  /* RTL-specific styles */
+}
+.lang-ar {
+  font-family: var(--font-arabic);
+}
 ```
 
 **Font Application:**
+
 ```css
 html[lang="ar"] body,
 html[dir="rtl"] body {
@@ -135,6 +141,7 @@ html[dir="rtl"] body {
 The CSS includes RTL-aware styling for:
 
 **Lists:**
+
 ```css
 [dir="rtl"] .prose ul,
 [dir="rtl"] .prose ol {
@@ -144,6 +151,7 @@ The CSS includes RTL-aware styling for:
 ```
 
 **Blockquotes:**
+
 ```css
 [dir="rtl"] .prose blockquote {
   border-inline-start-width: 4px;
@@ -152,6 +160,7 @@ The CSS includes RTL-aware styling for:
 ```
 
 **Code Blocks:**
+
 ```css
 /* Code blocks always LTR */
 .prose pre {
@@ -164,17 +173,18 @@ The CSS includes RTL-aware styling for:
 
 ### Arabic Font
 
-**Noto Sans Arabic** is used for Arabic content:
+**Cairo** is used for Arabic content:
 
 ```typescript
-const notoSansArabic = Noto_Sans_Arabic({
-  variable: "--font-noto-arabic",
+const cairo = Cairo({
+  variable: "--font-cairo",
   subsets: ["arabic"],
   weight: ["400", "500", "600", "700"],
 });
 ```
 
 **Features:**
+
 - Clean, modern Arabic typography
 - Excellent readability
 - Multiple font weights
@@ -183,6 +193,7 @@ const notoSansArabic = Noto_Sans_Arabic({
 ### Font Loading
 
 Fonts are loaded via Next.js Font Optimization:
+
 - Automatic font subsetting
 - Optimal loading strategy
 - No layout shift (CLS)
@@ -192,20 +203,23 @@ Fonts are loaded via Next.js Font Optimization:
 ### 1. Use Config for Site-wide Language
 
 If your entire blog is in Arabic:
+
 ```typescript
 // config.ts
-language: 'ar'
+language: "ar";
 ```
 
 ### 2. Use Frontmatter for Mixed Content
 
 For multilingual blogs:
+
 ```typescript
 // config.ts
-language: 'default'
+language: "default";
 ```
 
 Then in each post:
+
 ```yaml
 # Arabic post
 language: "ar"
@@ -218,14 +232,16 @@ language: "en"
 
 Always write code in LTR (automatically handled):
 
-```markdown
+````markdown
 ```typescript
 // This will always be LTR
 function example() {
   return "Hello World";
 }
 ```
-```
+````
+
+````
 
 ### 4. Mixed Language Content
 
@@ -245,13 +261,13 @@ Arabic text here...
 <div dir="ltr">
 English text here...
 </div>
-```
+````
 
 ## Example Posts
 
 ### Arabic Post
 
-```markdown
+````markdown
 ---
 title: "مرحباً بك"
 date: "2026-01-08"
@@ -269,9 +285,11 @@ tags: ["عربي", "تقني"]
 ```typescript
 const message = "مرحباً";
 ```
+````
 
 > اقتباس باللغة العربية
-```
+
+````
 
 ### English Post
 
@@ -287,7 +305,7 @@ tags: ["english", "tech"]
 ## Introduction
 
 This is an English post...
-```
+````
 
 ## Testing RTL Support
 
@@ -333,6 +351,7 @@ npm run build
 ### Issue: RTL Not Applied
 
 **Solution:**
+
 1. Check `language` field in frontmatter
 2. Verify config.ts setting
 3. Clear `.next` cache and rebuild
@@ -341,7 +360,8 @@ npm run build
 ### Issue: Wrong Font
 
 **Solution:**
-1. Verify Noto Sans Arabic is loaded
+
+1. Verify Cairo is loaded
 2. Check if `lang-ar` class is applied
 3. Clear font cache and reload
 
@@ -349,6 +369,7 @@ npm run build
 
 **Solution:**
 Code blocks should automatically be LTR. If not:
+
 ```css
 .prose pre {
   direction: ltr !important;
@@ -360,6 +381,7 @@ Code blocks should automatically be LTR. If not:
 
 **Solution:**
 Use explicit `dir` attributes:
+
 ```html
 <div dir="ltr">English content</div>
 <div dir="rtl">محتوى عربي</div>
@@ -410,5 +432,5 @@ Potential improvements:
 
 - [MDN: CSS Logical Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties)
 - [W3C: Structural markup and right-to-left text](https://www.w3.org/International/questions/qa-html-dir)
-- [Google Fonts: Noto Sans Arabic](https://fonts.google.com/noto/specimen/Noto+Sans+Arabic)
+- [Google Fonts: Cairo](https://fonts.google.com/specimen/Cairo)
 - [Next.js Font Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
