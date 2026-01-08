@@ -7,6 +7,7 @@
 
 import React, { useEffect, useState } from "react";
 import type { TableOfContentsItem } from "@/types";
+import { isArabicText } from "@/lib/markdown";
 
 interface TableOfContentsProps {
   items: TableOfContentsItem[];
@@ -14,6 +15,8 @@ interface TableOfContentsProps {
 
 export function TableOfContents({ items }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
+
+  const isArabic = items.length > 0 && isArabicText(items[0].text);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,19 +52,19 @@ export function TableOfContents({ items }: TableOfContentsProps) {
   }
 
   return (
-    <nav className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-auto">
+    <nav className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-auto scrollbar-hide">
       <h2 className="text-sm font-semibold mb-4 uppercase text-gray-500 tracking-wider">
-        On this page
+        {isArabic ? "العناوين" : "On this page"}
       </h2>
       <ul className="space-y-2 text-sm">
         {items.map((item) => (
           <li
             key={item.id}
-            style={{ paddingLeft: `${(item.level - 2) * 1}rem` }}
+            style={{ paddingInlineStart: `${(item.level - 2) * 1}rem` }}
           >
             <a
               href={`#${item.id}`}
-              className={`block transition-colors duration-200 border-l-2 pl-4 -ml-[2px] ${
+              className={`block transition-colors duration-200 border-is-2 ps-4 -ms-[2px] ${
                 activeId === item.id
                   ? "border-primary text-primary font-medium"
                   : "border-transparent text-gray-500 hover:text-foreground hover:border-gray-300"

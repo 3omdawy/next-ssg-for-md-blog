@@ -1,6 +1,7 @@
 import { getAllCategories, getPostsByCategory } from "@/lib/posts";
 import Link from "next/link";
 import config from "@/config";
+import { PostCard } from "@/components/blog/PostCard";
 
 interface PageProps {
   params: Promise<{
@@ -42,55 +43,7 @@ export default async function CategoryPage({ params }: PageProps) {
 
       <div className="space-y-8">
         {posts.map((post) => (
-          <article
-            key={post.slug}
-            className="border-b border-border pb-8 last:border-0"
-          >
-            <Link
-              prefetch={false}
-              href={`/blog/${post.slug}`}
-              className="group"
-            >
-              <h2 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
-                {post.frontmatter.title}
-              </h2>
-            </Link>
-
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400 mb-3">
-              {post.frontmatter.date && (
-                <time dateTime={post.frontmatter.date}>
-                  {new Date(post.frontmatter.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </time>
-              )}
-
-              {post.readingTime && <span>{post.readingTime}</span>}
-            </div>
-
-            {post.excerpt && (
-              <p className="text-gray-700 dark:text-gray-300 mb-4">
-                {post.excerpt}
-              </p>
-            )}
-
-            {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {post.frontmatter.tags.map((t) => (
-                  <Link
-                    prefetch={false}
-                    key={t}
-                    href={`/tags/${t}`}
-                    className="px-2 py-1 text-xs bg-muted text-foreground rounded hover:bg-muted/80 transition-colors"
-                  >
-                    #{t}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </article>
+          <PostCard key={post.slug} post={post} />
         ))}
       </div>
     </div>

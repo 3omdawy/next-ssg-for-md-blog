@@ -6,8 +6,10 @@
 
 @theme {
   /* Font families */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-arabic: var(--font-cairo);
   
   /* ============================================
    * LIGHT THEME COLORS
@@ -42,6 +44,13 @@
   --color-code-bg: #f1f5f9;
   --color-code-text: #7c3aed;
   --color-blockquote: #e2e8f0;
+}
+
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-arabic: var(--font-cairo);
 }
 
 /* ============================================
@@ -87,6 +96,27 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), var(--font-sans), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Apply Arabic font when html has lang="ar" or dir="rtl" */
+html[lang="ar"] body,
+html[dir="rtl"] body,
+.lang-ar,
+[dir="rtl"] {
+  font-family: var(--font-arabic), "Cairo", var(--font-sans), system-ui, -apple-system, sans-serif !important;
+}
+
+html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3,
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3,
+.lang-ar h1, .lang-ar h2, .lang-ar h3 {
+  font-family: var(--font-arabic), "Cairo", var(--font-heading), var(--font-sans), system-ui, sans-serif !important;
 }
 
 /* Links */
@@ -99,12 +129,41 @@ a:hover {
 }
 
 /* ============================================
+ * RTL SUPPORT
+ * ============================================ */
+
+/* RTL adjustments for common elements */
+[dir="rtl"] .prose ul,
+[dir="rtl"] .prose ol {
+  padding-inline-start: 1.625em;
+  padding-inline-end: 0;
+}
+
+[dir="rtl"] .prose blockquote {
+  border-inline-start-width: 4px;
+  border-inline-end-width: 0;
+  padding-inline-start: 1em;
+  padding-inline-end: 0;
+}
+
+/* Ensure proper text alignment in RTL */
+[dir="rtl"] {
+  text-align: start;
+}
+
+/* RTL-aware margins and paddings */
+[dir="rtl"] .prose > * {
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
+/* ============================================
  * PROSE / MARKDOWN STYLES
  * ============================================ */
 
 .prose {
   --tw-prose-body: var(--color-text);
-  --tw-prose-headings: var(--color-text);
+  --tw-prose-headings: var(--font-heading);
   --tw-prose-links: var(--color-primary);
   --tw-prose-bold: var(--color-text);
   --tw-prose-code: var(--color-code-text);
@@ -115,6 +174,11 @@ a:hover {
   --tw-prose-hr: var(--color-border);
   --tw-prose-th-borders: var(--color-border);
   --tw-prose-td-borders: var(--color-border);
+}
+
+/* Apply Arabic font to prose content when in Arabic */
+.prose.lang-ar {
+  font-family: var(--font-arabic), "Cairo", var(--font-sans), system-ui, -apple-system, sans-serif !important;
 }
 
 /* Inline code */
@@ -138,6 +202,12 @@ a:hover {
   background-color: transparent;
   color: var(--color-text);
   padding: 0;
+}
+
+/* Code blocks should always be LTR */
+.prose pre {
+  direction: ltr;
+  text-align: left;
 }
 
 /* Links in prose */
@@ -168,6 +238,13 @@ a:hover {
   font-style: italic;
 }
 
+/* RTL blockquotes */
+[dir="rtl"] .prose blockquote {
+  border-left-width: 0;
+  border-right-width: 4px;
+  border-right-color: var(--color-blockquote);
+}
+
 /* Horizontal rules */
 .prose hr {
   border-color: var(--color-border);
@@ -194,6 +271,16 @@ a:hover {
 /* ============================================
  * CUSTOM UTILITY CLASSES
  * ============================================ */
+
+/* Custom utility classes */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
 
 /* Surface colors */
 .bg-surface {
