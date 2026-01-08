@@ -62,6 +62,62 @@ function ArticleEmbed({ htmlFragment }) {
 }
 ```
 
+### 3. Recommended Styles
+
+Since the fragments are stripped of Next.js-specific styles, you should add these base styles to your host application to ensure the Table of Contents and Typography look correct:
+
+```css
+/* Table of Contents Styling */
+.blog-toc-snippet nav {
+  position: sticky;
+  top: 2rem;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+.blog-toc-snippet h2 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.blog-toc-snippet ul {
+  list-style: none;
+  padding: 0;
+}
+
+.blog-toc-snippet li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-toc-snippet a {
+  text-decoration: none;
+  color: #6b7280;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.blog-toc-snippet a:hover {
+  color: #111827;
+}
+
+/* Typography for the content */
+.blog-content-snippet article {
+  line-height: 1.6;
+  color: #374151;
+}
+
+.blog-content-snippet h1,
+.blog-content-snippet h2,
+.blog-content-snippet h3 {
+  color: #111827;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+```
+
 ## 💡 Benefits for Integration
 
 - **Style Control**: Since these are pure HTML snippets, they will inherit the typography and colors of your host application's CSS.

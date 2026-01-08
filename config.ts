@@ -12,7 +12,7 @@ export const config = {
     name: process.env.SITE_NAME || 'Tech Blog',
     description: process.env.SITE_DESCRIPTION || 'Technical articles and tutorials',
     url: process.env.SITE_URL || 'http://localhost:3000',
-    author: 'Emad Ashraf',
+    author: 'Your Name',
   },
 
   // Language and direction configuration

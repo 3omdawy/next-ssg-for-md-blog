@@ -22,6 +22,8 @@ This is a **blog framework/template**, not a finished blog. Think of it like:
 
 - ✅ **Markdown & MDX Support** - Write content in `.md` or `.mdx` files
 - ✅ **Static Site Generation** - Pre-rendered HTML for optimal performance
+- ✅ **Search Functionality** - Fast, client-side search with Fuse.js
+- ✅ **Series Support** - Group related posts into series
 - ✅ **Syntax Highlighting** - Beautiful code blocks with highlight.js
 - ✅ **GitHub Flavored Markdown** - Tables, task lists, and more
 - ✅ **Frontmatter Support** - Rich metadata (title, date, tags, author, etc.)
@@ -69,9 +71,9 @@ nano config.ts
 ```typescript
 export const config = {
   site: {
-    name: "Your Blog Name", // ⬅️ CHANGE THIS
-    description: "Your description", // ⬅️ CHANGE THIS
-    url: "https://yourdomain.com", // ⬅️ CHANGE THIS
+    name: process.env.SITE_NAME || "Your Blog Name", // ⬅️ CHANGE THIS
+    description: process.env.SITE_DESCRIPTION || "Your description", // ⬅️ CHANGE THIS
+    url: process.env.SITE_URL || "https://yourdomain.com", // ⬅️ CHANGE THIS
     author: "Your Name", // ⬅️ CHANGE THIS
   },
   language: "default", // 'ar' for RTL, 'ltr' for LTR, 'default' for auto-detect
@@ -213,6 +215,8 @@ And much more!
 | `image`       | string              | ❌       | Cover image path           |
 | `language`    | string              | ❌       | 'ar' for RTL, 'en' for LTR |
 | `draft`       | boolean             | ❌       | Hide in production         |
+| `series`      | string              | ❌       | Series name                |
+| `seriesOrder` | number              | ❌       | Order in series            |
 
 ### RTL Language Support
 
@@ -307,8 +311,8 @@ The blog is pure static HTML/CSS/JS. Deploy to:
 ## 📚 Documentation
 
 - **[CUSTOMIZATION.md](./CUSTOMIZATION.md)** - Complete customization guide
-- **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - Common issues & solutions
 - **[docs/RTL_SUPPORT.md](./docs/RTL_SUPPORT.md)** - RTL language configuration guide
+- **[docs/SERIES_FEATURE.md](./docs/SERIES_FEATURE.md)** - Guide for creating series
 - **[docs/](./docs/)** - Additional guides & documentation
 
 ## 🎯 Use Cases
@@ -337,8 +341,9 @@ This blog framework is perfect for:
 
 ### 🔄 Phase 2: Enhanced Features (In Progress)
 
-- [ ] Search functionality
-- [ ] Tag/category filtering
+- [x] Search functionality
+- [x] Tag/category filtering
+- [x] Series support
 - [ ] Related posts
 - [ ] RSS feed
 - [ ] Sitemap generation
@@ -357,7 +362,6 @@ This blog framework is perfect for:
 This is primarily a personal project, but contributions are welcome!
 
 - 🐛 Found a bug? [Open an issue](../../issues)
-- 💡 Have an idea? [Start a discussion](../../discussions)
 - 🔧 Want to contribute? Fork and submit a PR!
 
 ## 📄 License
@@ -383,8 +387,6 @@ Just keep the license notice. That's it!
 
 - 📖 Read the [docs](./docs/)
 - 🐛 Report issues on [GitHub Issues](../../issues)
-- 💬 Join discussions on [GitHub Discussions](../../discussions)
-- 📧 Questions? Check [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
 
 ---
 

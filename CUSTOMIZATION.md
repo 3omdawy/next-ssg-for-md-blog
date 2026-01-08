@@ -317,7 +317,6 @@ If you want to modify the framework itself:
 ## 🆘 Need Help?
 
 - Check `docs/` folder for detailed guides
-- Review `TROUBLESHOOTING.md` for common issues
 - Look at example posts in `content/blog-examples/`
 
 ---

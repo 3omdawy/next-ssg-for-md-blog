@@ -3,7 +3,7 @@ title: "About Me"
 description: "Learn more about the author and this blog."
 ---
 
-## Hi, I'm Emad! 👋
+## Hi, I'm [Your Name]! 👋
 
 I'm a software engineer passionate about web development, performance, and security.
 
@@ -13,4 +13,4 @@ This blog serves as a collection of my technical notes, tutorials, and insights.
 
 ### Get in Touch
 
-Feel free to reach out to me on [GitHub](https://github.com/3omdawy) or [LinkedIn](https://www.linkedin.com/in/emad-ashraf/).
+Feel free to reach out to me on [GitHub](https://github.com/your-github) or [LinkedIn](https://www.linkedin.com/in/your-name/).
