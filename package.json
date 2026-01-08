@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:standalone": "cross-env BUILD_MODE=standalone next build",
-    "build:embeddable": "cross-env BUILD_MODE=embeddable next build",
+    "build:embeddable": "cross-env BUILD_MODE=embeddable next build && node scripts/fragment-fixer.js",
     "build:both": "npm run build:standalone && npm run build:embeddable",
     "start": "next start",
     "lint": "eslint"

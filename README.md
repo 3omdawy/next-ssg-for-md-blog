@@ -40,8 +40,8 @@ This is a **blog framework/template**, not a finished blog. Think of it like:
 
 ### Dual Deployment Modes
 
-- ✅ **Standalone Website** - Full-featured blog with navigation
-- ✅ **Embeddable Content** - Individual articles for integration
+- ✅ **Standalone Website** - Full-featured blog with navigation system
+- ✅ **Embeddable Content** - Pure HTML fragments for seamless integration into other apps (CMS, Dashboards, etc.)
 
 ## 🚀 Quick Start (5 Minutes to Your Blog)
 
@@ -261,18 +261,20 @@ npm run dev          # Start dev server (localhost:3000)
 ### Production Build
 
 ```bash
-# Standalone website (most common)
+# Standalone website (standard mode)
 npm run build
 
-# Or specify mode
-npm run build:standalone  # Complete blog site
-npm run build:embeddable  # Individual article pages
-npm run build:both        # Both modes
+# Specialized build modes
+npm run build:standalone  # Complete blog site with full pages
+npm run build:embeddable  # Pure HTML fragments (extracts content only)
+npm run build:both        # Builds both modes sequentially
 ```
 
-Output: Static files in `out/` directory
+Output: Static files in the `out/` directory.
 
-To test locally, you need to serve the files by an HTTP server, for example with `python -m http.server 3000` or `npx serve`.
+> [!NOTE] > **Embeddable Mode** generates clean HTML snippets (ToC and Body) without `<html>` or `<body>` tags, ideal for embedding. See [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md) for details.
+
+To test the **standalone** build locally, you need to serve the files via an HTTP server (e.g., `npx serve out`). The **embeddable** fragments can be viewed directly as they are pure HTML snippets.
 
 ### Deploy Anywhere
 

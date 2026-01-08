@@ -43,7 +43,11 @@ export default function RootLayout({
       <head>
         <ThemeScript />
       </head>
-      <body className="antialiased min-h-screen flex flex-col">
+      <body
+        className={`antialiased min-h-screen flex flex-col ${
+          isEmbeddable ? "mode-embeddable" : ""
+        }`}
+      >
         {!isEmbeddable && <Header />}
 
         <main className="flex-1">{children}</main>

@@ -280,6 +280,14 @@ description: "Exploring the world one city at a time"
 --color-accent: #06b6d4;
 ```
 
+### 8. Fragments & Embeddable Content
+
+If you are integrating this blog into another application (like a dashboard or CMS), you can generate **pure HTML fragments** instead of full pages.
+
+- **How to Build**: Run `npm run build:embeddable`
+- **What it does**: Extracts only the article content and Table of Contents, strips site-navigation links, and removes all boilerplate (`<html>`, `<body>`, etc.).
+- **Full Guide**: See [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md).
+
 ## 🔧 Advanced: Extending the Framework
 
 If you want to modify the framework itself:
