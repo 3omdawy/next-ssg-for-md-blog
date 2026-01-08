@@ -11,6 +11,7 @@ export interface PostFrontmatter {
   image?: string;
   draft?: boolean;
   category?: string;
+  language?: 'ar' | 'en' | string; // Language of the post content
   // New fields for series support
   series?: string; // Name of the series this post belongs to
   seriesOrder?: number; // Order within the series
@@ -21,7 +22,7 @@ export interface Post {
   frontmatter: PostFrontmatter;
   content: string;
   excerpt?: string;
-  readingTime?: string;
+  readingTime?: number;
   tableOfContents?: TableOfContentsItem[];
   // New fields for folder hierarchy
   series?: string; // Extracted from folder name if in a folder
@@ -32,7 +33,7 @@ export interface PostMetadata {
   slug: string;
   frontmatter: PostFrontmatter;
   excerpt?: string;
-  readingTime?: string;
+  readingTime?: number;
   series?: string;
   seriesSlug?: string;
 }

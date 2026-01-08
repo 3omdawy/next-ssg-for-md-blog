@@ -27,6 +27,7 @@ This is a **blog framework/template**, not a finished blog. Think of it like:
 - ✅ **Reading Time Estimation** - Automatic calculation
 - ✅ **Table of Contents** - Auto-generated from headings
 - ✅ **Draft Posts** - Hide posts in production with `draft: true`
+- ✅ **RTL Language Support** - Full Arabic and RTL language support
 
 ### Design & UX
 
@@ -72,6 +73,7 @@ export const config = {
     url: "https://yourdomain.com",        // ⬅️ CHANGE THIS
     author: "Your Name",                  // ⬅️ CHANGE THIS
   },
+  language: 'default',  // 'ar' for RTL, 'ltr' for LTR, 'default' for auto-detect
   // ...
 };
 ```
@@ -174,6 +176,7 @@ author: "Your Name"
 tags: ["tag1", "tag2"]
 category: "Category Name"
 description: "A brief description for SEO"
+language: "ar"  # Optional: 'ar' for Arabic/RTL, 'en' for English/LTR
 draft: false
 ---
 
@@ -198,16 +201,30 @@ And much more!
 
 ### Frontmatter Reference
 
-| Field         | Type                | Required | Description        |
-| ------------- | ------------------- | -------- | ------------------ |
-| `title`       | string              | ✅       | Post title         |
-| `date`        | string (YYYY-MM-DD) | ✅       | Publication date   |
-| `author`      | string              | ❌       | Author name        |
-| `tags`        | string[]            | ❌       | Post tags          |
-| `category`    | string              | ❌       | Post category      |
-| `description` | string              | ❌       | SEO description    |
-| `image`       | string              | ❌       | Cover image path   |
-| `draft`       | boolean             | ❌       | Hide in production |
+| Field         | Type                | Required | Description                     |
+| ------------- | ------------------- | -------- | ------------------------------- |
+| `title`       | string              | ✅       | Post title                      |
+| `date`        | string (YYYY-MM-DD) | ✅       | Publication date                |
+| `author`      | string              | ❌       | Author name                     |
+| `tags`        | string[]            | ❌       | Post tags                       |
+| `category`    | string              | ❌       | Post category                   |
+| `description` | string              | ❌       | SEO description                 |
+| `image`       | string              | ❌       | Cover image path                |
+| `language`    | string              | ❌       | 'ar' for RTL, 'en' for LTR      |
+| `draft`       | boolean             | ❌       | Hide in production              |
+
+### RTL Language Support
+
+The blog supports Arabic and other RTL languages. See [docs/RTL_SUPPORT.md](./docs/RTL_SUPPORT.md) for details.
+
+**Quick example:**
+
+```yaml
+---
+title: "مرحباً بك"
+language: "ar"  # This post will render in RTL
+---
+```
 
 ## 🎨 Customizing Theme
 
@@ -284,6 +301,7 @@ The blog is pure static HTML/CSS/JS. Deploy to:
 
 - **[CUSTOMIZATION.md](./CUSTOMIZATION.md)** - Complete customization guide
 - **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - Common issues & solutions
+- **[docs/RTL_SUPPORT.md](./docs/RTL_SUPPORT.md)** - RTL language configuration guide
 - **[docs/](./docs/)** - Additional guides & documentation
 
 ## 🎯 Use Cases
@@ -308,6 +326,7 @@ This blog framework is perfect for:
 - [x] Dark/light mode
 - [x] Responsive design
 - [x] Custom theme system
+- [x] RTL language support
 
 ### 🔄 Phase 2: Enhanced Features (In Progress)
 
@@ -325,7 +344,6 @@ This blog framework is perfect for:
 - [ ] Newsletter integration
 - [ ] Social sharing
 - [ ] Performance monitoring
-- [ ] Multi-language support
 
 ## 🤝 Contributing
 
