@@ -1,7 +1,7 @@
 ---
 title: "Introducing Our Modern Custom Theme"
 date: "2026-01-05"
-author: "Emad"
+author: "Author"
 tags: ["theme", "design", "customization"]
 category: "Meta"
 description: "Learn about the new modern custom theme system and how to customize it for your blog."
@@ -20,10 +20,10 @@ Every color in the theme is defined as a CSS variable, making it incredibly easy
 
 ```css
 @theme {
-  --color-primary: #3b82f6;    /* Your brand color */
-  --color-accent: #8b5cf6;     /* Your accent color */
+  --color-primary: #3b82f6; /* Your brand color */
+  --color-accent: #8b5cf6; /* Your accent color */
   --color-background: #ffffff; /* Background */
-  --color-surface: #f8fafc;    /* Card surfaces */
+  --color-surface: #f8fafc; /* Card surfaces */
 }
 ```
 
@@ -53,11 +53,13 @@ All components use the same design tokens, ensuring visual consistency throughou
 Customizing your blog's appearance is as simple as editing `src/app/globals.css`:
 
 1. **Choose Your Colors**
+
    - Pick your primary brand color
    - Select a complementary accent color
    - Define surface and background colors
 
 2. **Update Both Modes**
+
    - Set light mode colors in `@theme`
    - Set dark mode colors in `.dark`
    - Ensure good contrast in both modes
@@ -81,21 +83,24 @@ Our theme follows modern web design best practices:
 Want a different look? Here are some popular color schemes:
 
 #### Ocean Theme
+
 ```css
---color-primary: #0ea5e9;    /* Sky blue */
---color-accent: #06b6d4;     /* Cyan */
+--color-primary: #0ea5e9; /* Sky blue */
+--color-accent: #06b6d4; /* Cyan */
 ```
 
 #### Forest Theme
+
 ```css
---color-primary: #10b981;    /* Emerald */
---color-accent: #059669;     /* Green */
+--color-primary: #10b981; /* Emerald */
+--color-accent: #059669; /* Green */
 ```
 
 #### Sunset Theme
+
 ```css
---color-primary: #f59e0b;    /* Amber */
---color-accent: #ef4444;     /* Red */
+--color-primary: #f59e0b; /* Amber */
+--color-accent: #ef4444; /* Red */
 ```
 
 ### Component Showcase
@@ -104,7 +109,7 @@ Let's see how different elements look with our theme:
 
 > **Blockquote**: This is how quoted text appears. Perfect for highlighting important information or citing sources.
 
-**Bold text** and *italic text* both have great contrast and readability.
+**Bold text** and _italic text_ both have great contrast and readability.
 
 Here's some `inline code` that stands out but doesn't distract from the content.
 
@@ -119,11 +124,11 @@ greet("World");
 
 ### Tables Work Great
 
-| Feature | Light Mode | Dark Mode |
-|---------|------------|-----------|
-| Primary | #3b82f6 | #60a5fa |
-| Accent | #8b5cf6 | #a78bfa |
-| Background | #ffffff | #0f172a |
+| Feature    | Light Mode | Dark Mode |
+| ---------- | ---------- | --------- |
+| Primary    | #3b82f6    | #60a5fa   |
+| Accent     | #8b5cf6    | #a78bfa   |
+| Background | #ffffff    | #0f172a   |
 
 ### Lists are Styled Too
 

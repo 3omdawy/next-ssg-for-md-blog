@@ -1,13 +1,15 @@
 ---
 title: "مرحباً بك في المدونة التقنية"
 date: "2026-01-08"
-author: "عماد أشرف"
+author: "الكاتب"
 tags: ["مرحبا", "عربي", "تقني"]
 category: "عام"
 description: "مثال على مقالة باللغة العربية مع دعم كامل لاتجاه الكتابة من اليمين إلى اليسار"
 language: "ar"
 draft: false
 ---
+
+![Hero Image](/images/hero_placeholder.png)
 
 ## مرحباً بك! 👋
 
@@ -53,7 +55,7 @@ function greet(name: string): string {
   return `مرحباً ${name}!`;
 }
 
-const message = greet("عماد");
+const message = greet("الاسم");
 console.log(message);
 ```
 

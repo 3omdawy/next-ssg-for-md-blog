@@ -19,18 +19,69 @@ MDX allows you to use JSX in your markdown content. This is a powerful feature t
 
 ## Demo: JSX in Markdown
 
-You can use standard HTML/JSX tags:
+You can use standard HTML/JSX tags with inline styles:
 
 <div
   style={{
-    padding: "1rem",
-    backgroundColor: "#3b82f6",
-    color: "white",
+    padding: "1.5rem",
+    backgroundColor: "rgba(59, 130, 246, 0.1)",
+    border: "1px solid #3b82f6",
+    color: "#3b82f6",
     borderRadius: "0.5rem",
-    marginBottom: "1rem",
+    marginBottom: "1.5rem",
   }}
 >
-  This is a blue box rendered with a `div` tag!
+  <strong
+    style={{ display: "block", fontSize: "1.1rem", marginBottom: "0.5rem" }}
+  >
+    💡 Pro Tip
+  </strong>
+  This is a custom callout component rendered with a `div` tag in MDX! You can use
+  this for warnings, tips, or highlights.
+</div>
+
+### Interactive-style elements
+
+Even without custom React components registered, you can build rich UI elements using standard HTML tags and CSS:
+
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+    gap: "1rem",
+    marginBottom: "2rem",
+  }}
+>
+  <div
+    style={{
+      padding: "1rem",
+      border: "1px solid #ddd",
+      borderRadius: "8px",
+      textAlign: "center",
+    }}
+  >
+    <span style={{ fontSize: "2rem", display: "block" }}>🚀</span>
+    <strong style={{ display: "block", margin: "0.5rem 0" }}>Fast SSG</strong>
+    <span style={{ fontSize: "0.8rem", display: "block", color: "#666" }}>
+      Pre-rendered for speed
+    </span>
+  </div>
+  <div
+    style={{
+      padding: "1rem",
+      border: "1px solid #ddd",
+      borderRadius: "8px",
+      textAlign: "center",
+    }}
+  >
+    <span style={{ fontSize: "2rem", display: "block" }}>🎨</span>
+    <strong style={{ display: "block", margin: "0.5rem 0" }}>
+      Fully Styled
+    </strong>
+    <span style={{ fontSize: "0.8rem", display: "block", color: "#666" }}>
+      Tailwind powered design
+    </span>
+  </div>
 </div>
 
 ## Support vs. Normal Markdown

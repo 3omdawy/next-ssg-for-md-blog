@@ -271,7 +271,7 @@ English text here...
 ---
 title: "مرحباً بك"
 date: "2026-01-08"
-author: "عماد"
+author: "الكاتب"
 language: "ar"
 tags: ["عربي", "تقني"]
 ---
@@ -297,7 +297,7 @@ const message = "مرحباً";
 ---
 title: "Welcome"
 date: "2026-01-08"
-author: "Emad"
+author: "Author"
 language: "en"  # Optional, auto-detected
 tags: ["english", "tech"]
 ---
