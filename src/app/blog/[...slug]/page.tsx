@@ -73,7 +73,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (isEmbeddable) {
     return (
       <div className="article-wrapper">
-        <ArticleContent content={post.content} />
+        <ArticleContent content={post.content} mdxSource={post.mdxSource} />
       </div>
     );
   }
@@ -184,7 +184,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </header>
 
             {/* Post Content */}
-            <ArticleContent content={post.content} />
+            <ArticleContent content={post.content} mdxSource={post.mdxSource} />
 
             {/* Series Navigation */}
             {(seriesNav.prev || seriesNav.next) && (

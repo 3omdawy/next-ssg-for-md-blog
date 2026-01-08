@@ -7,24 +7,29 @@ This guide shows you exactly what to customize to make this blog your own. Every
 ### 🔴 **MUST CUSTOMIZE** - These define your blog
 
 #### 1. `/content/` - Your Blog Content
+
 This is where all your blog posts and pages live.
 
 **Structure:**
+
 ```
 content/
-├── blog/           # Your blog posts (.md files)
+├── blog/           # Your blog posts (.md or .mdx files)
 │   ├── my-post.md
+│   ├── interactive-post.mdx
 │   └── another-post.md
 └── pages/          # Static pages (about, contact, etc.)
     └── about.md
 ```
 
 **What to do:**
+
 - ✅ Delete example posts or keep them as reference
-- ✅ Add your own `.md` files with proper frontmatter
+- ✅ Add your own `.md` or `.mdx` files with proper frontmatter
 - ✅ Organize posts in subdirectories if using series
 
 **Example post structure:**
+
 ```markdown
 ---
 title: "My First Post"
@@ -38,25 +43,47 @@ description: "Post description"
 Your content here...
 ```
 
+#### 🚀 **MDX Support**
+
+You can use `.mdx` files to add interactive React components to your blog posts. Simply create a file with the `.mdx` extension in the `/content/blog/` folder.
+
+**Example MDX:**
+
+```mdx
+---
+title: "Interactive Post"
+date: "2026-01-08"
+---
+
+<div style={{ padding: "1rem", background: "#eee", borderRadius: "8px" }}>
+  This is a React component in my blog!
+</div>
+```
+
+You can define custom components in `components/blog/ArticleContent.tsx` to use them globally in your MDX files.
+
 #### 2. `/public/` - Your Assets
+
 Store images, favicon, robots.txt, etc.
 
 **What to do:**
+
 - ✅ Replace `favicon.ico` with your own
 - ✅ Add your images for blog posts
 - ✅ Add `robots.txt`, `sitemap.xml` if needed
 - ✅ Add any other static assets
 
 #### 3. `config.ts` - Site Configuration
+
 Your blog's metadata and settings.
 
 ```typescript
 export const config = {
   site: {
-    name: "Your Blog Name",              // ⬅️ CHANGE THIS
-    description: "Your description",      // ⬅️ CHANGE THIS
-    url: "https://yourdomain.com",        // ⬅️ CHANGE THIS
-    author: "Your Name",                  // ⬅️ CHANGE THIS
+    name: "Your Blog Name", // ⬅️ CHANGE THIS
+    description: "Your description", // ⬅️ CHANGE THIS
+    url: "https://yourdomain.com", // ⬅️ CHANGE THIS
+    author: "Your Name", // ⬅️ CHANGE THIS
   },
   content: {
     postsPerPage: 10,
@@ -68,13 +95,14 @@ export const config = {
 ### 🟡 **SHOULD CUSTOMIZE** - Make it yours
 
 #### 4. `src/app/globals.css` - Theme Colors
+
 Customize the color scheme to match your brand.
 
 ```css
 @theme {
   /* Change these to your brand colors */
-  --color-primary: #3b82f6;    /* Your primary color */
-  --color-accent: #8b5cf6;     /* Your accent color */
+  --color-primary: #3b82f6; /* Your primary color */
+  --color-accent: #8b5cf6; /* Your accent color */
   --color-background: #ffffff;
   /* ... more colors ... */
 }
@@ -87,15 +115,18 @@ Customize the color scheme to match your brand.
 ```
 
 **Popular color schemes:**
+
 - **Tech/Professional**: Blue (#3b82f6) + Purple (#8b5cf6) ✅ Current
 - **Nature/Eco**: Green (#10b981) + Teal (#14b8a6)
 - **Creative/Bold**: Pink (#ec4899) + Orange (#f97316)
 - **Minimal/Elegant**: Slate (#64748b) + Indigo (#6366f1)
 
 #### 5. `components/layout/Header.tsx` - Navigation
+
 Customize your header links and branding.
 
 **Current structure:**
+
 ```tsx
 <Link href="/">Home</Link>
 <Link href="/blog">Blog</Link>
@@ -104,6 +135,7 @@ Customize your header links and branding.
 ```
 
 **What to customize:**
+
 - ✅ Add/remove navigation links
 - ✅ Change site title/logo
 - ✅ Modify header layout
@@ -111,6 +143,7 @@ Customize your header links and branding.
 ### 🟢 **OPTIONAL** - Advanced customization
 
 #### 6. Font Configuration
+
 Change fonts in `src/app/layout.tsx`:
 
 ```typescript
@@ -124,6 +157,7 @@ const geistSans = Geist({
 ```
 
 #### 7. Metadata & SEO
+
 Update in individual page files:
 
 ```typescript
@@ -213,6 +247,7 @@ mkdir content/blog
 ### Customizing for a Specific Niche
 
 **Tech Blog:**
+
 ```typescript
 // config.ts
 name: "DevBytes",
@@ -222,6 +257,7 @@ description: "Practical programming tutorials"
 ```
 
 **Food Blog:**
+
 ```typescript
 // config.ts
 name: "Recipe Corner",
@@ -233,6 +269,7 @@ description: "Delicious recipes from my kitchen"
 ```
 
 **Travel Blog:**
+
 ```typescript
 // config.ts
 name: "Wanderlust Diaries",
@@ -248,12 +285,14 @@ description: "Exploring the world one city at a time"
 If you want to modify the framework itself:
 
 ### Adding New Features
+
 1. Read existing code in `/lib` and `/components`
 2. Follow the established patterns
 3. Add types in `/types`
 4. Test thoroughly
 
 ### Common Extensions
+
 - **Search**: Add search functionality in `/components/blog/Search.tsx`
 - **Comments**: Integrate Giscus or other comment systems
 - **Analytics**: Add Google Analytics or Plausible

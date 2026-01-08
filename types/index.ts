@@ -21,6 +21,7 @@ export interface Post {
   slug: string;
   frontmatter: PostFrontmatter;
   content: string;
+  mdxSource?: any; // Serialized MDX content
   excerpt?: string;
   readingTime?: number;
   tableOfContents?: TableOfContentsItem[];

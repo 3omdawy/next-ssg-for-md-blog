@@ -74,7 +74,7 @@ export const config = {
     url: "https://yourdomain.com", // ⬅️ CHANGE THIS
     author: "Your Name", // ⬅️ CHANGE THIS
   },
-  language: 'default',  // 'ar' for RTL, 'ltr' for LTR, 'default' for auto-detect
+  language: "default", // 'ar' for RTL, 'ltr' for LTR, 'default' for auto-detect
   // ...
 };
 ```
@@ -167,7 +167,7 @@ next-ssg-for-md-blog/
 
 ### Blog Post Template
 
-Create a new file in `content/blog/your-post-name.md`:
+Create a new file in `content/blog/your-post-name.md` or `content/blog/your-post-name.mdx`:
 
 ```markdown
 ---
@@ -177,7 +177,7 @@ author: "Your Name"
 tags: ["tag1", "tag2"]
 category: "Category Name"
 description: "A brief description for SEO"
-language: "ar"  # Optional: 'ar' for Arabic/RTL, 'en' for English/LTR
+language: "ar" # Optional: 'ar' for Arabic/RTL, 'en' for English/LTR
 draft: false
 ---
 
@@ -202,17 +202,17 @@ And much more!
 
 ### Frontmatter Reference
 
-| Field         | Type                | Required | Description                     |
-| ------------- | ------------------- | -------- | ------------------------------- |
-| `title`       | string              | ✅       | Post title                      |
-| `date`        | string (YYYY-MM-DD) | ✅       | Publication date                |
-| `author`      | string              | ❌       | Author name                     |
-| `tags`        | string[]            | ❌       | Post tags                       |
-| `category`    | string              | ❌       | Post category                   |
-| `description` | string              | ❌       | SEO description                 |
-| `image`       | string              | ❌       | Cover image path                |
-| `language`    | string              | ❌       | 'ar' for RTL, 'en' for LTR      |
-| `draft`       | boolean             | ❌       | Hide in production              |
+| Field         | Type                | Required | Description                |
+| ------------- | ------------------- | -------- | -------------------------- |
+| `title`       | string              | ✅       | Post title                 |
+| `date`        | string (YYYY-MM-DD) | ✅       | Publication date           |
+| `author`      | string              | ❌       | Author name                |
+| `tags`        | string[]            | ❌       | Post tags                  |
+| `category`    | string              | ❌       | Post category              |
+| `description` | string              | ❌       | SEO description            |
+| `image`       | string              | ❌       | Cover image path           |
+| `language`    | string              | ❌       | 'ar' for RTL, 'en' for LTR |
+| `draft`       | boolean             | ❌       | Hide in production         |
 
 ### RTL Language Support
 
@@ -223,7 +223,7 @@ The blog supports Arabic and other RTL languages. See [docs/RTL_SUPPORT.md](./do
 ```yaml
 ---
 title: "مرحباً بك"
-language: "ar"  # This post will render in RTL
+language: "ar" # This post will render in RTL
 ---
 ```
 

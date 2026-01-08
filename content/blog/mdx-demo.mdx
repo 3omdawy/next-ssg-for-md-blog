@@ -1,0 +1,68 @@
+---
+title: "Highlighting MDX Features"
+date: "2026-01-08"
+author: "Antigravity"
+category: "Tech"
+tags: ["mdx", "nextjs", "react"]
+description: "Learn how to use MDX in your blog to create interactive and dynamic content."
+---
+
+# Welcome to MDX!
+
+MDX allows you to use JSX in your markdown content. This is a powerful feature that lets you embed React components directly into your blog posts.
+
+## Why use MDX?
+
+- **Interactive Components**: Add charts, maps, or any custom React component.
+- **Dynamic Content**: Use logic and state within your posts.
+- **Reusability**: Shared components across different articles.
+
+## Demo: JSX in Markdown
+
+You can use standard HTML/JSX tags:
+
+<div
+  style={{
+    padding: "1rem",
+    backgroundColor: "#3b82f6",
+    color: "white",
+    borderRadius: "0.5rem",
+    marginBottom: "1rem",
+  }}
+>
+  This is a blue box rendered with a `div` tag!
+</div>
+
+## Support vs. Normal Markdown
+
+| Feature         | .md | .mdx |
+| --------------- | --- | ---- |
+| Markdown Syntax | ✅  | ✅   |
+| HTML tags       | ✅  | ✅   |
+| JSX components  | ❌  | ✅   |
+| Markdown in JSX | ❌  | ✅   |
+| Imports/Exports | ❌  | ✅   |
+
+### Code Highlighting still works:
+
+```tsx
+function MyComponent() {
+  return <div>Hello from MDX!</div>;
+}
+```
+
+### Arabic Support Check
+
+MDX also supports RTL content:
+
+<div
+  dir="rtl"
+  className="lang-ar"
+  style={{ padding: "1rem", border: "1px solid #ccc", borderRadius: "0.5rem" }}
+>
+  هذا نص مكتوب داخل مكون MDX ويدعم الاتجاه من اليمين إلى اليسار.
+</div>
+
+## Next Steps
+
+Check out the [MDX Documentation](https://mdxjs.com/) to learn more about what you can do!
