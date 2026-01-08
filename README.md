@@ -1,367 +1,256 @@
-# Next.js SSG Blog
+# Next.js SSG Markdown Blog
 
-> **A modern, production-ready blog framework** built with Next.js 16. Fork it, add your content, and you're ready to publish!
+A modern, high-performance static blog built with Next.js 16, featuring full RTL (Right-to-Left) support for Arabic and other RTL languages.
 
-A high-performance static blog supporting both standalone website deployment and embeddable content modes. This is a **starter template** - you customize the content, we provide the engine.
+## Features
 
-## 🎯 What Is This?
+- 📝 **Markdown & MDX Support** - Write content in Markdown with frontmatter
+- 🎨 **Modern Design** - Clean, responsive design with dark mode
+- 🚀 **Static Site Generation** - Pre-rendered for optimal performance
+- 🔍 **Full-text Search** - Client-side search with Fuse.js
+- 🏷️ **Tags & Categories** - Organize content efficiently
+- 📚 **Series Support** - Group related posts into series
+- 🌐 **RTL Support** - Full Arabic language and RTL formatting support
+- 🎯 **Dual Build Modes** - Standalone or embeddable deployment
+- ⚡ **SEO Optimized** - Proper meta tags and semantic HTML
+- 🔗 **Table of Contents** - Auto-generated from headings
+- 💻 **Syntax Highlighting** - Beautiful code blocks with highlight.js
+- 📱 **Fully Responsive** - Works perfectly on all devices
 
-This is a **blog framework/template**, not a finished blog. Think of it like:
-- 🏗️ **Framework**: The code that powers the blog (you don't need to touch this)
-- 📝 **Your Content**: Blog posts and assets (this is what you customize)
+## RTL Language Support
 
-**You customize:** `/content` (your posts) + `/public` (your assets) + `config.ts` (your settings)  
-**We provide:** Everything else works out of the box!
+### Configuration
 
-👉 **See [CUSTOMIZATION.md](./CUSTOMIZATION.md) for the complete customization guide**
+The blog now supports RTL languages with configurable behavior:
 
-## ✨ Features
-
-### Core Functionality
-
-- ✅ **Markdown & MDX Support** - Write content in `.md` or `.mdx` files
-- ✅ **Static Site Generation** - Pre-rendered HTML for optimal performance
-- ✅ **Syntax Highlighting** - Beautiful code blocks with highlight.js
-- ✅ **GitHub Flavored Markdown** - Tables, task lists, and more
-- ✅ **Frontmatter Support** - Rich metadata (title, date, tags, author, etc.)
-- ✅ **Reading Time Estimation** - Automatic calculation
-- ✅ **Table of Contents** - Auto-generated from headings
-- ✅ **Draft Posts** - Hide posts in production with `draft: true`
-
-### Design & UX
-
-- ✅ **Dark & Light Mode** - Automatic theme switching
-- ✅ **Responsive Design** - Mobile-first approach
-- ✅ **Modern Typography** - Tailwind Typography plugin
-- ✅ **Fully Customizable Theme** - Easy color customization via CSS variables
-- ✅ **Smooth Transitions** - Polished user experience
-
-### Dual Deployment Modes
-
-- ✅ **Standalone Website** - Full-featured blog with navigation
-- ✅ **Embeddable Content** - Individual articles for integration
-
-## 🚀 Quick Start (5 Minutes to Your Blog)
-
-### 1. Fork & Clone
-
-```bash
-# Fork this repo on GitHub, then clone your fork
-git clone https://github.com/YOUR-USERNAME/next-ssg-for-md-blog.git
-cd next-ssg-for-md-blog
-```
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Customize Your Blog
-
-```bash
-# Edit site configuration
-nano config.ts
-```
-
+**In `config.ts`:**
 ```typescript
 export const config = {
-  site: {
-    name: "Your Blog Name",              // ⬅️ CHANGE THIS
-    description: "Your description",      // ⬅️ CHANGE THIS
-    url: "https://yourdomain.com",        // ⬅️ CHANGE THIS
-    author: "Your Name",                  // ⬅️ CHANGE THIS
-  },
-  // ...
+  // ... other config
+  
+  // Language and direction configuration
+  // Options: 'ar' for Arabic (RTL), 'ltr' for explicit LTR, or 'default' for auto-detect per post
+  language: (process.env.LANGUAGE || 'default') as 'ar' | 'ltr' | 'default',
 };
 ```
 
-### 4. Add Your Content
+**Configuration options:**
 
-```bash
-# Remove example posts (or keep them as reference)
-rm -rf content/blog/*
+1. **`language: 'ar'`** - The entire blog layout will be RTL with Arabic font
+2. **`language: 'ltr'`** - Force LTR layout for all content
+3. **`language: 'default'`** - Auto-detect per post based on frontmatter or content
 
-# Create your first post
-nano content/blog/my-first-post.md
+### Per-Post Language Control
+
+You can specify the language for individual posts in the frontmatter:
+
+```yaml
+---
+title: "مرحباً بك في المدونة التقنية"
+date: "2026-01-08"
+author: "عماد أشرف"
+language: "ar"  # This post will be rendered in RTL
+---
 ```
 
-```markdown
----
-title: "My First Post"
-date: "2026-01-07"
-author: "Your Name"
-tags: ["welcome"]
-description: "My first blog post!"
----
+**Language field:**
+- `"ar"` or `"arabic"` - Renders post in RTL with Arabic font
+- `"en"` or omitted - Renders post in LTR
+- Auto-detection also works by analyzing content
 
-## Hello World!
+### Features
 
-This is my first post using this awesome blog framework!
-```
+✅ Beautiful Arabic typography with Noto Sans Arabic font  
+✅ Proper RTL text alignment and flow  
+✅ RTL-aware UI elements (borders, margins, padding)  
+✅ Code blocks remain LTR (as they should be)  
+✅ Bidirectional content support in the same blog  
+✅ No regression to existing LTR functionality  
+✅ Works perfectly with SSG export mode
 
-### 5. Run & Preview
+### Examples
+
+Check out:
+- `content/blog/arabic-sample-post.md` - A complete Arabic blog post example
+- `content/blog/welcome.md` - English blog post (unchanged)
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 18+ and npm
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/3omdawy/next-ssg-for-md-blog.git
+cd next-ssg-for-md-blog
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
 ```
 
-Visit `http://localhost:3000` - You're live! 🎉
+Open [http://localhost:3000](http://localhost:3000) to see your blog.
 
-### 6. Deploy
+### Configuration
 
+1. **Site Configuration** - Edit `config.ts`:
+```typescript
+export const config = {
+  buildMode: 'standalone', // or 'embeddable'
+  site: {
+    name: 'Your Blog Name',
+    description: 'Your blog description',
+    url: 'https://yourdomain.com',
+    author: 'Your Name',
+  },
+  language: 'default', // 'ar' for RTL, 'ltr' for LTR, 'default' for auto-detect
+};
+```
+
+2. **Environment Variables** (optional):
 ```bash
-# Build for production
-npm run build
-
-# Deploy to Vercel, Netlify, or any static host
+BUILD_MODE=standalone
+SITE_NAME="Tech Blog"
+SITE_DESCRIPTION="Technical articles and tutorials"
+SITE_URL="https://yourdomain.com"
+LANGUAGE=default  # or 'ar' for Arabic RTL layout
 ```
 
-## 📂 What to Customize
+## Writing Content
 
-### 🔴 **MUST CUSTOMIZE** (3 things)
+### Blog Posts
 
-1. **`/content/blog/`** - Your blog posts (`.md` files)
-2. **`/public/`** - Your images, favicon, assets
-3. **`config.ts`** - Your blog name, description, URL
-
-### 🟡 **SHOULD CUSTOMIZE** (Make it yours)
-
-4. **`src/app/globals.css`** - Theme colors (line 16+)
-5. **`components/layout/Header.tsx`** - Navigation links
-
-### 🟢 **CAN CUSTOMIZE** (Optional)
-
-6. Fonts, metadata, advanced features
-
-👉 **Full customization guide:** [CUSTOMIZATION.md](./CUSTOMIZATION.md)
-
-## 🏗️ Project Structure
-
-```
-next-ssg-for-md-blog/
-│
-├── 📝 CUSTOMIZE THESE (Your Content)
-│   ├── content/              # Your blog posts & pages
-│   │   ├── blog/            # .md files for blog posts
-│   │   └── pages/           # .md files for static pages
-│   ├── public/              # Images, favicon, static assets
-│   └── config.ts            # Blog configuration
-│
-├── 🎨 CUSTOMIZE IF NEEDED (Styling)
-│   ├── src/app/globals.css  # Theme colors
-│   └── components/layout/   # Header, footer, navigation
-│
-└── ⚙️ DON'T MODIFY (Framework - works out of box)
-    ├── src/app/             # Next.js pages & routing
-    ├── components/blog/     # Blog components
-    ├── lib/                 # Markdown processing, utilities
-    ├── types/               # TypeScript types
-    └── next.config.ts       # Next.js configuration
-```
-
-## 📝 Creating Content
-
-### Blog Post Template
-
-Create a new file in `content/blog/your-post-name.md`:
+Create markdown files in `content/blog/`:
 
 ```markdown
 ---
 title: "Your Post Title"
-date: "2026-01-07"
+date: "2026-01-08"
 author: "Your Name"
 tags: ["tag1", "tag2"]
 category: "Category Name"
-description: "A brief description for SEO"
+description: "Brief description"
+language: "ar"  # Optional: 'ar' for Arabic/RTL
 draft: false
 ---
 
-## Your Content Here
+## Your Content
 
-Write your blog post content using markdown...
-
-### Subheadings work great
-
-- Lists are supported
-- Including nested lists
-  - Like this
-
-Code blocks with syntax highlighting:
-
-\`\`\`javascript
-console.log("Hello, world!");
-\`\`\`
-
-And much more!
+Write your post content here...
 ```
 
-### Frontmatter Reference
+### Arabic Posts
 
-| Field         | Type                | Required | Description        |
-| ------------- | ------------------- | -------- | ------------------ |
-| `title`       | string              | ✅       | Post title         |
-| `date`        | string (YYYY-MM-DD) | ✅       | Publication date   |
-| `author`      | string              | ❌       | Author name        |
-| `tags`        | string[]            | ❌       | Post tags          |
-| `category`    | string              | ❌       | Post category      |
-| `description` | string              | ❌       | SEO description    |
-| `image`       | string              | ❌       | Cover image path   |
-| `draft`       | boolean             | ❌       | Hide in production |
+For Arabic content:
 
-## 🎨 Customizing Theme
+```markdown
+---
+title: "عنوان المقالة"
+date: "2026-01-08"
+author: "اسم المؤلف"
+tags: ["وسم١", "وسم٢"]
+category: "الفئة"
+description: "وصف مختصر"
+language: "ar"
+---
 
-Edit `src/app/globals.css` (around line 16):
+## المحتوى
 
-```css
-@theme {
-  /* Change these to your brand colors */
-  --color-primary: #3b82f6;    /* Links, CTAs */
-  --color-accent: #8b5cf6;     /* Accents, highlights */
-  --color-background: #ffffff; /* Page background */
-  --color-surface: #f8fafc;    /* Cards, surfaces */
-  /* ... more colors ... */
-}
+اكتب محتوى المقالة هنا...
 ```
 
-**Popular themes:**
-- **Tech** (current): Blue `#3b82f6` + Purple `#8b5cf6`
-- **Nature**: Green `#10b981` + Teal `#14b8a6`
-- **Creative**: Pink `#ec4899` + Orange `#f97316`
+### Series
 
-See full color customization in [CUSTOMIZATION.md](./CUSTOMIZATION.md)
+Organize related posts into series by creating folders:
 
-## 📦 Building & Deployment
-
-### Development
-```bash
-npm run dev          # Start dev server (localhost:3000)
+```
+content/blog/
+  my-series/
+    part-1.md
+    part-2.md
+    part-3.md
 ```
 
-### Production Build
+Or use frontmatter:
+```yaml
+series: "My Series Name"
+seriesOrder: 1
+```
+
+## Build & Deploy
+
+### Standalone Mode
 
 ```bash
-# Standalone website (most common)
-npm run build
-
-# Or specify mode
-npm run build:standalone  # Complete blog site
-npm run build:embeddable  # Individual article pages
-npm run build:both        # Both modes
+npm run build:standalone
 ```
 
-Output: Static files in `out/` directory
+Creates a complete static website with navigation, search, and all features.
 
-### Deploy Anywhere
+### Embeddable Mode
 
-The blog is pure static HTML/CSS/JS. Deploy to:
+```bash
+npm run build:embeddable
+```
 
-- **Vercel** (recommended) - Auto-deploy from GitHub
-- **Netlify** - Connect repo, build & publish
-- **GitHub Pages** - Free hosting for public repos
-- **Cloudflare Pages** - Fast global CDN
-- **AWS S3 + CloudFront** - Scalable cloud hosting
-- **Any static host** - Just upload the `out/` folder!
+Creates minimal static pages suitable for embedding in other applications.
 
-### Vercel Deployment (Easiest)
+### Both Modes
 
-1. Push your repo to GitHub
-2. Go to [vercel.com](https://vercel.com)
-3. Import your repository
-4. Click Deploy
-5. Done! ✨
+```bash
+npm run build:both
+```
 
-## 🛠️ Tech Stack
+## Project Structure
 
-- **Framework:** Next.js 16 (App Router) with Static Site Generation
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS v4 + Typography plugin
-- **Content:** Markdown/MDX with gray-matter frontmatter
-- **Syntax Highlighting:** highlight.js
-- **Deployment:** Static export (works anywhere)
+```
+├── components/           # React components
+│   ├── blog/            # Blog-specific components
+│   └── layout/          # Layout components
+├── content/             # Markdown content
+│   ├── blog/           # Blog posts
+│   └── pages/          # Static pages
+├── lib/                # Utility functions
+├── public/             # Static assets
+├── src/
+│   └── app/           # Next.js app directory
+├── types/             # TypeScript types
+└── config.ts          # Blog configuration
+```
 
-## 📚 Documentation
+## Customization
 
-- **[CUSTOMIZATION.md](./CUSTOMIZATION.md)** - Complete customization guide
-- **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - Common issues & solutions
-- **[docs/](./docs/)** - Additional guides & documentation
+See [CUSTOMIZATION.md](CUSTOMIZATION.md) for detailed customization guide including:
+- Theme colors
+- Typography
+- Layout modifications
+- Adding new features
+- RTL styling customization
 
-## 🎯 Use Cases
+## Technology Stack
 
-This blog framework is perfect for:
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS 4
+- **Content**: Markdown/MDX with gray-matter
+- **Search**: Fuse.js
+- **Syntax Highlighting**: highlight.js
+- **Typography**: @tailwindcss/typography
+- **Fonts**: Geist Sans, Geist Mono, Noto Sans Arabic
+- **Language**: TypeScript
 
-- 💻 **Developer Blogs** - Technical tutorials and articles
-- 📝 **Personal Blogs** - Share your thoughts and experiences  
-- 🎨 **Portfolio Sites** - Showcase your work with blog posts
-- 📚 **Documentation Sites** - Product docs or knowledge bases
-- 🏢 **Company Blogs** - Content marketing and announcements
-- 📖 **Learning Journals** - Document your learning journey
-
-## 🗺️ Roadmap
-
-### ✅ Phase 1: Core (Complete)
-
-- [x] Markdown/MDX rendering
-- [x] Blog post pages
-- [x] Homepage with latest posts
-- [x] Syntax highlighting
-- [x] Dark/light mode
-- [x] Responsive design
-- [x] Custom theme system
-
-### 🔄 Phase 2: Enhanced Features (In Progress)
-
-- [ ] Search functionality
-- [ ] Tag/category filtering
-- [ ] Related posts
-- [ ] RSS feed
-- [ ] Sitemap generation
-- [ ] Enhanced SEO
-
-### 🔮 Phase 3: Advanced (Future)
-
-- [ ] Comments system (Giscus)
-- [ ] Analytics integration
-- [ ] Newsletter integration
-- [ ] Social sharing
-- [ ] Performance monitoring
-- [ ] Multi-language support
-
-## 🤝 Contributing
-
-This is primarily a personal project, but contributions are welcome!
-
-- 🐛 Found a bug? [Open an issue](../../issues)
-- 💡 Have an idea? [Start a discussion](../../discussions)
-- 🔧 Want to contribute? Fork and submit a PR!
-
-## 📄 License
+## License
 
 MIT License - feel free to use this for your own blog!
 
-You are free to:
-- ✅ Use commercially
-- ✅ Modify as needed
-- ✅ Distribute
-- ✅ Use privately
+## Contributing
 
-Just keep the license notice. That's it!
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 🙏 Acknowledgments
+## Author
 
-- Built following the [Next.js SSG documentation](https://nextjs.org/docs/app/building-your-application/rendering/static-exports)
-- Inspired by [Gatsby](https://www.gatsbyjs.com/) and [Hugo](https://gohugo.io/) static site generators
-- Uses the excellent [Tailwind Typography](https://tailwindcss.com/docs/typography-plugin) plugin
-
-## 💬 Support & Community
-
-- 📖 Read the [docs](./docs/)
-- 🐛 Report issues on [GitHub Issues](../../issues)
-- 💬 Join discussions on [GitHub Discussions](../../discussions)
-- 📧 Questions? Check [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
-
----
-
-**Ready to start blogging?** Fork this repo and make it yours! 🚀
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR-USERNAME/next-ssg-for-md-blog)
+Emad Ashraf (3omdawy)
