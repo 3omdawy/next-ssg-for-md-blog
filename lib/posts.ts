@@ -130,7 +130,16 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       return null;
     }
 
-    const htmlContent = await markdownToHtml(content);
+    const isMdx = filePath.endsWith('.mdx');
+    let htmlContent = '';
+
+    if (isMdx) {
+      // For MDX, we'll render it using MDXRemote in the component
+      // but we still generate HTML for excerpt/TOC utilities if needed
+      htmlContent = await markdownToHtml(content);
+    } else {
+      htmlContent = await markdownToHtml(content);
+    }
     const readingTime = calculateReadingTime(content);
     const excerpt = frontmatter.description || generateExcerpt(content);
     const tableOfContents = extractTableOfContents(content);
@@ -150,7 +159,8 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
         ...frontmatter,
         series,
       },
-      content: htmlContent,
+      content: isMdx ? content : htmlContent, // Return raw content for MDX
+      mdxSource: isMdx, // Use this as a flag for now, or just check extension
       excerpt,
       readingTime,
       tableOfContents,

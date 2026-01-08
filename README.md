@@ -7,6 +7,7 @@ A high-performance static blog supporting both standalone website deployment and
 ## 🎯 What Is This?
 
 This is a **blog framework/template**, not a finished blog. Think of it like:
+
 - 🏗️ **Framework**: The code that powers the blog (you don't need to touch this)
 - 📝 **Your Content**: Blog posts and assets (this is what you customize)
 
@@ -68,12 +69,12 @@ nano config.ts
 ```typescript
 export const config = {
   site: {
-    name: "Your Blog Name",              // ⬅️ CHANGE THIS
-    description: "Your description",      // ⬅️ CHANGE THIS
-    url: "https://yourdomain.com",        // ⬅️ CHANGE THIS
-    author: "Your Name",                  // ⬅️ CHANGE THIS
+    name: "Your Blog Name", // ⬅️ CHANGE THIS
+    description: "Your description", // ⬅️ CHANGE THIS
+    url: "https://yourdomain.com", // ⬅️ CHANGE THIS
+    author: "Your Name", // ⬅️ CHANGE THIS
   },
-  language: 'default',  // 'ar' for RTL, 'ltr' for LTR, 'default' for auto-detect
+  language: "default", // 'ar' for RTL, 'ltr' for LTR, 'default' for auto-detect
   // ...
 };
 ```
@@ -166,7 +167,7 @@ next-ssg-for-md-blog/
 
 ### Blog Post Template
 
-Create a new file in `content/blog/your-post-name.md`:
+Create a new file in `content/blog/your-post-name.md` or `content/blog/your-post-name.mdx`:
 
 ```markdown
 ---
@@ -176,7 +177,7 @@ author: "Your Name"
 tags: ["tag1", "tag2"]
 category: "Category Name"
 description: "A brief description for SEO"
-language: "ar"  # Optional: 'ar' for Arabic/RTL, 'en' for English/LTR
+language: "ar" # Optional: 'ar' for Arabic/RTL, 'en' for English/LTR
 draft: false
 ---
 
@@ -201,17 +202,17 @@ And much more!
 
 ### Frontmatter Reference
 
-| Field         | Type                | Required | Description                     |
-| ------------- | ------------------- | -------- | ------------------------------- |
-| `title`       | string              | ✅       | Post title                      |
-| `date`        | string (YYYY-MM-DD) | ✅       | Publication date                |
-| `author`      | string              | ❌       | Author name                     |
-| `tags`        | string[]            | ❌       | Post tags                       |
-| `category`    | string              | ❌       | Post category                   |
-| `description` | string              | ❌       | SEO description                 |
-| `image`       | string              | ❌       | Cover image path                |
-| `language`    | string              | ❌       | 'ar' for RTL, 'en' for LTR      |
-| `draft`       | boolean             | ❌       | Hide in production              |
+| Field         | Type                | Required | Description                |
+| ------------- | ------------------- | -------- | -------------------------- |
+| `title`       | string              | ✅       | Post title                 |
+| `date`        | string (YYYY-MM-DD) | ✅       | Publication date           |
+| `author`      | string              | ❌       | Author name                |
+| `tags`        | string[]            | ❌       | Post tags                  |
+| `category`    | string              | ❌       | Post category              |
+| `description` | string              | ❌       | SEO description            |
+| `image`       | string              | ❌       | Cover image path           |
+| `language`    | string              | ❌       | 'ar' for RTL, 'en' for LTR |
+| `draft`       | boolean             | ❌       | Hide in production         |
 
 ### RTL Language Support
 
@@ -222,7 +223,7 @@ The blog supports Arabic and other RTL languages. See [docs/RTL_SUPPORT.md](./do
 ```yaml
 ---
 title: "مرحباً بك"
-language: "ar"  # This post will render in RTL
+language: "ar" # This post will render in RTL
 ---
 ```
 
@@ -233,15 +234,16 @@ Edit `src/app/globals.css` (around line 16):
 ```css
 @theme {
   /* Change these to your brand colors */
-  --color-primary: #3b82f6;    /* Links, CTAs */
-  --color-accent: #8b5cf6;     /* Accents, highlights */
+  --color-primary: #3b82f6; /* Links, CTAs */
+  --color-accent: #8b5cf6; /* Accents, highlights */
   --color-background: #ffffff; /* Page background */
-  --color-surface: #f8fafc;    /* Cards, surfaces */
+  --color-surface: #f8fafc; /* Cards, surfaces */
   /* ... more colors ... */
 }
 ```
 
 **Popular themes:**
+
 - **Tech** (current): Blue `#3b82f6` + Purple `#8b5cf6`
 - **Nature**: Green `#10b981` + Teal `#14b8a6`
 - **Creative**: Pink `#ec4899` + Orange `#f97316`
@@ -251,6 +253,7 @@ See full color customization in [CUSTOMIZATION.md](./CUSTOMIZATION.md)
 ## 📦 Building & Deployment
 
 ### Development
+
 ```bash
 npm run dev          # Start dev server (localhost:3000)
 ```
@@ -268,6 +271,8 @@ npm run build:both        # Both modes
 ```
 
 Output: Static files in `out/` directory
+
+To test locally, you need to serve the files by an HTTP server, for example with `python -m http.server 3000` or `npx serve`.
 
 ### Deploy Anywhere
 
@@ -309,7 +314,7 @@ The blog is pure static HTML/CSS/JS. Deploy to:
 This blog framework is perfect for:
 
 - 💻 **Developer Blogs** - Technical tutorials and articles
-- 📝 **Personal Blogs** - Share your thoughts and experiences  
+- 📝 **Personal Blogs** - Share your thoughts and experiences
 - 🎨 **Portfolio Sites** - Showcase your work with blog posts
 - 📚 **Documentation Sites** - Product docs or knowledge bases
 - 🏢 **Company Blogs** - Content marketing and announcements
@@ -358,6 +363,7 @@ This is primarily a personal project, but contributions are welcome!
 MIT License - feel free to use this for your own blog!
 
 You are free to:
+
 - ✅ Use commercially
 - ✅ Modify as needed
 - ✅ Distribute
@@ -368,7 +374,7 @@ Just keep the license notice. That's it!
 ## 🙏 Acknowledgments
 
 - Built following the [Next.js SSG documentation](https://nextjs.org/docs/app/building-your-application/rendering/static-exports)
-- Inspired by [Gatsby](https://www.gatsbyjs.com/) and [Hugo](https://gohugo.io/) static site generators
+- Inspired by [Intermediate React v6 course](https://intermediate-react-v6.holt.courses/)
 - Uses the excellent [Tailwind Typography](https://tailwindcss.com/docs/typography-plugin) plugin
 
 ## 💬 Support & Community
