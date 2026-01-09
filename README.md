@@ -299,6 +299,8 @@ The blog is pure static HTML/CSS/JS. Deploy to:
 4. Click Deploy
 5. Done! ✨
 
+👉 **See [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) for a detailed step-by-step guide including Environment Variables.**
+
 ## 🛠️ Tech Stack
 
 - **Framework:** Next.js 16 (App Router) with Static Site Generation
@@ -313,6 +315,7 @@ The blog is pure static HTML/CSS/JS. Deploy to:
 - **[CUSTOMIZATION.md](./CUSTOMIZATION.md)** - Complete customization guide
 - **[docs/RTL_SUPPORT.md](./docs/RTL_SUPPORT.md)** - RTL language configuration guide
 - **[docs/SERIES_FEATURE.md](./docs/SERIES_FEATURE.md)** - Guide for creating series
+- **[docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)** - Detailed deployment instructions
 - **[docs/](./docs/)** - Additional guides & documentation
 
 ## 🎯 Use Cases
