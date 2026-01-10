@@ -1,7 +1,5 @@
 import type { NextConfig } from "next";
 
-const buildMode = process.env.BUILD_MODE || 'standalone';
-
 const nextConfig: NextConfig = {
   // Enable static HTML export
   output: 'export',
@@ -16,4 +14,11 @@ const nextConfig: NextConfig = {
   },  
 };
 
-export default nextConfig;
+import withBundleAnalyzer from '@next/bundle-analyzer';
+
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+  openAnalyzer: false,
+});
+
+export default bundleAnalyzer(nextConfig);

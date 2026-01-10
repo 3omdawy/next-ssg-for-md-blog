@@ -1,8 +1,16 @@
-# Next.js SSG Blog
+# Next.js SSG Blog Framework
+
+[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge&logo=vercel)](https://next-ssg-for-md-blog.vercel.app/)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
 > **A modern, production-ready blog framework** built with Next.js 16. Fork it, add your content, and you're ready to publish!
 
-A high-performance static blog supporting both standalone website deployment and embeddable content modes. This is a **starter template** - you customize the content, we provide the engine.
+🔗 **[Live Demo](https://next-ssg-for-md-blog.vercel.app/)** | 📖 **[Documentation](./docs/)** | 🚀 **[Quick Start](#-quick-start-5-minutes-to-your-blog)**
+
+---
 
 ## 🎯 What Is This?
 
@@ -16,9 +24,74 @@ This is a **blog framework/template**, not a finished blog. Think of it like:
 
 👉 **See [CUSTOMIZATION.md](./CUSTOMIZATION.md) for the complete customization guide**
 
+---
+
+## 💡 Why I Built This
+
+### The Motivation
+
+I needed a specific combination of features that I couldn't find in a single existing framework:
+
+- **Simplicity**: I wanted to start writing immediately without complex configuration.
+- **RTL Support**: I needed first-class support for Arabic content.
+- **Embeddability**: I needed to render blog posts inside other applications (dashboards), not just as a standalone site.
+- **Ownership**: I wanted to keep my content in standard Markdown/MDX to avoid lock-in.
+
+### The Solution
+
+A **minimalist blog framework** that:
+
+✅ Works out of the box with sensible defaults  
+✅ Fully static (no server required) for maximum performance  
+✅ Pure markdown/MDX - own your content forever  
+✅ Customizable everything via simple config files  
+✅ Modern tech stack (Next.js 16, TypeScript, Tailwind v4)  
+✅ **Special Feature**: Dual deployment modes (standalone + embeddable fragments)  
+✅ **Special Feature**: First-class RTL language support
+
+### Who Is This For?
+
+- 💻 **Developers** who want a simple, customizable technical blog
+- 📝 **Writers** who want to write in Markdown without overhead
+- 🌍 **Multilingual authors** needing robust RTL support
+- 🏢 **Teams** needing to embed blog content into existing apps
+- 🎓 **Educators** organizing content into sequential series
+
+---
+
+## ⚡ Performance Metrics
+
+### Lighthouse Scores (Production Build)
+
+![Lighthouse Scores on the main page](public/images/lighthouse-scores.png)
+
+```
+🟢 Performance:   95/100
+🟢 Accessibility: 95/100
+🟢 Best Practices: 96/100
+🟢 SEO:          100/100
+```
+
+### Build Metrics
+
+- **Build Time**: ~17.5 seconds (9 posts)
+  - Measured using `Measure-Command { cmd /c "npm run build:standalone" }` on Windows
+- **Bundle Size**: ~195 kB total
+- **Largest Contentful Paint**: < 2.4s
+
+### Why So Fast?
+
+- ✅ **100% Static**: No server-side rendering overhead
+- ✅ **Optimized Images**: Automatic image optimization
+- ✅ **Code Splitting**: Only load what you need
+- ✅ **Tree Shaking**: Unused code eliminated
+- ✅ **Minimal JavaScript**: Static HTML with progressive enhancement
+
+---
+
 ## ✨ Features
 
-### Core Functionality
+### 🚀 Core Functionality
 
 - ✅ **Markdown & MDX Support** - Write content in `.md` or `.mdx` files
 - ✅ **Static Site Generation** - Pre-rendered HTML for optimal performance
@@ -30,20 +103,92 @@ This is a **blog framework/template**, not a finished blog. Think of it like:
 - ✅ **Reading Time Estimation** - Automatic calculation
 - ✅ **Table of Contents** - Auto-generated from headings
 - ✅ **Draft Posts** - Hide posts in production with `draft: true`
-- ✅ **RTL Language Support** - Full Arabic and RTL language support
 
-### Design & UX
+### 🎨 Design & UX
 
-- ✅ **Dark & Light Mode** - Automatic theme switching
+- ✅ **Dark & Light Mode** - Automatic theme switching with persistence
 - ✅ **Responsive Design** - Mobile-first approach
 - ✅ **Modern Typography** - Tailwind Typography plugin
 - ✅ **Fully Customizable Theme** - Easy color customization via CSS variables
 - ✅ **Smooth Transitions** - Polished user experience
 
-### Dual Deployment Modes
+### 🌍 Key Differentiators
 
-- ✅ **Standalone Website** - Full-featured blog with navigation system
-- ✅ **Embeddable Content** - Pure HTML fragments for seamless integration into other apps (CMS, Dashboards, etc.)
+#### 1. **Dual Deployment Modes** ⭐
+
+- **Standalone Website** - Full-featured blog with navigation system
+- **Embeddable Content** - Pure HTML fragments for seamless integration into other apps
+
+**Use Case**: Build your blog once, embed articles anywhere (corporate dashboards, learning management systems).
+
+#### 2. **First-Class RTL Support** ⭐
+
+- ✅ Native Arabic and RTL language support
+- ✅ Per-post language control
+- ✅ Automatic direction detection
+- ✅ RTL-aware layouts
+
+**Use Case**: Create multilingual blogs or Arabic-first content without complex CSS overrides.
+
+---
+
+## 📸 Screenshots
+
+### Light & Dark Mode
+
+| Light Mode                                                        | Dark Mode                                                       |
+| ----------------------------------------------------------------- | --------------------------------------------------------------- |
+| ![Homepage Light](public/images/screenshots/1-homepage-light.jpg) | ![Homepage Dark](public/images/screenshots/2-homepage-dark.jpg) |
+
+### Key Features
+
+<details>
+<summary><b>👀 Expand to see more screenshots</b></summary>
+
+#### Blog Post with Table of Contents
+
+![Blog Post](public/images/screenshots/3-blog-post-with-toc.jpg)
+
+#### First-Class RTL Support (Arabic)
+
+![Arabic Post](public/images/screenshots/4-arabic-post.jpg)
+
+#### Instant Search
+
+![Search](public/images/screenshots/5-search-section.jpg)
+
+#### Series Navigation
+
+![Series](public/images/screenshots/6-series-navigation.jpg)
+
+</details>
+
+---
+
+## 📊 Comparison with Other Frameworks
+
+| Feature               | This Framework   | Gatsby      | Hugo      | Jekyll     | Astro            |
+| --------------------- | ---------------- | ----------- | --------- | ---------- | ---------------- |
+| **Focus**             | Simplicity + RTL | Ecosystem   | Speed     | Simplicity | Performance      |
+| **Setup Time**        | < 5 min          | ~30 min     | ~15 min   | ~15 min    | ~10 min          |
+| **TypeScript First**  | ✅               | ❌          | ❌        | ❌         | ✅               |
+| **MDX Support**       | ✅               | ✅ (plugin) | ❌        | ❌         | ✅               |
+| **RTL Support**       | ✅ Native        | ❌ Manual   | ❌ Manual | ❌ Manual  | ❌ Manual        |
+| **Embeddable Mode**   | ✅ Built-in      | ❌          | ❌        | ❌         | ❌               |
+| **Series Navigation** | ✅               | ❌          | ❌        | ❌         | ❌               |
+| **Dark Mode**         | ✅ Built-in      | ❌ Manual   | ❌ Manual | ❌ Manual  | ✅ (some themes) |
+| **Search**            | ✅ Client-side   | ✅ (plugin) | ❌        | ❌         | ❌ Manual        |
+| **Bundle Size**       | ~195 kB          | ~200 kB     | ~50 kB    | ~100 kB    | ~80 kB           |
+| **Learning Curve**    | Low              | High        | Medium    | Low        | Medium           |
+
+### When to Choose This Framework?
+
+- ✅ You need **RTL support** out of the box
+- ✅ You need **embeddable content** for other apps
+- ✅ You prefer a **Next.js/React** stack
+- ✅ You value **simplicity** over a massive plugin ecosystem
+
+---
 
 ## 🚀 Quick Start (5 Minutes to Your Blog)
 
@@ -122,6 +267,8 @@ npm run build
 # Deploy to Vercel, Netlify, or any static host
 ```
 
+---
+
 ## 📂 What to Customize
 
 ### 🔴 **MUST CUSTOMIZE** (3 things)
@@ -140,6 +287,8 @@ npm run build
 6. Fonts, metadata, advanced features
 
 👉 **Full customization guide:** [CUSTOMIZATION.md](./CUSTOMIZATION.md)
+
+---
 
 ## 🏗️ Project Structure
 
@@ -165,13 +314,15 @@ next-ssg-for-md-blog/
     └── next.config.ts       # Next.js configuration
 ```
 
+---
+
 ## 📝 Creating Content
 
 ### Blog Post Template
 
 Create a new file in `content/blog/your-post-name.md` or `content/blog/your-post-name.mdx`:
 
-```markdown
+````markdown
 ---
 title: "Your Post Title"
 date: "2026-01-07"
@@ -195,12 +346,14 @@ Write your blog post content using markdown...
 
 Code blocks with syntax highlighting:
 
-\`\`\`javascript
+```javascript
 console.log("Hello, world!");
-\`\`\`
+```
+````
 
 And much more!
-```
+
+````
 
 ### Frontmatter Reference
 
@@ -229,7 +382,9 @@ The blog supports Arabic and other RTL languages. See [docs/RTL_SUPPORT.md](./do
 title: "مرحباً بك"
 language: "ar" # This post will render in RTL
 ---
-```
+````
+
+---
 
 ## 🎨 Customizing Theme
 
@@ -253,6 +408,8 @@ Edit `src/app/globals.css` (around line 16):
 - **Creative**: Pink `#ec4899` + Orange `#f97316`
 
 See full color customization in [CUSTOMIZATION.md](./CUSTOMIZATION.md)
+
+---
 
 ## 📦 Building & Deployment
 
@@ -301,6 +458,8 @@ The blog is pure static HTML/CSS/JS. Deploy to:
 
 👉 **See [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) for a detailed step-by-step guide including Environment Variables.**
 
+---
+
 ## 🛠️ Tech Stack
 
 - **Framework:** Next.js 16 (App Router) with Static Site Generation
@@ -310,13 +469,18 @@ The blog is pure static HTML/CSS/JS. Deploy to:
 - **Syntax Highlighting:** highlight.js
 - **Deployment:** Static export (works anywhere)
 
+---
+
 ## 📚 Documentation
 
 - **[CUSTOMIZATION.md](./CUSTOMIZATION.md)** - Complete customization guide
 - **[docs/RTL_SUPPORT.md](./docs/RTL_SUPPORT.md)** - RTL language configuration guide
 - **[docs/SERIES_FEATURE.md](./docs/SERIES_FEATURE.md)** - Guide for creating series
 - **[docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)** - Detailed deployment instructions
+- **[docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md)** - Embeddable mode guide
 - **[docs/](./docs/)** - Additional guides & documentation
+
+---
 
 ## 🎯 Use Cases
 
@@ -328,6 +492,10 @@ This blog framework is perfect for:
 - 📚 **Documentation Sites** - Product docs or knowledge bases
 - 🏢 **Company Blogs** - Content marketing and announcements
 - 📖 **Learning Journals** - Document your learning journey
+- 🌍 **Multilingual Sites** - Arabic, Hebrew, or mixed LTR/RTL content
+- 🔧 **Embeddable Content** - Integrate blog posts into dashboards or CMS
+
+---
 
 ## 🗺️ Roadmap
 
@@ -341,6 +509,7 @@ This blog framework is perfect for:
 - [x] Responsive design
 - [x] Custom theme system
 - [x] RTL language support
+- [x] Embeddable content mode
 
 ### 🔄 Phase 2: Enhanced Features (In Progress)
 
@@ -360,12 +529,18 @@ This blog framework is perfect for:
 - [ ] Social sharing
 - [ ] Performance monitoring
 
+---
+
 ## 🤝 Contributing
 
-This is primarily a personal project, but contributions are welcome!
+Contributions are welcome! Here's how you can help:
 
 - 🐛 Found a bug? [Open an issue](../../issues)
-- 🔧 Want to contribute? Fork and submit a PR!
+- 💡 Have a feature idea? [Start a discussion](../../discussions)
+- 🔧 Want to contribute code? Fork and submit a PR!
+- 📖 Improve docs? Documentation PRs are highly appreciated!
+
+---
 
 ## 📄 License
 
@@ -380,19 +555,24 @@ You are free to:
 
 Just keep the license notice. That's it!
 
+---
+
 ## 🙏 Acknowledgments
 
 - Built following the [Next.js SSG documentation](https://nextjs.org/docs/app/building-your-application/rendering/static-exports)
 - Inspired by [Intermediate React v6 course](https://intermediate-react-v6.holt.courses/)
 - Uses the excellent [Tailwind Typography](https://tailwindcss.com/docs/typography-plugin) plugin
 
+---
+
 ## 💬 Support & Community
 
 - 📖 Read the [docs](./docs/)
 - 🐛 Report issues on [GitHub Issues](../../issues)
+- ⭐ Star this repo if you find it useful!
 
 ---
 
 **Ready to start blogging?** Fork this repo and make it yours! 🚀
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR-USERNAME/next-ssg-for-md-blog)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/3omdawy/next-ssg-for-md-blog)
