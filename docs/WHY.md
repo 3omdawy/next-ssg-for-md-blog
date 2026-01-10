@@ -1,113 +1,125 @@
-# Why This Blog Framework?
+# Why I Built This Framework
 
 ## The Story Behind the Project
 
-After exploring dozens of static site generators and blog frameworks, I found myself frustrated by the same recurring issues. Each framework had its strengths, but none checked all the boxes for a modern, developer-friendly blogging experience.
+I built this framework to solve a specific set of problems I encountered. I had a couple of distinct use cases:
 
-## The Problems I Encountered
+1. Building a technical blog (in English)
+2. Building a static website (in Arabic)
+3. Integrating blog posts based on markdown files into an existing website (in Arabic)
 
-### 1. **Complexity Overload**
+After building it, I realized that while existing frameworks are excellent, this specific combination of features might be useful for others with similar constraints.
 
-Most frameworks require extensive setup:
-- Hours of configuration before writing the first post
-- Complex plugin ecosystems to understand
-- Steep learning curves for basic customization
-- Multiple config files in different formats
+## Challenges I Faced with Existing Tools
 
-**Example**: Gatsby requires understanding GraphQL, plugin architecture, and often 100+ lines of config just to get started.
+### 1. **Complexity vs. Specificity**
 
-### 2. **Limited Flexibility**
+Many powerful frameworks are designed to handle every possible use case, which can lead to:
 
-Many frameworks are either:
-- Too opinionated (hard to customize without fighting the framework)
-- Too flexible (requires building everything from scratch)
+- Extensive configuration before writing the first post
+- Complex plugin ecosystems to navigate
+- Steeper learning curves for simple blogs
 
-**Example**: Hugo has incredible speed but customizing themes requires learning Go templates and a unique structure.
+**Example**: Gatsby is incredibly powerful but often requires understanding GraphQL and a complex plugin architecture just to get a simple blog running.
 
-### 3. **Missing Critical Features**
+### 2. **Flexibility vs. Ease of Use**
+
+Some frameworks are highly opinionated, making them hard to customize without "fighting" the system. Others are so flexible that you have to build everything from scratch.
+
+**Example**: Hugo offers unmatched speed, but customizing themes often requires learning Go templates, which was a barrier for me as a React developer.
+
+### 3. **Specific Needs: RTL & Embeddability**
 
 #### RTL Language Support
 
-Building a blog that supports Arabic, Hebrew, or other RTL languages is surprisingly difficult:
-- Most frameworks have no built-in RTL support
-- Manual implementation is error-prone (text direction, layout mirroring, mixed content)
-- Font loading and typography often break with RTL scripts
+While many frameworks support RTL, making it a "first-class citizen" often requires extra work:
 
-**Why it matters**: Over 400 million Arabic speakers and millions more using RTL languages deserve first-class blogging tools.
+- Manual implementation of layout mirroring
+- Handling mixed LTR/RTL content gracefully
+- Ensuring typography works well with Arabic scripts
+
+**Why it matters**: For my use case (Arabic content), I needed something that prioritized RTL out of the box.
 
 #### Embeddable Content
 
-What if you want to:
-- Display blog posts in a corporate dashboard?
-- Embed articles in a learning management system?
-- Show content in an admin panel or CMS?
+I also needed to display blog snippets in other places:
 
-Most frameworks only support full-page deployment. Extracting just the content requires custom build scripts.
+- Corporate dashboards
+- Learning management systems
+- Admin panels
 
-### 4. **Performance Trade-offs**
+Most SSGs are designed for full-page deployment. I needed a way to extract just the content fragments without custom build scripts.
 
-Many modern frameworks prioritize features over performance:
-- Large JavaScript bundles (200-500 kB)
-- Client-side rendering overhead
-- Slow build times (minutes for 100 posts)
-- Hydration delays on initial load
+See more in [EMBEDDABLE_FRAGMENTS.md](./EMBEDDABLE_FRAGMENTS.md).
 
-**Example**: Some React-based frameworks ship 300+ kB of JavaScript for a simple blog.
+### 4. **Performance Priorities**
+
+Some modern frameworks ship significant JavaScript bundles by default. For a simple text-heavy blog, I wanted to ensure the "Core Web Vitals" remained excellent without manual optimization.
+
+**Example**: I wanted to avoid shipping 300+ kB of JavaScript if the page is mostly static text.
 
 ### 5. **Content Lock-in**
 
 Proprietary formats make migration difficult:
+
 - Custom markdown extensions
 - Framework-specific frontmatter
 - Vendor-specific image handling
 
-## The Solution: This Framework
+## The Approach of This Framework
 
 ### Design Principles
 
 1. **Zero Config by Default**
+
    - Works perfectly out of the box
    - Sensible defaults for 90% of use cases
    - Customize only what you need
 
 2. **Content First**
+
    - Pure Markdown/MDX (standard formats)
    - No proprietary extensions
    - Easy migration to/from other platforms
 
 3. **Performance by Default**
+
    - 100% static (no server required)
-   - Minimal JavaScript (< 100 kB)
-   - Lighthouse 100 scores out of the box
+   - Minimal JavaScript (Typically under 200 kB)
+   - Consistently strong Lighthouse scores with the default setup
 
 4. **Developer Experience**
+
    - TypeScript for safety and autocomplete
-   - Fast hot reload (< 1 second)
+   - Near-instant hot reload
    - Clear error messages
    - Comprehensive documentation
 
 5. **Modern Stack**
-   - Next.js 16 (latest App Router)
+   - Next.js 16 (App Router)
    - Tailwind CSS v4 (CSS-first approach)
-   - Latest React 19
+   - React 19
 
 ### Unique Features
 
 #### ⭐ Dual Deployment Modes
 
 **Standalone Mode** - Traditional blog website
+
 ```bash
 npm run build:standalone
 # Output: Full HTML pages with navigation, header, footer
 ```
 
 **Embeddable Mode** - Content fragments only
+
 ```bash
 npm run build:embeddable
 # Output: Pure HTML snippets (no <html>, <body>, navigation)
 ```
 
 **Use Cases**:
+
 - Corporate dashboards showing company blog posts
 - Learning platforms embedding course content
 - Admin panels displaying documentation
@@ -128,13 +140,16 @@ language: "ar"
 ```
 
 **Features**:
+
 - Automatic text direction detection
 - RTL-aware layouts (lists, blockquotes, tables)
-- Beautiful Arabic typography (Noto Sans Arabic)
+- Beautiful Arabic typography (Cairo)
 - Per-post language control
 - Mixed LTR/RTL content support
 
-**Why it matters**: Makes Arabic, Hebrew, Persian, and Urdu blogs first-class citizens, not afterthoughts.
+**Why it matters**: Makes Arabic and other RTL languages blogs first-class citizens, not afterthoughts.
+
+The framework handles layout direction, typography, and common components automatically while still allowing manual overrides where language-specific nuance is required.
 
 ### Technical Decisions
 
@@ -174,6 +189,7 @@ language: "ar"
 **Scenario**: Building a technical blog for tutorials
 
 **Benefits**:
+
 - Write in your favorite editor (VS Code, Vim, etc.)
 - Syntax highlighting for 200+ languages
 - MDX for interactive code examples
@@ -185,6 +201,7 @@ language: "ar"
 **Scenario**: Personal blog about travel, cooking, etc.
 
 **Benefits**:
+
 - Focus on writing, not configuration
 - Beautiful typography out of the box
 - Dark mode for reader comfort
@@ -196,6 +213,7 @@ language: "ar"
 **Scenario**: Arabic blog or mixed Arabic/English content
 
 **Benefits**:
+
 - Native RTL support (no hacks)
 - Beautiful Arabic fonts
 - Per-post language control
@@ -207,6 +225,7 @@ language: "ar"
 **Scenario**: Company blog embedded in corporate dashboard
 
 **Benefits**:
+
 - Write blog posts as markdown
 - Build once, deploy in multiple places
 - Embeddable mode for dashboards
@@ -218,6 +237,7 @@ language: "ar"
 **Scenario**: Course content with multiple lessons
 
 **Benefits**:
+
 - Series navigation for course structure
 - Reading time estimates
 - Table of contents
@@ -229,68 +249,70 @@ language: "ar"
 ### vs. Gatsby
 
 **Gatsby Strengths**:
-- Huge plugin ecosystem
-- GraphQL data layer
-- Mature and stable
 
-**This Framework Advantages**:
-- ✅ Faster setup (5 min vs 30+ min)
-- ✅ Simpler architecture (no GraphQL required)
-- ✅ Faster builds (45s vs 2-5 min)
-- ✅ Smaller bundles (89 kB vs 200+ kB)
-- ✅ Built-in RTL support
-- ✅ Embeddable mode
+- **Data Layer**: Powerful GraphQL data layer that unifies data from multiple sources (CMS, APIs, Markdown).
+- **Ecosystem**: Huge plugin ecosystem (thousands of plugins).
+- **Images**: `gatsby-image` is a pioneer in modern web image optimization.
+- **Maturity**: Proven stability for large enterprise sites.
+
+**Why I chose this framework instead**:
+
+- Simpler architecture (no GraphQL required)
+- Faster setup for simple markdown blogs
+- Built-in RTL support focused on my specific needs
+- Embeddable mode for partial content reuse
 
 ### vs. Hugo
 
 **Hugo Strengths**:
-- Extremely fast builds
-- Single binary (no dependencies)
-- Mature theme ecosystem
 
-**This Framework Advantages**:
-- ✅ Modern stack (React components)
-- ✅ Better developer experience (hot reload)
-- ✅ TypeScript support
-- ✅ MDX for interactive content
-- ✅ Built-in RTL support
-- ✅ Embeddable mode
+- **Speed**: Blazingly fast build times (milliseconds for small sites, seconds for 10k+ pages).
+- **Simplicity**: Single binary dependency (no npm dependency hell).
+- **Stability**: Rock-solid stability and backward compatibility.
+
+**Why I chose this framework instead**:
+
+- I prefer the React/TypeScript ecosystem over Go templates
+- MDX support for interactive components
+- Hot reload with component state preservation
+- Easier to customize for React developers
 
 ### vs. Jekyll
 
 **Jekyll Strengths**:
-- GitHub Pages integration
-- Simple and stable
-- Large community
 
-**This Framework Advantages**:
-- ✅ Modern stack (React vs Liquid)
-- ✅ Faster development (hot reload vs rebuild)
-- ✅ Better performance (89 kB vs 100+ kB)
-- ✅ TypeScript support
-- ✅ Built-in dark mode
-- ✅ Built-in RTL support
-- ✅ Embeddable mode
+- **Turnkey Deployment**: Excellent integration with GitHub Pages (zero build config).
+- **Community**: Massive community and theme library.
+- **Simplicity**: Great for Ruby developers and simple static sites.
+
+**Why I chose this framework instead**:
+
+- Modern React stack vs Liquid templates
+- Fast hot reload during development
+- Built-in dark mode and design system
+- Type safety with TypeScript
 
 ### vs. Astro
 
 **Astro Strengths**:
-- Multiple framework support
-- Island architecture
-- Growing ecosystem
 
-**This Framework Advantages**:
-- ✅ Simpler mental model (pure React)
-- ✅ Built-in RTL support
-- ✅ Built-in series navigation
-- ✅ Built-in search
-- ✅ Embeddable mode
+- **Zero JS**: Ships 0kb JavaScript by default (Islands Architecture).
+- **Flexibility**: Framework agnostic (use React, Vue, Svelte, or none side-by-side).
+- **Performance**: Best-in-class performance for content-heavy sites out of the box.
+
+**Why I chose this framework instead**:
+
+- Optimized for teams that want to stay entirely in the Next.js/React ecosystem
+- Built-in series navigation (specific to my blogging needs)
+- Dual deployment modes (Standalone + Embeddable)
+- Opinionated setup simplifies decision making
 
 ## Philosophy
 
 ### Simple by Default, Powerful When Needed
 
 The framework should:
+
 - Work perfectly with zero configuration
 - Allow customization without complexity
 - Provide sensible defaults for everything
@@ -299,6 +321,7 @@ The framework should:
 ### Performance First
 
 Every decision prioritizes performance:
+
 - Static generation (no server)
 - Minimal JavaScript
 - Optimized images
@@ -307,6 +330,7 @@ Every decision prioritizes performance:
 ### Developer Experience Matters
 
 Developers spend hours with their tools:
+
 - Fast hot reload (< 1 second)
 - Clear error messages
 - TypeScript autocomplete
@@ -315,9 +339,16 @@ Developers spend hours with their tools:
 ### Content is Portable
 
 Your content should never be locked in:
+
 - Standard Markdown/MDX
 - No proprietary formats
 - Easy migration path
+
+## What this framework is not
+
+- Not a headless CMS replacement
+- Not a real-time or dynamic content platform
+- Not optimized for large multi-author editorial workflows
 
 ## Conclusion
 
@@ -330,6 +361,7 @@ This framework exists because:
 5. **Developer experience** directly impacts content quality
 
 If you want a blog that's:
+
 - Fast to set up
 - Fast to build
 - Fast to load
@@ -338,6 +370,8 @@ If you want a blog that's:
 - Deployable anywhere
 
 This framework is for you.
+
+Get started in minutes by cloning the repo, or explore the [live demo](https://next-ssg-for-md-blog.vercel.app/).
 
 ---
 

@@ -28,36 +28,34 @@ This is a **blog framework/template**, not a finished blog. Think of it like:
 
 ## 💡 Why I Built This
 
-### The Problem
+### The Motivation
 
-After exploring existing blog frameworks and static site generators, I found several gaps:
+I needed a specific combination of features that I couldn't find in a single existing framework:
 
-- **Complexity Overload**: Most frameworks require extensive configuration and setup
-- **Limited Flexibility**: Hard to customize without deep diving into the codebase
-- **Missing Features**: Few support RTL languages natively or offer embeddable content modes
-- **Performance Trade-offs**: Dynamic rendering sacrifices speed for features
-- **Content Lock-in**: Proprietary formats make migration difficult
+- **Simplicity**: I wanted to start writing immediately without complex configuration.
+- **RTL Support**: I needed first-class support for Arabic content.
+- **Embeddability**: I needed to render blog posts inside other applications (dashboards), not just as a standalone site.
+- **Ownership**: I wanted to keep my content in standard Markdown/MDX to avoid lock-in.
 
 ### The Solution
 
-A **zero-config blog framework** that:
+A **minimalist blog framework** that:
 
 ✅ Works out of the box with sensible defaults  
 ✅ Fully static (no server required) for maximum performance  
 ✅ Pure markdown/MDX - own your content forever  
 ✅ Customizable everything via simple config files  
 ✅ Modern tech stack (Next.js 16, TypeScript, Tailwind v4)  
-✅ **Unique**: Dual deployment modes (standalone + embeddable fragments)  
-✅ **Unique**: First-class RTL language support  
+✅ **Special Feature**: Dual deployment modes (standalone + embeddable fragments)  
+✅ **Special Feature**: First-class RTL language support
 
-### Who Benefits?
+### Who Is This For?
 
-- 💻 **Developers** building technical blogs without reinventing the wheel
-- 📝 **Writers** who want to focus on content, not configuration
-- 🌍 **Multilingual bloggers** needing RTL support (Arabic, Hebrew, etc.)
-- 🏢 **Teams** wanting embeddable blog content in dashboards/CMS
-- 🎓 **Educators** creating course content with series navigation
-- 🎨 **Designers** seeking a customizable, modern blog foundation
+- 💻 **Developers** who want a simple, customizable technical blog
+- 📝 **Writers** who want to write in Markdown without overhead
+- 🌍 **Multilingual authors** needing robust RTL support
+- 🏢 **Teams** needing to embed blog content into existing apps
+- 🎓 **Educators** organizing content into sequential series
 
 ---
 
@@ -65,20 +63,21 @@ A **zero-config blog framework** that:
 
 ### Lighthouse Scores (Production Build)
 
+![Lighthouse Scores on the main page](public/images/lighthouse-scores.png)
+
 ```
-🟢 Performance:   100/100
-🟢 Accessibility: 100/100
-🟢 Best Practices: 100/100
+🟢 Performance:   95/100
+🟢 Accessibility: 95/100
+🟢 Best Practices: 96/100
 🟢 SEO:          100/100
 ```
 
 ### Build Metrics
 
-- **Build Time**: ~45 seconds (50 posts)
-- **First Load JS**: 89 kB (gzipped)
-- **Bundle Size**: < 100 kB total
-- **Time to Interactive**: < 1.5s
-- **Largest Contentful Paint**: < 1.2s
+- **Build Time**: ~17.5 seconds (9 posts)
+  - Measured using `Measure-Command { cmd /c "npm run build:standalone" }` on Windows
+- **Bundle Size**: ~195 kB total
+- **Largest Contentful Paint**: < 2.4s
 
 ### Why So Fast?
 
@@ -113,55 +112,81 @@ A **zero-config blog framework** that:
 - ✅ **Fully Customizable Theme** - Easy color customization via CSS variables
 - ✅ **Smooth Transitions** - Polished user experience
 
-### 🌍 Unique Differentiators
+### 🌍 Key Differentiators
 
 #### 1. **Dual Deployment Modes** ⭐
 
 - **Standalone Website** - Full-featured blog with navigation system
-- **Embeddable Content** - Pure HTML fragments for seamless integration into other apps (CMS, Dashboards, admin panels)
+- **Embeddable Content** - Pure HTML fragments for seamless integration into other apps
 
-**Use Case**: Build your blog once, embed articles anywhere (corporate dashboards, learning management systems, internal wikis).
+**Use Case**: Build your blog once, embed articles anywhere (corporate dashboards, learning management systems).
 
 #### 2. **First-Class RTL Support** ⭐
 
-- ✅ Full Arabic and RTL language support
+- ✅ Native Arabic and RTL language support
 - ✅ Per-post language control
 - ✅ Automatic direction detection
-- ✅ Beautiful Arabic typography (Noto Sans Arabic)
-- ✅ RTL-aware layouts and components
+- ✅ RTL-aware layouts
 
-**Use Case**: Create multilingual blogs or Arabic-first content without fighting the framework.
+**Use Case**: Create multilingual blogs or Arabic-first content without complex CSS overrides.
+
+---
+
+## 📸 Screenshots
+
+### Light & Dark Mode
+
+| Light Mode                                                        | Dark Mode                                                       |
+| ----------------------------------------------------------------- | --------------------------------------------------------------- |
+| ![Homepage Light](public/images/screenshots/1-homepage-light.jpg) | ![Homepage Dark](public/images/screenshots/2-homepage-dark.jpg) |
+
+### Key Features
+
+<details>
+<summary><b>👀 Expand to see more screenshots</b></summary>
+
+#### Blog Post with Table of Contents
+
+![Blog Post](public/images/screenshots/3-blog-post-with-toc.jpg)
+
+#### First-Class RTL Support (Arabic)
+
+![Arabic Post](public/images/screenshots/4-arabic-post.jpg)
+
+#### Instant Search
+
+![Search](public/images/screenshots/5-search-section.jpg)
+
+#### Series Navigation
+
+![Series](public/images/screenshots/6-series-navigation.jpg)
+
+</details>
 
 ---
 
 ## 📊 Comparison with Other Frameworks
 
-| Feature | Next.js SSG Blog | Gatsby | Hugo | Jekyll | Astro |
-|---------|------------------|--------|------|--------|-------|
-| **Setup Time** | < 5 min | ~30 min | ~15 min | ~15 min | ~10 min |
-| **TypeScript First** | ✅ | ❌ | ❌ | ❌ | ✅ |
-| **MDX Support** | ✅ | ✅ (plugin) | ❌ | ❌ | ✅ |
-| **RTL Support** | ✅ Native | ❌ Manual | ❌ Manual | ❌ Manual | ❌ Manual |
-| **Embeddable Mode** | ✅ Built-in | ❌ | ❌ | ❌ | ❌ |
-| **Series Navigation** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Dark Mode** | ✅ Built-in | ❌ Manual | ❌ Manual | ❌ Manual | ✅ (some themes) |
-| **Search** | ✅ Client-side | ✅ (plugin) | ❌ | ❌ | ❌ Manual |
-| **Build Speed** | ⚡ Fast | 🐢 Slow | ⚡⚡ Very Fast | ⚡ Fast | ⚡ Fast |
-| **Bundle Size** | 89 kB | ~200 kB | ~50 kB | ~100 kB | ~80 kB |
-| **Learning Curve** | Low | High | Medium | Low | Medium |
-| **Hot Reload** | ✅ Instant | ✅ Slow | ❌ | ❌ | ✅ |
-| **React Components** | ✅ | ✅ | ❌ | ❌ | ✅ |
-| **Static Export** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Customization** | Easy (CSS vars) | Complex (themes) | Medium (templates) | Medium (Liquid) | Easy (components) |
+| Feature               | This Framework   | Gatsby      | Hugo      | Jekyll     | Astro            |
+| --------------------- | ---------------- | ----------- | --------- | ---------- | ---------------- |
+| **Focus**             | Simplicity + RTL | Ecosystem   | Speed     | Simplicity | Performance      |
+| **Setup Time**        | < 5 min          | ~30 min     | ~15 min   | ~15 min    | ~10 min          |
+| **TypeScript First**  | ✅               | ❌          | ❌        | ❌         | ✅               |
+| **MDX Support**       | ✅               | ✅ (plugin) | ❌        | ❌         | ✅               |
+| **RTL Support**       | ✅ Native        | ❌ Manual   | ❌ Manual | ❌ Manual  | ❌ Manual        |
+| **Embeddable Mode**   | ✅ Built-in      | ❌          | ❌        | ❌         | ❌               |
+| **Series Navigation** | ✅               | ❌          | ❌        | ❌         | ❌               |
+| **Dark Mode**         | ✅ Built-in      | ❌ Manual   | ❌ Manual | ❌ Manual  | ✅ (some themes) |
+| **Search**            | ✅ Client-side   | ✅ (plugin) | ❌        | ❌         | ❌ Manual        |
+| **Bundle Size**       | ~195 kB          | ~200 kB     | ~50 kB    | ~100 kB    | ~80 kB           |
+| **Learning Curve**    | Low              | High        | Medium    | Low        | Medium           |
 
-### Why Choose This Framework?
+### When to Choose This Framework?
 
-- ✅ **Modern Stack**: Latest Next.js 16, TypeScript, Tailwind v4
-- ✅ **Zero Config**: Works perfectly with defaults, customize only what you need
-- ✅ **Unique Features**: Embeddable mode and RTL support not found elsewhere
-- ✅ **Performance**: Lighthouse 100 scores out of the box
-- ✅ **Developer Experience**: Fast hot reload, TypeScript, modern tooling
-- ✅ **Flexibility**: Pure markdown/MDX - never locked in
+- ✅ You need **RTL support** out of the box
+- ✅ You need **embeddable content** for other apps
+- ✅ You prefer a **Next.js/React** stack
+- ✅ You value **simplicity** over a massive plugin ecosystem
 
 ---
 
@@ -297,7 +322,7 @@ next-ssg-for-md-blog/
 
 Create a new file in `content/blog/your-post-name.md` or `content/blog/your-post-name.mdx`:
 
-```markdown
+````markdown
 ---
 title: "Your Post Title"
 date: "2026-01-07"
@@ -324,9 +349,11 @@ Code blocks with syntax highlighting:
 ```javascript
 console.log("Hello, world!");
 ```
+````
 
 And much more!
-```
+
+````
 
 ### Frontmatter Reference
 
@@ -355,7 +382,7 @@ The blog supports Arabic and other RTL languages. See [docs/RTL_SUPPORT.md](./do
 title: "مرحباً بك"
 language: "ar" # This post will render in RTL
 ---
-```
+````
 
 ---
 
@@ -406,8 +433,7 @@ npm run build:both        # Builds both modes sequentially
 
 Output: Static files in the `out/` directory.
 
-> [!NOTE]
-> **Embeddable Mode** generates clean HTML snippets (ToC and Body) without `<html>` or `<body>` tags, ideal for embedding. See [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md) for details.
+> [!NOTE] > **Embeddable Mode** generates clean HTML snippets (ToC and Body) without `<html>` or `<body>` tags, ideal for embedding. See [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md) for details.
 
 To test the **standalone** build locally, you need to serve the files via an HTTP server (e.g., `npx serve out`). The **embeddable** fragments can be viewed directly as they are pure HTML snippets.
 
