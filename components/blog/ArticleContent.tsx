@@ -13,7 +13,7 @@ import "highlight.js/styles/github-dark.css"; // Code highlighting theme
 
 interface ArticleContentProps {
   content: string;
-  mdxSource?: any; // Used as isMdx flag in this version
+  mdxSource?: boolean; // Used as isMdx flag in this version
   className?: string;
   language?: string; // Optional language hint from frontmatter
 }
@@ -43,8 +43,7 @@ export async function ArticleContent({
   language,
 }: ArticleContentProps) {
   // Auto-detect direction if language is specified or detect from content
-  const shouldBeRTL =
-    language === "ar" || language === "arabic" || isArabicText(content || "");
+  const shouldBeRTL = language === "ar" || language === "arabic" || isArabicText(content || "");
 
   return (
     <article

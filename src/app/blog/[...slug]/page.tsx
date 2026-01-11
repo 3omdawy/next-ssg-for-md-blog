@@ -1,11 +1,7 @@
 import { notFound } from "next/navigation";
 import config from "@/config";
 import ArticleContent from "@/components/blog/ArticleContent";
-import {
-  getAllPostSlugs,
-  getPostBySlug,
-  getSeriesNavigation,
-} from "@/lib/posts";
+import { getAllPostSlugs, getPostBySlug, getSeriesNavigation } from "@/lib/posts";
 import { isArabicText } from "@/lib/markdown";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import Link from "next/link";
@@ -84,12 +80,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             href={`/series/${post.seriesSlug}`}
             className="inline-flex items-center gap-2 px-3 py-1 text-sm font-medium bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors"
           >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -120,19 +111,13 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
         {post.frontmatter.date && (
-          <time
-            dateTime={post.frontmatter.date}
-            className="flex items-center gap-2"
-          >
+          <time dateTime={post.frontmatter.date} className="flex items-center gap-2">
             <span className="sr-only">Published on</span>
-            {new Date(post.frontmatter.date).toLocaleDateString(
-              shouldBeRTL ? "ar-EG" : "en-US",
-              {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              }
-            )}
+            {new Date(post.frontmatter.date).toLocaleDateString(shouldBeRTL ? "ar-EG" : "en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           </time>
         )}
 
@@ -149,12 +134,10 @@ export default async function BlogPostPage({ params }: PageProps) {
               ? post.readingTime === 0
                 ? "أقل من دقيقة للقراءة"
                 : post.readingTime === 1
-                ? "دقيقة للقراءة"
-                : post.readingTime === 2
-                ? "دقيقتين للقراءة"
-                : `${post.readingTime} ${
-                    post.readingTime <= 10 ? "دقائق" : "دقيقة"
-                  } للقراءة`
+                  ? "دقيقة للقراءة"
+                  : post.readingTime === 2
+                    ? "دقيقتين للقراءة"
+                    : `${post.readingTime} ${post.readingTime <= 10 ? "دقائق" : "دقيقة"} للقراءة`
               : `${post.readingTime} min read`}
           </span>
         )}
@@ -190,9 +173,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             href={`/blog/${seriesNav.next.slug}`}
             className="group border border-border rounded-lg p-4 hover:border-primary hover:shadow-md transition-all text-right"
           >
-            <div className="text-sm text-gray-500 mb-1">
-              {shouldBeRTL ? "← التالي" : "Next →"}
-            </div>
+            <div className="text-sm text-gray-500 mb-1">{shouldBeRTL ? "← التالي" : "Next →"}</div>
             <div className="font-semibold group-hover:text-primary transition-colors">
               {seriesNav.next.frontmatter.title}
             </div>
@@ -202,33 +183,30 @@ export default async function BlogPostPage({ params }: PageProps) {
     </div>
   );
 
-  const postFooter = post.frontmatter.tags &&
-    post.frontmatter.tags.length > 0 && (
-      <div className="mt-12 pt-8 border-t border-border">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-          {shouldBeRTL ? "المواضيع" : "Tags"}
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {post.frontmatter.tags.map((tag) => (
-            <Link
-              prefetch={false}
-              key={tag}
-              href={`/tags/${tag}`}
-              className="px-3 py-1 text-sm bg-muted text-foreground rounded-full hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
-            >
-              #{tag}
-            </Link>
-          ))}
-        </div>
+  const postFooter = post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+    <div className="mt-12 pt-8 border-t border-border">
+      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
+        {shouldBeRTL ? "المواضيع" : "Tags"}
+      </h3>
+      <div className="flex flex-wrap gap-2">
+        {post.frontmatter.tags.map((tag) => (
+          <Link
+            prefetch={false}
+            key={tag}
+            href={`/tags/${tag}`}
+            className="px-3 py-1 text-sm bg-muted text-foreground rounded-full hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
+          >
+            #{tag}
+          </Link>
+        ))}
       </div>
-    );
+    </div>
+  );
 
   return (
     <div
       className={`${
-        isEmbeddable
-          ? "article-embed-wrapper"
-          : "container mx-auto px-4 py-8 max-w-6xl"
+        isEmbeddable ? "article-embed-wrapper" : "container mx-auto px-4 py-8 max-w-6xl"
       } ${shouldBeRTL ? "lang-ar" : ""}`}
       dir={shouldBeRTL ? "rtl" : "ltr"}
     >

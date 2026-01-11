@@ -53,12 +53,7 @@ You can easily integrate these fragments into an existing application (e.g., a c
 
 ```jsx
 function ArticleEmbed({ htmlFragment }) {
-  return (
-    <div
-      className="prose-container"
-      dangerouslySetInnerHTML={{ __html: htmlFragment }}
-    />
-  );
+  return <div className="prose-container" dangerouslySetInnerHTML={{ __html: htmlFragment }} />;
 }
 ```
 

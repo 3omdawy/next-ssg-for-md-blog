@@ -3,20 +3,19 @@
  * Handles parsing markdown files with frontmatter and converting to HTML
  */
 
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkGfm from 'remark-gfm';
-import remarkRehype from 'remark-rehype';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeStringify from 'rehype-stringify';
-import type { Post, PostFrontmatter } from '../types';
+import path from "path";
+import matter from "gray-matter";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkRehype from "remark-rehype";
+import rehypeHighlight from "rehype-highlight";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeStringify from "rehype-stringify";
+import type { PostFrontmatter } from "../types";
 
-const contentDirectory = path.join(process.cwd(), 'content/blog');
+const contentDirectory = path.join(process.cwd(), "content/blog");
 
 /**
  * Parse markdown content with frontmatter
@@ -39,7 +38,7 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeHighlight)
     .use(rehypeSlug)
-    .use(rehypeAutolinkHeadings, { behavior: 'wrap' })
+    .use(rehypeAutolinkHeadings, { behavior: "wrap" })
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(markdown);
 
@@ -61,19 +60,19 @@ export function calculateReadingTime(content: string): number {
 export function generateExcerpt(content: string, length: number = 160): string {
   // Remove markdown syntax for excerpt
   const plainText = content
-    .replace(/#{1,6}\s/g, '') // Remove headers
-    .replace(/\*\*(.+?)\*\*/g, '$1') // Remove bold
-    .replace(/\*(.+?)\*/g, '$1') // Remove italic
-    .replace(/\[(.+?)\]\(.+?\)/g, '$1') // Remove links
-    .replace(/`(.+?)`/g, '$1') // Remove inline code
-    .replace(/```[\s\S]*?```/g, '') // Remove code blocks
+    .replace(/#{1,6}\s/g, "") // Remove headers
+    .replace(/\*\*(.+?)\*\*/g, "$1") // Remove bold
+    .replace(/\*(.+?)\*/g, "$1") // Remove italic
+    .replace(/\[(.+?)\]\(.+?\)/g, "$1") // Remove links
+    .replace(/`(.+?)`/g, "$1") // Remove inline code
+    .replace(/```[\s\S]*?```/g, "") // Remove code blocks
     .trim();
 
   if (plainText.length <= length) {
     return plainText;
   }
 
-  return plainText.substring(0, length).trim() + '...';
+  return plainText.substring(0, length).trim() + "...";
 }
 
 /**
@@ -88,17 +87,17 @@ export function extractTableOfContents(markdown: string) {
   while ((match = headingRegex.exec(markdown)) !== null) {
     const level = match[1].length;
     const text = match[2].trim();
-    
+
     // Improved slugification for Unicode (Arabic, etc.)
     let slug = text
       .toLowerCase()
-      .replace(/\s+/g, '-')                         // Replace spaces with -
-      .replace(/[^\p{L}\p{N}-]+/gu, '')             // Remove non-word characters (preserving Unicode letters)
-      .replace(/-+/g, '-')                          // Replace multiple - with single -
-      .replace(/^-+|-+$/g, '');                     // Trim - from start and end
+      .replace(/\s+/g, "-") // Replace spaces with -
+      .replace(/[^\p{L}\p{N}-]+/gu, "") // Remove non-word characters (preserving Unicode letters)
+      .replace(/-+/g, "-") // Replace multiple - with single -
+      .replace(/^-+|-+$/g, ""); // Trim - from start and end
 
     // Fallback for strings that become empty after slugification
-    if (!slug) slug = 'heading';
+    if (!slug) slug = "heading";
 
     // Handle duplicate IDs (match github-slugger behavior used by rehype-slug)
     let finalId = slug;
@@ -121,10 +120,10 @@ export function extractTableOfContents(markdown: string) {
 export function isArabicText(text: string): boolean {
   // Arabic Unicode range: U+0600 to U+06FF
   const arabicChars = (text.match(/[\u0600-\u06FF]/g) || []).length;
-  const totalChars = text.replace(/\s/g, '').length;
-  
+  const totalChars = text.replace(/\s/g, "").length;
+
   // If more than 30% of non-whitespace characters are Arabic, consider it Arabic text
-  return totalChars > 0 && (arabicChars / totalChars) > 0.3;
+  return totalChars > 0 && arabicChars / totalChars > 0.3;
 }
 
 export { contentDirectory };

@@ -3,8 +3,8 @@
  * Handles reading posts from the file system and providing metadata
  */
 
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 import {
   parseMarkdown,
   markdownToHtml,
@@ -12,15 +12,15 @@ import {
   generateExcerpt,
   extractTableOfContents,
   contentDirectory,
-} from './markdown';
-import type { Post, PostMetadata, PostFrontmatter, Series } from '../types';
+} from "./markdown";
+import type { Post, PostMetadata, Series } from "../types";
 
 /**
  * Normalize path to use forward slashes (for cross-platform compatibility)
  * Windows uses backslashes, but URLs always use forward slashes
  */
 function normalizePath(filePath: string): string {
-  return filePath.split(path.sep).join('/');
+  return filePath.split(path.sep).join("/");
 }
 
 /**
@@ -36,13 +36,15 @@ function getMarkdownFilesRecursive(dir: string, baseDir: string = dir): string[]
 
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
-    
+
     if (entry.isDirectory()) {
       // Recursively scan subdirectories
       files.push(...getMarkdownFilesRecursive(fullPath, baseDir));
-    } else if (entry.isFile() && 
-               (entry.name.endsWith('.md') || entry.name.endsWith('.mdx')) && 
-               entry.name.toLowerCase() !== 'readme.md') {
+    } else if (
+      entry.isFile() &&
+      (entry.name.endsWith(".md") || entry.name.endsWith(".mdx")) &&
+      entry.name.toLowerCase() !== "readme.md"
+    ) {
       // Get relative path from base directory and normalize to forward slashes
       const relativePath = path.relative(baseDir, fullPath);
       files.push(normalizePath(relativePath));
@@ -59,25 +61,25 @@ function getMarkdownFilesRecursive(dir: string, baseDir: string = dir): string[]
 function extractSeriesInfo(filePath: string): { series?: string; seriesSlug?: string } {
   // Always use forward slashes for splitting
   const normalizedPath = normalizePath(filePath);
-  const parts = normalizedPath.split('/');
-  
+  const parts = normalizedPath.split("/");
+
   // If the file is in a subdirectory (not at root level)
   if (parts.length > 1) {
     const seriesFolder = parts[0];
     // Convert folder name to human-readable format
     // e.g., "01-react-basics" -> "React Basics"
     const series = seriesFolder
-      .replace(/^\d+-/, '') // Remove leading numbers
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-    
+      .replace(/^\d+-/, "") // Remove leading numbers
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
     return {
       series,
       seriesSlug: seriesFolder,
     };
   }
-  
+
   return {};
 }
 
@@ -87,7 +89,7 @@ function extractSeriesInfo(filePath: string): { series?: string; seriesSlug?: st
  * For root files: file.md -> file
  */
 function filePathToSlug(filePath: string): string {
-  return filePath.replace(/\.mdx?$/, '');
+  return filePath.replace(/\.mdx?$/, "");
 }
 
 /**
@@ -104,15 +106,15 @@ export function getAllPostSlugs(): string[] {
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
     // Convert slug to file path (handle both forward slashes and URL-encoded backslashes)
-    const normalizedSlug = slug.replace(/%5C/g, '/').replace(/\\/g, '/');
-    
+    const normalizedSlug = slug.replace(/%5C/g, "/").replace(/\\/g, "/");
+
     // Convert forward slashes to platform-specific separators for file system access
-    const fsPath = normalizedSlug.split('/').join(path.sep);
-    
+    const fsPath = normalizedSlug.split("/").join(path.sep);
+
     // Try both .md and .mdx extensions
     const mdPath = path.join(contentDirectory, `${fsPath}.md`);
     const mdxPath = path.join(contentDirectory, `${fsPath}.mdx`);
-    
+
     let filePath: string;
     if (fs.existsSync(mdPath)) {
       filePath = mdPath;
@@ -122,16 +124,16 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       return null;
     }
 
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const fileContent = fs.readFileSync(filePath, "utf-8");
     const { frontmatter, content } = parseMarkdown(fileContent);
 
     // Skip draft posts in production
-    if (frontmatter.draft && process.env.NODE_ENV === 'production') {
+    if (frontmatter.draft && process.env.NODE_ENV === "production") {
       return null;
     }
 
-    const isMdx = filePath.endsWith('.mdx');
-    let htmlContent = '';
+    const isMdx = filePath.endsWith(".mdx");
+    let htmlContent = "";
 
     if (isMdx) {
       // For MDX, we'll render it using MDXRemote in the component
@@ -176,11 +178,9 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 /**
  * Get all posts with metadata (for listing pages)
  */
-export async function getAllPosts(includeContent: boolean = false): Promise<Post[]> {
+export async function getAllPosts(): Promise<Post[]> {
   const slugs = getAllPostSlugs();
-  const posts = await Promise.all(
-    slugs.map((slug) => getPostBySlug(slug))
-  );
+  const posts = await Promise.all(slugs.map((slug) => getPostBySlug(slug)));
 
   // Filter out null posts and sort by date (newest first)
   return posts
@@ -188,12 +188,12 @@ export async function getAllPosts(includeContent: boolean = false): Promise<Post
     .sort((a, b) => {
       const dateA = new Date(a.frontmatter.date).getTime();
       const dateB = new Date(b.frontmatter.date).getTime();
-      
+
       // Handle invalid dates
       if (isNaN(dateA) && isNaN(dateB)) return 0;
       if (isNaN(dateA)) return 1;
       if (isNaN(dateB)) return -1;
-      
+
       return dateB - dateA;
     });
 }
@@ -218,9 +218,7 @@ export async function getAllPostsMetadata(): Promise<PostMetadata[]> {
  */
 export async function getPostsByTag(tag: string): Promise<Post[]> {
   const allPosts = await getAllPosts();
-  return allPosts.filter((post) =>
-    post.frontmatter.tags?.includes(tag)
-  );
+  return allPosts.filter((post) => post.frontmatter.tags?.includes(tag));
 }
 
 /**
@@ -228,9 +226,7 @@ export async function getPostsByTag(tag: string): Promise<Post[]> {
  */
 export async function getPostsByCategory(category: string): Promise<Post[]> {
   const allPosts = await getAllPosts();
-  return allPosts.filter((post) =>
-    post.frontmatter.category === category
-  );
+  return allPosts.filter((post) => post.frontmatter.category === category);
 }
 
 /**
@@ -239,7 +235,7 @@ export async function getPostsByCategory(category: string): Promise<Post[]> {
 export async function getPostsBySeries(seriesSlug: string): Promise<Post[]> {
   const allPosts = await getAllPosts();
   const seriesPosts = allPosts.filter((post) => post.seriesSlug === seriesSlug);
-  
+
   // Sort by seriesOrder if available, otherwise by date
   return seriesPosts.sort((a, b) => {
     if (a.frontmatter.seriesOrder !== undefined && b.frontmatter.seriesOrder !== undefined) {
@@ -298,7 +294,7 @@ export async function getAllSeries(): Promise<Series[]> {
 export async function getAllTags(): Promise<string[]> {
   const allPosts = await getAllPosts();
   const tagsSet = new Set<string>();
-  
+
   allPosts.forEach((post) => {
     post.frontmatter.tags?.forEach((tag) => tagsSet.add(tag));
   });
@@ -312,7 +308,7 @@ export async function getAllTags(): Promise<string[]> {
 export async function getAllCategories(): Promise<string[]> {
   const allPosts = await getAllPosts();
   const categoriesSet = new Set<string>();
-  
+
   allPosts.forEach((post) => {
     if (post.frontmatter.category) {
       categoriesSet.add(post.frontmatter.category);
@@ -325,10 +321,7 @@ export async function getAllCategories(): Promise<string[]> {
 /**
  * Get related posts based on tags
  */
-export async function getRelatedPosts(
-  currentSlug: string,
-  limit: number = 3
-): Promise<Post[]> {
+export async function getRelatedPosts(currentSlug: string, limit: number = 3): Promise<Post[]> {
   const currentPost = await getPostBySlug(currentSlug);
   if (!currentPost || !currentPost.frontmatter.tags) {
     return [];
@@ -341,9 +334,7 @@ export async function getRelatedPosts(
   const postsWithScores = allPosts
     .filter((post) => post.slug !== currentSlug)
     .map((post) => {
-      const sharedTags = post.frontmatter.tags?.filter((tag) =>
-        currentTags.has(tag)
-      ).length || 0;
+      const sharedTags = post.frontmatter.tags?.filter((tag) => currentTags.has(tag)).length || 0;
       return { post, score: sharedTags };
     })
     .filter(({ score }) => score > 0)
@@ -359,7 +350,7 @@ export async function getSeriesNavigation(
   slug: string
 ): Promise<{ prev: PostMetadata | null; next: PostMetadata | null }> {
   const currentPost = await getPostBySlug(slug);
-  
+
   if (!currentPost || !currentPost.seriesSlug) {
     return { prev: null, next: null };
   }
@@ -371,23 +362,29 @@ export async function getSeriesNavigation(
     return { prev: null, next: null };
   }
 
-  const prev = currentIndex > 0 ? {
-    slug: seriesPosts[currentIndex - 1].slug,
-    frontmatter: seriesPosts[currentIndex - 1].frontmatter,
-    excerpt: seriesPosts[currentIndex - 1].excerpt,
-    readingTime: seriesPosts[currentIndex - 1].readingTime,
-    series: seriesPosts[currentIndex - 1].series,
-    seriesSlug: seriesPosts[currentIndex - 1].seriesSlug,
-  } : null;
+  const prev =
+    currentIndex > 0
+      ? {
+          slug: seriesPosts[currentIndex - 1].slug,
+          frontmatter: seriesPosts[currentIndex - 1].frontmatter,
+          excerpt: seriesPosts[currentIndex - 1].excerpt,
+          readingTime: seriesPosts[currentIndex - 1].readingTime,
+          series: seriesPosts[currentIndex - 1].series,
+          seriesSlug: seriesPosts[currentIndex - 1].seriesSlug,
+        }
+      : null;
 
-  const next = currentIndex < seriesPosts.length - 1 ? {
-    slug: seriesPosts[currentIndex + 1].slug,
-    frontmatter: seriesPosts[currentIndex + 1].frontmatter,
-    excerpt: seriesPosts[currentIndex + 1].excerpt,
-    readingTime: seriesPosts[currentIndex + 1].readingTime,
-    series: seriesPosts[currentIndex + 1].series,
-    seriesSlug: seriesPosts[currentIndex + 1].seriesSlug,
-  } : null;
+  const next =
+    currentIndex < seriesPosts.length - 1
+      ? {
+          slug: seriesPosts[currentIndex + 1].slug,
+          frontmatter: seriesPosts[currentIndex + 1].frontmatter,
+          excerpt: seriesPosts[currentIndex + 1].excerpt,
+          readingTime: seriesPosts[currentIndex + 1].readingTime,
+          series: seriesPosts[currentIndex + 1].series,
+          seriesSlug: seriesPosts[currentIndex + 1].seriesSlug,
+        }
+      : null;
 
   return { prev, next };
 }

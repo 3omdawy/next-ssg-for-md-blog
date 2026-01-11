@@ -1,5 +1,5 @@
 import { getAllCategories, getPostsByCategory } from "@/lib/posts";
-import Link from "next/link";
+
 import config from "@/config";
 import { PostCard } from "@/components/blog/PostCard";
 

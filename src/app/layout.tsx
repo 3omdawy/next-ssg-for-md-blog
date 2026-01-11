@@ -26,12 +26,7 @@ export default function RootLayout({
 
   // Determine direction and language based on config
   const direction = config.language === "ar" ? "rtl" : "ltr";
-  const language =
-    config.language === "ar"
-      ? "ar"
-      : config.language === "default"
-      ? "en"
-      : "en";
+  const language = config.language === "ar" ? "ar" : config.language === "default" ? "en" : "en";
 
   return (
     <html
@@ -56,8 +51,7 @@ export default function RootLayout({
           <footer className="border-t border-border py-8 mt-12">
             <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-gray-500">
               <p>
-                © {new Date().getFullYear()} {config.site.name}. All rights
-                reserved.
+                © {new Date().getFullYear()} {config.site.name}. All rights reserved.
               </p>
             </div>
           </footer>

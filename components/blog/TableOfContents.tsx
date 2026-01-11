@@ -58,10 +58,7 @@ export function TableOfContents({ items }: TableOfContentsProps) {
       </h2>
       <ul className="space-y-2 text-sm">
         {items.map((item) => (
-          <li
-            key={item.id}
-            style={{ paddingInlineStart: `${(item.level - 2) * 1}rem` }}
-          >
+          <li key={item.id} style={{ paddingInlineStart: `${(item.level - 2) * 1}rem` }}>
             <a
               href={`#${item.id}`}
               className={`block transition-colors duration-200 border-is-2 ps-4 -ms-[2px] ${

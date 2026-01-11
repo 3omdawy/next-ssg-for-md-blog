@@ -5,6 +5,7 @@ This directory contains all your blog posts. Posts can be organized in a flat st
 ## Directory Structure
 
 ### Flat Structure (Simple)
+
 For standalone blog posts, place markdown files directly in this directory:
 
 ```
@@ -15,6 +16,7 @@ content/blog/
 ```
 
 ### Folder Hierarchy (Series)
+
 For sequential or related posts, organize them in subdirectories:
 
 ```
@@ -30,6 +32,7 @@ content/blog/
 ```
 
 ### Mixed Approach (Recommended)
+
 You can freely mix both approaches:
 
 ```
@@ -57,7 +60,6 @@ tags: ["web", "javascript"]
 description: "A brief description of the post"
 category: "Tutorial"
 ---
-
 Your content here...
 ```
 
@@ -76,17 +78,18 @@ tags: ["tutorial"]
 description: "First post in the series"
 seriesOrder: 1
 ---
-
 Welcome to this series...
 ```
 
 ## Frontmatter Fields
 
 ### Required
+
 - `title`: Post title
 - `date`: Publication date (YYYY-MM-DD format)
 
 ### Optional
+
 - `author`: Author name
 - `tags`: Array of tags
 - `description`: Post excerpt/description
@@ -102,7 +105,6 @@ When you organize posts in folders:
 
 1. **Automatic Series Detection**: Folder name becomes the series name
    - `01-react-basics` → "React Basics" series
-   
 2. **Series Pages**: Accessible at `/series` and `/series/[folder-name]`
 
 3. **Navigation**: Posts in a series get prev/next links automatically
@@ -115,11 +117,13 @@ When you organize posts in folders:
 ## File Naming Tips
 
 ### For Standalone Posts
+
 - Use descriptive, URL-friendly names
 - Use hyphens instead of spaces
 - Example: `understanding-react-hooks.md`
 
 ### For Series Posts
+
 - Use numbered prefixes: `01-`, `02-`, `03-`
 - Keeps posts in order
 - Numbers are stripped from URLs
@@ -128,6 +132,7 @@ When you organize posts in folders:
 ## Markdown Features
 
 Supported markdown features:
+
 - Headers (H1-H6)
 - Code blocks with syntax highlighting
 - Tables
@@ -149,6 +154,7 @@ Supported markdown features:
 ## Examples
 
 Check the existing posts in this directory for examples of:
+
 - Standalone posts: `welcome.md`
 - Code highlighting
 - Proper frontmatter usage

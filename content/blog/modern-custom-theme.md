@@ -53,13 +53,11 @@ All components use the same design tokens, ensuring visual consistency throughou
 Customizing your blog's appearance is as simple as editing `src/app/globals.css`:
 
 1. **Choose Your Colors**
-
    - Pick your primary brand color
    - Select a complementary accent color
    - Define surface and background colors
 
 2. **Update Both Modes**
-
    - Set light mode colors in `@theme`
    - Set dark mode colors in `.dark`
    - Ensure good contrast in both modes

@@ -16,25 +16,13 @@ export function Header() {
 
         <div className="flex items-center gap-6">
           <nav className="flex items-center gap-6 text-sm font-medium">
-            <Link
-              prefetch={false}
-              href="/blog"
-              className="hover:text-primary transition-colors"
-            >
+            <Link prefetch={false} href="/blog" className="hover:text-primary transition-colors">
               Blog
             </Link>
-            <Link
-              prefetch={false}
-              href="/series"
-              className="hover:text-primary transition-colors"
-            >
+            <Link prefetch={false} href="/series" className="hover:text-primary transition-colors">
               Series
             </Link>
-            <Link
-              prefetch={false}
-              href="/about"
-              className="hover:text-primary transition-colors"
-            >
+            <Link prefetch={false} href="/about" className="hover:text-primary transition-colors">
               About
             </Link>
           </nav>

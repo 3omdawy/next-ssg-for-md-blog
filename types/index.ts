@@ -11,7 +11,7 @@ export interface PostFrontmatter {
   image?: string;
   draft?: boolean;
   category?: string;
-  language?: 'ar' | 'en' | string; // Language of the post content
+  language?: "ar" | "en" | string; // Language of the post content
   // New fields for series support
   series?: string; // Name of the series this post belongs to
   seriesOrder?: number; // Order within the series
@@ -21,7 +21,7 @@ export interface Post {
   slug: string;
   frontmatter: PostFrontmatter;
   content: string;
-  mdxSource?: any; // Serialized MDX content
+  mdxSource?: boolean; // Serialized MDX content (used as flag in this version)
   excerpt?: string;
   readingTime?: number;
   tableOfContents?: TableOfContentsItem[];
@@ -46,7 +46,7 @@ export interface Series {
   posts: PostMetadata[]; // Posts in this series, sorted by order
 }
 
-export type BuildMode = 'standalone' | 'embeddable';
+export type BuildMode = "standalone" | "embeddable";
 
 export interface TableOfContentsItem {
   id: string;

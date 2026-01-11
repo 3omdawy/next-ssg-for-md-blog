@@ -18,8 +18,7 @@ export default async function SeriesPage() {
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <h1 className="text-4xl font-bold mb-8">Article Series</h1>
         <p className="text-gray-600 dark:text-gray-400">
-          No series available yet. Series will appear here when you organize
-          posts in folders.
+          No series available yet. Series will appear here when you organize posts in folders.
         </p>
       </div>
     );
@@ -45,14 +44,11 @@ export default async function SeriesPage() {
             </Link>
 
             {series.description && (
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                {series.description}
-              </p>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">{series.description}</p>
             )}
 
             <div className="text-sm text-gray-500 dark:text-gray-500 mb-4">
-              {series.posts.length}{" "}
-              {series.posts.length === 1 ? "article" : "articles"}
+              {series.posts.length} {series.posts.length === 1 ? "article" : "articles"}
             </div>
 
             <div className="space-y-2">

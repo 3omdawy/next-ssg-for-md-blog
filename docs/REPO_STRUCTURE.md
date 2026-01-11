@@ -9,26 +9,22 @@
 ### ✅ Advantages of Single Repo (Current Approach)
 
 1. **Immediate Usability**
-
    - Users can fork and start immediately
    - No complex multi-repo setup
    - Works out of the box with example content
 
 2. **Industry Standard**
-
    - Gatsby starters: Single repo with example content
    - Next.js templates: Single repo approach
    - Hugo themes: Single repo pattern
    - Jekyll themes: Single repo structure
 
 3. **Better Learning Experience**
-
    - Example posts help users understand features
    - Shows best practices in context
    - Reference material readily available
 
 4. **Simpler Maintenance**
-
    - One repo to update and version
    - No sync issues between repos
    - Easier to track changes
@@ -52,13 +48,11 @@
    ```
 
 2. **Version Sync Issues**
-
    - Framework updates may break content
    - Hard to test changes together
    - Dependency hell
 
 3. **Poor User Experience**
-
    - Beginners get confused
    - More steps to get started
    - Multiple repos to maintain
@@ -95,13 +89,11 @@ next-ssg-for-md-blog/
 We've added multiple documents to make separation obvious:
 
 1. **CUSTOMIZATION.md** (NEW)
-
    - Color-coded sections (🔴 🟡 🟢)
    - Explicit "what to customize" guide
    - "What NOT to modify" section
 
 2. **README.md** (UPDATED)
-
    - Clear "Framework vs Content" explanation
    - Quick start focuses on customization
    - Project structure shows separation
@@ -220,19 +212,16 @@ The key is **clear documentation** (which we now have) rather than splitting int
 ## Examples of Successful Single-Repo Starters
 
 1. **Gatsby Starter Blog** (~50k stars)
-
    - Single repo
    - Example content included
    - Users fork and customize
 
 2. **Next.js Blog Starter** (Official)
-
    - Single repo
    - Example posts included
    - Standard approach
 
 3. **Jekyll Themes** (Thousands of them)
-
    - Single repo
    - Example sites included
    - Industry standard

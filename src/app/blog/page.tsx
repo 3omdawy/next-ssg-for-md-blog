@@ -1,5 +1,5 @@
 import { getAllPostsMetadata } from "@/lib/posts";
-import Link from "next/link";
+
 import config from "@/config";
 import { Search } from "@/components/blog/Search";
 import { PostCard } from "@/components/blog/PostCard";

@@ -66,10 +66,7 @@ export function Search({ posts }: SearchProps) {
 
       {isOpen && query && (
         <>
-          <div
-            className="fixed inset-0 z-10"
-            onClick={() => setIsOpen(false)}
-          />
+          <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
           <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-xl z-20 max-h-96 overflow-y-auto">
             {results.length > 0 ? (
               <div className="py-2">
@@ -97,7 +94,7 @@ export function Search({ posts }: SearchProps) {
               </div>
             ) : (
               <div className="px-4 py-3 text-sm text-gray-500">
-                No results found for "{query}"
+                No results found for &quot;{query}&quot;
               </div>
             )}
           </div>

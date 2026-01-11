@@ -29,12 +29,7 @@ export function PostCard({ post }: PostCardProps) {
           href={`/series/${post.seriesSlug}`}
           className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover transition-colors mb-2"
         >
-          <svg
-            className="w-3 h-3"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -46,11 +41,7 @@ export function PostCard({ post }: PostCardProps) {
         </Link>
       )}
 
-      <Link
-        prefetch={false}
-        href={`/blog/${post.slug}`}
-        className="group block"
-      >
+      <Link prefetch={false} href={`/blog/${post.slug}`} className="group block">
         <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-all duration-300">
           {post.frontmatter.title}
         </h3>
@@ -63,14 +54,11 @@ export function PostCard({ post }: PostCardProps) {
       >
         {post.frontmatter.date && (
           <time dateTime={post.frontmatter.date}>
-            {new Date(post.frontmatter.date).toLocaleDateString(
-              isArabic ? "ar-EG" : "en-US",
-              {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              }
-            )}
+            {new Date(post.frontmatter.date).toLocaleDateString(isArabic ? "ar-EG" : "en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           </time>
         )}
 
@@ -80,20 +68,16 @@ export function PostCard({ post }: PostCardProps) {
               ? post.readingTime === 0
                 ? "أقل من دقيقة للقراءة"
                 : post.readingTime === 1
-                ? "دقيقة للقراءة"
-                : post.readingTime === 2
-                ? "دقيقتين للقراءة"
-                : `${post.readingTime} ${
-                    post.readingTime <= 10 ? "دقائق" : "دقيقة"
-                  } للقراءة`
+                  ? "دقيقة للقراءة"
+                  : post.readingTime === 2
+                    ? "دقيقتين للقراءة"
+                    : `${post.readingTime} ${post.readingTime <= 10 ? "دقائق" : "دقيقة"} للقراءة`
               : `${post.readingTime} min read`}
           </span>
         )}
       </div>
 
-      {post.excerpt && (
-        <p className="text-secondary mb-4 line-clamp-2">{post.excerpt}</p>
-      )}
+      {post.excerpt && <p className="text-secondary mb-4 line-clamp-2">{post.excerpt}</p>}
 
       {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
         <div className="flex flex-wrap gap-2">

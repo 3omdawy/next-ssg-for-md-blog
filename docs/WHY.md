@@ -71,25 +71,21 @@ Proprietary formats make migration difficult:
 ### Design Principles
 
 1. **Zero Config by Default**
-
    - Works perfectly out of the box
    - Sensible defaults for 90% of use cases
    - Customize only what you need
 
 2. **Content First**
-
    - Pure Markdown/MDX (standard formats)
    - No proprietary extensions
    - Easy migration to/from other platforms
 
 3. **Performance by Default**
-
    - 100% static (no server required)
    - Minimal JavaScript (Typically under 200 kB)
    - Consistently strong Lighthouse scores with the default setup
 
 4. **Developer Experience**
-
    - TypeScript for safety and autocomplete
    - Near-instant hot reload
    - Clear error messages

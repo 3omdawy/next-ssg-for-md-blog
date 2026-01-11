@@ -39,9 +39,7 @@ export default async function Home() {
           ))}
 
           {latestPosts.length === 0 && (
-            <p className="text-secondary">
-              No blog posts yet. Check back soon!
-            </p>
+            <p className="text-secondary">No blog posts yet. Check back soon!</p>
           )}
         </div>
       </section>
