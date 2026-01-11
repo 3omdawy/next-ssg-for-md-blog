@@ -66,6 +66,7 @@ export function generateExcerpt(content: string, length: number = 160): string {
     .replace(/\[(.+?)\]\(.+?\)/g, "$1") // Remove links
     .replace(/`(.+?)`/g, "$1") // Remove inline code
     .replace(/```[\s\S]*?```/g, "") // Remove code blocks
+    .replace(/\s+/g, " ") // Collapse multiple whitespace to single space
     .trim();
 
   if (plainText.length <= length) {

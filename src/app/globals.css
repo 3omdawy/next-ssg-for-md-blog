@@ -39,7 +39,7 @@
   /* Semantic Colors */
   --color-success: #10b981;
   --color-warning: #f59e0b;
-  --color-error: #ef4444;
+  --color-danger: #ef4444;
   --color-info: #06b6d4;
 
   /* UI Elements */
@@ -85,7 +85,7 @@
   /* Semantic Colors */
   --color-success: #34d399;
   --color-warning: #fbbf24;
-  --color-error: #f87171;
+  --color-danger: #f87171;
   --color-info: #22d3ee;
 
   /* UI Elements */
@@ -262,8 +262,8 @@ a:hover {
 
 /* Strong text */
 .prose strong {
-  color: var(--color-text);
-  font-weight: 600;
+  color: var(--color-primary);
+  font-weight: 800;
 }
 
 /* Blockquotes */

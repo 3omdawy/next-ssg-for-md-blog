@@ -58,7 +58,7 @@ function getMarkdownFilesRecursive(dir: string, baseDir: string = dir): string[]
  * Extract series information from file path
  * If file is in a subdirectory, use the directory name as series
  */
-function extractSeriesInfo(filePath: string): { series?: string; seriesSlug?: string } {
+export function extractSeriesInfo(filePath: string): { series?: string; seriesSlug?: string } {
   // Always use forward slashes for splitting
   const normalizedPath = normalizePath(filePath);
   const parts = normalizedPath.split("/");
@@ -88,7 +88,7 @@ function extractSeriesInfo(filePath: string): { series?: string; seriesSlug?: st
  * For nested files: folder/file.md -> folder/file
  * For root files: file.md -> file
  */
-function filePathToSlug(filePath: string): string {
+export function filePathToSlug(filePath: string): string {
   return filePath.replace(/\.mdx?$/, "");
 }
 

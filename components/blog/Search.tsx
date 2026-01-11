@@ -6,9 +6,9 @@
  */
 
 import React, { useState, useMemo } from "react";
-import Fuse from "fuse.js";
 import Link from "next/link";
 import type { PostMetadata } from "@/types";
+import { createSearchIndex } from "@/lib/search";
 
 interface SearchProps {
   posts: PostMetadata[];
@@ -19,15 +19,7 @@ export function Search({ posts }: SearchProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const fuse = useMemo(() => {
-    return new Fuse(posts, {
-      keys: [
-        "frontmatter.title",
-        "frontmatter.description",
-        "frontmatter.tags",
-        "frontmatter.category",
-      ],
-      threshold: 0.3,
-    });
+    return createSearchIndex(posts);
   }, [posts]);
 
   const results = useMemo(() => {
