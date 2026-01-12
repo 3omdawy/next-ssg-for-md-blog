@@ -50,9 +50,30 @@ Place images in the `public/images` folder and reference them:
 
 #### 3. Alerts & Callouts
 
-You can use standard blockquotes:
+We provide built-in Bootstrap-consistent components for important notes and alerts. You can use standard HTML `<div>` tags with the following classes:
 
-> **Note:** This is an important note.
+**Alerts (Bootstrap-style):**
+
+```markdown
+<div class="alert alert-primary">Primary alert for important info.</div>
+<div class="alert alert-success">Success alert for completed tasks.</div>
+<div class="alert alert-danger">Danger alert for warnings or errors.</div>
+<div class="alert alert-warning">Warning alert for caution.</div>
+<div class="alert alert-info">Info alert for general helpful data.</div>
+```
+
+**Notes (Callout-style):**
+
+```markdown
+<div class="note note-info">Helpful information note with a side border.</div>
+<div class="note note-warning">Cautionary note with a side border.</div>
+<div class="note note-danger">Critical warning note with a side border.</div>
+```
+
+**Standard Blockquotes:**
+You can also use standard markdown blockquotes:
+
+> **Note:** This is a standard markdown blockquote.
 
 ## 🏷️ Tags & Categories
 

@@ -377,8 +377,11 @@ a:hover {
  * EMBEDDABLE MODE ADJUSTMENTS
  * ============================================ */
 
-.mode-embeddable nav.sticky {
+.mode-embeddable .sticky {
   top: 1rem !important; /* No header, so stick closer to top */
+}
+
+.mode-embeddable nav {
   max-height: calc(100vh - 2rem) !important;
 }
 
@@ -390,6 +393,171 @@ a:hover {
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+/* ============================================
+ * BOOTSTRAP-LIKE ALERTS & NOTES
+ * ============================================ */
+
+/* ============================================
+ * BOOTSTRAP-LIKE ALERTS & NOTES
+ * ============================================ */
+
+.alert,
+.prose .alert {
+  position: relative;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Ensure child elements (like <p>) inherit correctly and don't bring huge margins */
+.alert > :first-child,
+.prose .alert > :first-child {
+  margin-top: 0 !important;
+}
+
+.alert > :last-child,
+.prose .alert > :last-child {
+  margin-bottom: 0 !important;
+}
+
+.alert-primary,
+.prose .alert-primary {
+  color: #084298 !important;
+  background-color: #cfe2ff !important;
+  border-color: #b6d4fe !important;
+}
+
+.alert-secondary,
+.prose .alert-secondary {
+  color: #41464b !important;
+  background-color: #e2e3e5 !important;
+  border-color: #d3d3d4 !important;
+}
+
+.alert-success,
+.prose .alert-success {
+  color: #0f5132 !important;
+  background-color: #d1e7dd !important;
+  border-color: #badbcc !important;
+}
+
+.alert-danger,
+.prose .alert-danger {
+  color: #842029 !important;
+  background-color: #f8d7da !important;
+  border-color: #f5c2c7 !important;
+}
+
+.alert-warning,
+.prose .alert-warning {
+  color: #664d03 !important;
+  background-color: #fff3cd !important;
+  border-color: #ffecb5 !important;
+}
+
+.alert-info,
+.prose .alert-info {
+  color: #055160 !important;
+  background-color: #cff4fc !important;
+  border-color: #b6effb !important;
+}
+
+/* Dark mode overrides for alerts */
+.dark .alert-primary,
+.dark .prose .alert-primary {
+  color: #6db1ff !important;
+  background-color: rgba(13, 110, 253, 0.1) !important;
+  border-color: rgba(13, 110, 253, 0.2) !important;
+}
+.dark .alert-secondary,
+.dark .prose .alert-secondary {
+  color: #adb5bd !important;
+  background-color: rgba(108, 117, 125, 0.1) !important;
+  border-color: rgba(108, 117, 125, 0.2) !important;
+}
+.dark .alert-success,
+.dark .prose .alert-success {
+  color: #75b798 !important;
+  background-color: rgba(25, 135, 84, 0.1) !important;
+  border-color: rgba(25, 135, 84, 0.2) !important;
+}
+.dark .alert-danger,
+.dark .prose .alert-danger {
+  color: #ea868f !important;
+  background-color: rgba(220, 53, 69, 0.1) !important;
+  border-color: rgba(220, 53, 69, 0.2) !important;
+}
+.dark .alert-warning,
+.dark .prose .alert-warning {
+  color: #ffda6a !important;
+  background-color: rgba(255, 193, 7, 0.1) !important;
+  border-color: rgba(255, 193, 7, 0.2) !important;
+}
+.dark .alert-info,
+.dark .prose .alert-info {
+  color: #6edff6 !important;
+  background-color: rgba(13, 202, 240, 0.1) !important;
+  border-color: rgba(13, 202, 240, 0.2) !important;
+}
+
+/* Ensure text inside alerts doesn't take prose default colors */
+.alert p,
+.alert strong,
+.alert span {
+  color: inherit !important;
+}
+
+/* Note component (Bootstrap-style callout) */
+.note,
+.prose .note {
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-left: 0.25rem solid var(--color-primary);
+  background-color: var(--color-surface);
+  border-radius: 0.25rem;
+  color: var(--color-text);
+}
+
+.note > :first-child,
+.prose .note > :first-child {
+  margin-top: 0 !important;
+}
+
+.note > :last-child,
+.prose .note > :last-child {
+  margin-bottom: 0 !important;
+}
+
+[dir="rtl"] .note,
+[dir="rtl"] .prose .note {
+  border-left-width: 0;
+  border-right: 0.25rem solid var(--color-primary);
+}
+
+.note-info,
+.prose .note-info {
+  border-color: var(--color-info) !important;
+  background-color: rgba(6, 182, 212, 0.05) !important;
+}
+.note-warning,
+.prose .note-warning {
+  border-color: var(--color-warning) !important;
+  background-color: rgba(245, 158, 11, 0.05) !important;
+}
+.note-danger,
+.prose .note-danger {
+  border-color: var(--color-danger) !important;
+  background-color: rgba(239, 68, 68, 0.05) !important;
+}
+.note-success,
+.prose .note-success {
+  border-color: var(--color-success) !important;
+  background-color: rgba(16, 185, 129, 0.05) !important;
 }
 
 /* ============================================

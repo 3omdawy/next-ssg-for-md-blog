@@ -42,13 +42,23 @@ All articles are:
 
 ### Dual Deployment Modes
 
+<div class="note note-info">
+**Tip:** This blog is uniquely designed to be consumed in two different ways depending on your needs.
+</div>
+
 This blog supports two deployment modes:
 
 1. **Standalone Website** - Full-featured blog with search, filtering, and navigation
 2. **Embeddable Content** - Individual articles that can be integrated into other applications
 
+<div class="alert alert-primary">
+**New Feature:** We now generate high-fidelity previews for embeddable fragments! Check the `docs` for more information.
+</div>
+
 ### Get Started
 
 Browse our [articles](/blog) or filter by [tags](/tags) to find content that interests you.
 
+<div class="alert alert-success">
 Happy reading! 📚
+</div>

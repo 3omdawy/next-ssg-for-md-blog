@@ -222,7 +222,11 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         {/* Sidebar / Table of Contents */}
-        <aside className="hidden lg:block lg:col-span-1">
+        <aside
+          className={`hidden lg:block lg:col-span-1 sticky self-start ${
+            isEmbeddable ? "top-4" : "top-24"
+          }`}
+        >
           {post.tableOfContents && post.tableOfContents.length > 0 && (
             <div id="article-toc-fragment">
               <TableOfContents items={post.tableOfContents} />

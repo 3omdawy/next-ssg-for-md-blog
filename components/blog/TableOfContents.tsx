@@ -52,7 +52,7 @@ export function TableOfContents({ items }: TableOfContentsProps) {
   }
 
   return (
-    <nav className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-auto scrollbar-hide">
+    <nav className="max-h-[calc(100vh-6rem)] overflow-auto scrollbar-hide">
       <h2 className="text-sm font-semibold mb-4 uppercase text-gray-500 tracking-wider">
         {isArabic ? "العناوين" : "On this page"}
       </h2>
@@ -63,7 +63,7 @@ export function TableOfContents({ items }: TableOfContentsProps) {
               href={`#${item.id}`}
               className={`block transition-colors duration-200 border-is-2 ps-4 -ms-[2px] ${
                 activeId === item.id
-                  ? "border-primary text-primary font-medium"
+                  ? "border-primary text-primary font-medium underline"
                   : "border-transparent text-gray-500 hover:text-foreground hover:border-gray-300"
               }`}
               onClick={(e) => {
