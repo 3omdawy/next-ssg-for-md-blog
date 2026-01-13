@@ -1,7 +1,7 @@
 ---
 title: "Introducing Our Modern Custom Theme"
 date: "2026-01-05"
-author: "Author"
+author: "Design Team"
 tags: ["theme", "design", "customization"]
 category: "Meta"
 description: "Learn about the new modern custom theme system and how to customize it for your blog."

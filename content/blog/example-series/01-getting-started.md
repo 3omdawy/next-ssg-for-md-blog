@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with the Series Feature"
 date: "2025-01-06"
-author: "Blog Author"
+author: "Tutorial Team"
 tags: ["tutorial", "examples"]
 description: "Learn how to use the new folder hierarchy and series feature"
 category: "Tutorial"

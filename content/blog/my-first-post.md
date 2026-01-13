@@ -9,8 +9,6 @@ language: "en" # Optional: 'ar' for Arabic/RTL, 'en' for English/LTR
 draft: false
 ---
 
-![Hero Image](/images/hero_placeholder.png)
-
 ## Your Content Here
 
 This post showcases the various features available in this blog framework.

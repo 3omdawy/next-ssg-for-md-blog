@@ -1,7 +1,7 @@
 ---
 title: "Welcome to the Tech Blog"
 date: "2026-01-09"
-author: "Author"
+author: "Tech Blog Team"
 tags: ["welcome", "meta"]
 category: "General"
 description: "Welcome to our technical blog! Learn about what we'll be covering and how this blog is built."
@@ -11,16 +11,6 @@ draft: false
 ## Welcome! 👋
 
 Welcome to our technical blog - a place for in-depth technical articles, tutorials, and insights.
-
-### What You'll Find Here
-
-This blog focuses on:
-
-- **React & Next.js** - Modern frontend development
-- **TypeScript** - Type-safe JavaScript development
-- **Web Performance** - Optimization techniques and best practices
-- **Architecture** - Design patterns and system design
-- **Real-world Experience** - Practical insights from actual projects
 
 ### About This Blog
 

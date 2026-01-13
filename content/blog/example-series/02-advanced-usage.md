@@ -1,7 +1,7 @@
 ---
 title: "Advanced Series Usage"
 date: "2025-01-06"
-author: "Blog Author"
+author: "Tutorial Team"
 tags: ["tutorial", "examples", "advanced"]
 description: "Advanced tips for using the series feature effectively"
 category: "Tutorial"
