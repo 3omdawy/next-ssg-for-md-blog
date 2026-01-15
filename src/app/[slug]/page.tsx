@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2026 3omdawy (Emad Ashraf)
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { getAllPageSlugs, getPageBySlug } from "@/lib/pages";
 import ArticleContent from "@/components/blog/ArticleContent";
 import { notFound } from "next/navigation";

@@ -33,7 +33,7 @@ export const config = {
   - Header, footer, and all UI elements are RTL
 - **`'ltr'`** - Explicit LTR mode
   - Forces left-to-right layout
-  - Uses Geist Sans font
+  - Uses System Sans font
   - Standard Western layout
 - **`'default'`** (recommended) - Auto-detect per post
   - Main layout uses config or defaults to LTR

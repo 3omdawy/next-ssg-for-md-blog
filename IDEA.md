@@ -14,7 +14,7 @@
 # 📖 Reference
 
 - [Intermediate React v6 course on Frontend Masters](https://intermediate-react-v6.holt.courses/lessons/react-render-modes/static-site-generation)
-- [Example GitHub project that build the notes of the previous course](https://github.com/btholt/intermediate-react-v6/tree/main)
+- [Example GitHub project that builds the notes of the previous course](https://github.com/btholt/intermediate-react-v6/tree/main)
 - [Next.js Static Exports Documentation](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 
