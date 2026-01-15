@@ -178,7 +178,7 @@ A **minimalist blog framework** that:
 | **Series Navigation** | ✅               | ❌          | ❌        | ❌         | ❌               |
 | **Dark Mode**         | ✅ Built-in      | ❌ Manual   | ❌ Manual | ❌ Manual  | ✅ (some themes) |
 | **Search**            | ✅ Client-side   | ✅ (plugin) | ❌        | ❌         | ❌ Manual        |
-| **Bundle Size**       | ~195 kB          | ~200 kB     | ~50 kB    | ~100 kB    | ~80 kB           |
+| **Bundle Size**       | ~70 kB           | ~200 kB     | ~50 kB    | ~100 kB    | ~80 kB           |
 | **Learning Curve**    | Low              | High        | Medium    | Low        | Medium           |
 
 ### When to Choose This Framework?

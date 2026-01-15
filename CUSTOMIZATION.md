@@ -250,8 +250,13 @@ mkdir content/blog
 
 ```typescript
 // config.ts
-name: "DevBytes",
-description: "Practical programming tutorials"
+export const config = {
+  site: {
+    name: "DevBytes",
+    description: "Practical programming tutorials",
+    // ...
+  },
+};
 
 // Colors: Blue + Purple (already set!)
 ```
@@ -260,8 +265,13 @@ description: "Practical programming tutorials"
 
 ```typescript
 // config.ts
-name: "Recipe Corner",
-description: "Delicious recipes from my kitchen"
+export const config = {
+  site: {
+    name: "Recipe Corner",
+    description: "Delicious recipes from my kitchen",
+    // ...
+  }
+};
 
 // Colors: Warm orange + Red
 --color-primary: #f97316;
@@ -272,8 +282,13 @@ description: "Delicious recipes from my kitchen"
 
 ```typescript
 // config.ts
-name: "Wanderlust Diaries",
-description: "Exploring the world one city at a time"
+export const config = {
+  site: {
+    name: "Wanderlust Diaries",
+    description: "Exploring the world one city at a time",
+    // ...
+  }
+};
 
 // Colors: Teal + Cyan
 --color-primary: #14b8a6;
@@ -317,7 +332,7 @@ If you want to modify the framework itself:
 ## 🆘 Need Help?
 
 - Check `docs/` folder for detailed guides
-- Look at example posts in `content/blog-examples/`
+- Look at example posts in `content/blog/`
 
 ---
 

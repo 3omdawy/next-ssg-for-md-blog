@@ -1,4 +1,11 @@
 /**
+ * Copyright (c) 2026 3omdawy (Emad Ashraf)
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
  * ArticleContent Component
  * Renders markdown content with proper styling and RTL support
  */

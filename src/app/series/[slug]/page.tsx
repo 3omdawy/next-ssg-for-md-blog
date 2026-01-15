@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2026 3omdawy (Emad Ashraf)
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { notFound } from "next/navigation";
 import { getAllSeries, getPostsBySeries } from "@/lib/posts";
 import Link from "next/link";
@@ -14,10 +21,6 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const allSeries = await getAllSeries();
-  console.log(
-    "Generating static params for series:",
-    allSeries.map((s) => s.slug)
-  );
 
   return allSeries.map((series) => ({
     slug: series.slug,

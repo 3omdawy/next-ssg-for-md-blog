@@ -29,8 +29,14 @@ jobs:
       - name: Lint check
         run: npm run lint
 
+      - name: Type check
+        run: npm run typecheck
+
       - name: Build standalone
         run: npm run build
 
       - name: Build embeddable
         run: npm run build:embeddable
+
+      - name: Check bundle size
+        run: npm run check-size

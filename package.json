@@ -15,7 +15,9 @@
     "analyze": "cross-env ANALYZE=true BUILD_MODE=standalone next build --webpack",
     "prepare": "husky",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "check-size": "bundlesize"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -44,6 +46,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^16.1.1",
+    "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -52,6 +55,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.1.2",
+    "bundlesize": "^0.18.2",
     "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
@@ -72,5 +76,15 @@
     "*.{md,json}": [
       "prettier --write"
     ]
-  }
+  },
+  "bundlesize": [
+    {
+      "path": ".next/static/chunks/*.js",
+      "maxSize": "300 KB"
+    },
+    {
+      "path": ".next/static/chunks/*.css",
+      "maxSize": "100 KB"
+    }
+  ]
 }

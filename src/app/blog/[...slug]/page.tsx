@@ -1,9 +1,17 @@
+/**
+ * Copyright (c) 2026 3omdawy (Emad Ashraf)
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { notFound } from "next/navigation";
 import config from "@/config";
 import ArticleContent from "@/components/blog/ArticleContent";
 import { getAllPostSlugs, getPostBySlug, getSeriesNavigation } from "@/lib/posts";
 import { isArabicText } from "@/lib/markdown";
 import { TableOfContents } from "@/components/blog/TableOfContents";
+import { SeriesNavigation } from "@/components/blog/SeriesNavigation";
 import Link from "next/link";
 
 interface PageProps {
@@ -18,11 +26,9 @@ export const dynamicParams = false;
 // Generate static params for all blog posts
 export async function generateStaticParams() {
   const slugs = getAllPostSlugs();
-  console.log("Generating static params for slugs:", slugs);
 
   return slugs.map((slug) => {
     const slugArray = slug.split("/");
-    console.log(`Mapping slug "${slug}" to array:`, slugArray);
     return {
       slug: slugArray, // Convert "folder/post" to ["folder", "post"]
     };
@@ -50,7 +56,6 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug: slugArray } = await params;
   const slug = slugArray.join("/");
-  console.log("Rendering blog post with slug:", slug);
 
   const post = await getPostBySlug(slug);
 
@@ -145,44 +150,6 @@ export default async function BlogPostPage({ params }: PageProps) {
     </header>
   );
 
-  const seriesNavigation = (seriesNav.prev || seriesNav.next) && (
-    <div className="mt-12 pt-8 border-t border-border">
-      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-        {shouldBeRTL ? "باقي السلسلة" : "Series Navigation"}
-      </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {seriesNav.prev ? (
-          <Link
-            prefetch={false}
-            href={`/blog/${seriesNav.prev.slug}`}
-            className="group border border-border rounded-lg p-4 hover:border-primary hover:shadow-md transition-all"
-          >
-            <div className="text-sm text-gray-500 mb-1">
-              {shouldBeRTL ? "السابق →" : "← Previous"}
-            </div>
-            <div className="font-semibold group-hover:text-primary transition-colors">
-              {seriesNav.prev.frontmatter.title}
-            </div>
-          </Link>
-        ) : (
-          <div></div>
-        )}
-        {seriesNav.next && (
-          <Link
-            prefetch={false}
-            href={`/blog/${seriesNav.next.slug}`}
-            className="group border border-border rounded-lg p-4 hover:border-primary hover:shadow-md transition-all text-right"
-          >
-            <div className="text-sm text-gray-500 mb-1">{shouldBeRTL ? "← التالي" : "Next →"}</div>
-            <div className="font-semibold group-hover:text-primary transition-colors">
-              {seriesNav.next.frontmatter.title}
-            </div>
-          </Link>
-        )}
-      </div>
-    </div>
-  );
-
   const postFooter = post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
     <div className="mt-12 pt-8 border-t border-border">
       <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
@@ -216,7 +183,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <article id="article-content-fragment">
             {postHeader}
             <ArticleContent content={post.content} mdxSource={post.mdxSource} />
-            {!isEmbeddable && seriesNavigation}
+            {!isEmbeddable && <SeriesNavigation seriesNav={seriesNav} shouldBeRTL={shouldBeRTL} />}
             {!isEmbeddable && postFooter}
           </article>
         </div>
