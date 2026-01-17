@@ -8,7 +8,9 @@
 
 > **A modern, production-ready blog framework** built with Next.js 16. Fork it, add your content, and you're ready to publish!
 
-🔗 **[Live Demo](https://next-ssg-for-md-blog.vercel.app/)** | 📖 **[Documentation](./docs/)** | 🚀 **[Quick Start](#-quick-start-5-minutes-to-your-blog)**
+🔗 **[Live Demo](https://next-ssg-for-md-blog.vercel.app/)** | 📖 **[Documentation](./docs/)** | ⚖️ **[Attributions](./ATTRIBUTIONS.md)**
+![Coverage](https://img.shields.io/badge/coverage-75%25-green)
+🚀 **[Quick Start](#-quick-start-5-minutes-to-your-blog)**
 
 ---
 

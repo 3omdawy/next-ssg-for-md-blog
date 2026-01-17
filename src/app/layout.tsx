@@ -22,6 +22,28 @@ const cairo = Cairo({
 export const metadata: Metadata = {
   title: config.site.name,
   description: config.site.description,
+  openGraph: {
+    title: config.site.name,
+    description: config.site.description,
+    url: config.site.url,
+    siteName: config.site.name,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: config.site.name,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: config.site.name,
+    description: config.site.description,
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({

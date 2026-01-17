@@ -9,6 +9,18 @@ export default defineConfig({
     globals: true,
     setupFiles: ["./src/test/setup.ts"],
     include: ["src/**/*.test.{ts,tsx}", "lib/**/*.test.{ts,tsx}", "components/**/*.test.{ts,tsx}"],
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html"],
+      include: ["src/**/*.ts", "src/**/*.tsx", "lib/**/*.ts"],
+      exclude: [
+        "**/*.d.ts",
+        "**/*.test.ts",
+        "**/config.ts",
+        "next.config.ts",
+        "tailwind.config.ts",
+      ],
+    },
   },
   resolve: {
     alias: {
