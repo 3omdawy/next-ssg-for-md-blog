@@ -1,0 +1,104 @@
+title: "Introducing Our Modern Custom Theme"
+date: "2026-01-05"
+author: "Design Team"
+tags: ["theme", "design", "customization"]
+category: "Meta"
+description: "Learn about the new modern custom theme system and how to customize it for your blog."
+draft: false
+isMdx: true
+
+---
+
+## Welcome to the New Theme! 🎨
+
+We're excited to introduce our brand new custom theme system that gives you complete control over your blog's appearance. Built with modern design principles and full customization in mind.
+
+<Animate type="fade-in">
+  <Streak
+    title="Premium Aesthetics by Default"
+    description="Glassmorphism, vibrant gradients, and smooth transitions are baked into every component."
+  />
+</Animate>
+
+### What Makes This Theme Special?
+
+#### 1. **Fully Customizable Colors**
+
+Every color in the theme is defined as a CSS variable, making it incredibly easy to customize:
+
+```css
+@theme {
+  --color-primary: #3b82f6; /* Your brand color */
+  --color-accent: #8b5cf6; /* Your accent color */
+  --color-background: #ffffff; /* Background */
+  --color-surface: #f8fafc; /* Card surfaces */
+}
+```
+
+#### 2. **Beautiful Dark Mode**
+
+The theme includes a carefully crafted dark mode that automatically adjusts all colors for comfortable nighttime reading. The dark mode respects all your custom colors and adjusts them intelligently.
+
+#### 3. **Consistent Design System**
+
+All components use the same design tokens, ensuring visual consistency throughout your blog:
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+  <div className="p-4 border border-custom bg-surface rounded-lg">
+    <Badge variant="primary" pill={true}>
+      Primary
+    </Badge>
+    <p className="mt-2 text-sm opacity-80">Used for links, CTAs, and primary interactions.</p>
+  </div>
+  <div className="p-4 border border-custom bg-surface rounded-lg">
+    <Badge variant="info" pill={true}>
+      Surface
+    </Badge>
+    <p className="mt-2 text-sm opacity-80">Used for cards, sidebars, and background layers.</p>
+  </div>
+</div>
+
+### Key Features
+
+<div className="flex gap-2 flex-wrap mb-4">
+  <Badge variant="success">✨ Professional Color Palette</Badge>
+  <Badge variant="primary">🎯 Easy Customization</Badge>
+  <Badge variant="info">🌓 Dark Mode Support</Badge>
+  <Badge variant="warning">⚡ Smooth Transitions</Badge>
+  <Badge variant="secondary">🎨 Custom Utility Classes</Badge>
+</div>
+
+### Component Showcase
+
+Let's see how our premium components inherit the theme styles seamlessly:
+
+<AccordionGroup>
+  <Accordion title="Design Philosophy">
+    Our theme follows modern web design best practices: - **High Contrast** - Ensures readability
+    for all users - **Smooth Transitions** - Provides polished user experience - **Mobile-First** -
+    Responsive and touch-friendly - **Accessibility** - WCAG compliant color contrasts
+  </Accordion>
+  <Accordion title="Example Color Schemes">
+    - **Ocean**: Blue (#0ea5e9) + Cyan (#06b6d4) - **Forest**: Emerald (#10b981) + Green (#059669) -
+    **Sunset**: Amber (#f59e0b) + Red (#ef4444)
+  </Accordion>
+</AccordionGroup>
+
+<FancyQuote header="Note" footer="Design Team Lead" icon="Palette">
+  "A great theme doesn't just look good; it feels alive. Every interaction should give the user
+  subtle feedback."
+</FancyQuote>
+
+### Technical Implementation
+
+Our components are **Bootstrap 5 / MDB compatible**, meaning they follow industry-standard naming conventions and structures.
+
+<div className="flex justify-center my-8">
+  <Button variant="outline-primary" size="lg" href="/blog/ui-components-showcase">
+    View Full Component Gallery
+  </Button>
+</div>
+
+---
+
+**Happy theming!** 🎨✨

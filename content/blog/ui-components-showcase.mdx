@@ -1,0 +1,281 @@
+---
+title: "UI Components Showcase"
+date: "2026-01-17"
+description: "A comprehensive demonstration of all the new UI components available in our blog engine."
+category: "Design"
+tags: ["UI", "UX", "Components", "MDX"]
+author: "Antigravity"
+isMdx: true
+---
+
+# UI Components Showcase
+
+This post demonstrates the library of premium UI components we've added to the blog. These components are designed to be responsive, accessible, and high-performance.
+
+---
+
+## 💡 What is MDX?
+
+**MDX** allows you to use JSX (React components) directly in your markdown content. This bridges the gap between static content and interactive UI.
+
+### Why use MDX?
+
+- **🚀 Interactive Components**: Add charts, maps, or any custom React component.
+- **🎨 Dynamic Content**: Use logic and state within your posts.
+- **🏗️ Reusability**: Share components across different articles.
+
+### Support vs. Normal Markdown
+
+| Feature         | .md | .mdx |
+| --------------- | --- | ---- |
+| Markdown Syntax | ✅  | ✅   |
+| HTML tags       | ✅  | ✅   |
+| JSX components  | ❌  | ✅   |
+| Markdown in JSX | ❌  | ✅   |
+| Imports/Exports | ❌  | ✅   |
+
+---
+
+## 🛠️ Raw JSX Support
+
+Even without our custom components, you can use standard HTML/JSX tags with inline styles directly in your content:
+
+<div
+  style={{
+    padding: "1.5rem",
+    backgroundColor: "rgba(59, 130, 246, 0.1)",
+    border: "1px solid #3b82f6",
+    color: "#3b82f6",
+    borderRadius: "0.5rem",
+    marginBottom: "1.5rem",
+  }}
+>
+  <strong style={{ display: "block", fontSize: "1.1rem", marginBottom: "0.5rem" }}>
+    💡 Raw JSX Tip
+  </strong>
+  This is a custom callout rendered with a standard `div` tag in MDX! You can use this for quick
+  customization without creating a new component.
+</div>
+
+---
+
+## 🍱 Premium UI Components Showcase
+
+## 1. Accordions
+
+Perfect for FAQs or collapsible content sections.
+
+<AccordionGroup>
+  <Accordion title="What are the benefits of using MDX?">
+    MDX allows you to use JSX components directly in your markdown files. This bridges the gap
+    between static content and interactive UI.
+  </Accordion>
+  <Accordion title="Is it responsive?">
+    Yes, all components are built with mobile-first responsive design principles using Tailwind CSS.
+  </Accordion>
+  <Accordion title="Can I customize the styles?">
+    Absolutely! All styles are defined in `globals.css` and can be easily modified to match your
+    brand.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## 2. Checkboxes
+
+Interactive checkboxes that maintain their state during the session.
+
+<Checkbox label="Requirement 1: Modern Layout" checked={true} />
+<Checkbox label="Requirement 2: Dark Mode Support" checked={true} />
+<Checkbox label="Requirement 3: Performance Optimization" />
+
+---
+
+## 3. Icons
+
+We use **Lucide React** for beautiful, consistent iconography. You can use any Lucide icon by name.
+
+<div className="flex gap-4 flex-wrap">
+  <Icon name="Heart" color="#ef4444" size={32} />
+  <Icon name="Star" color="#f59e0b" size={32} />
+  <Icon name="Zap" color="#3b82f6" size={32} />
+  <Icon name="Shield" color="#10b981" size={32} />
+  <Icon name="Coffee" color="#8b5cf6" size={32} />
+</div>
+
+---
+
+## 4. Audio Player
+
+High-quality audio integration with a clean UI.
+
+<Audio
+  src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+  title="Ambient Soundscape - Relaxing Track"
+/>
+
+---
+
+## 5. Buttons
+
+Various button styles for different actions.
+
+<div className="flex gap-4 flex-wrap items-center">
+  <Button variant="primary">Primary Action</Button>
+  <Button variant="outline-primary">Outline Button</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="primary" size="sm">
+    Small
+  </Button>
+  <Button variant="primary" size="lg">
+    Large Call to Action
+  </Button>
+</div>
+
+---
+
+## 6. Responsive Tables
+
+Tables that automatically scroll on smaller screens.
+
+<TableWrapper>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Standard</th>
+      <th>Premium</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Custom Components</td>
+      <td>
+        <Badge variant="success">Included</Badge>
+      </td>
+      <td>
+        <Badge variant="success">Included</Badge>
+      </td>
+    </tr>
+    <tr>
+      <td>Priority Support</td>
+      <td>
+        <Badge variant="danger">No</Badge>
+      </td>
+      <td>
+        <Badge variant="success">Yes</Badge>
+      </td>
+    </tr>
+    <tr>
+      <td>Analytics</td>
+      <td>
+        <Badge variant="warning">Basic</Badge>
+      </td>
+      <td>
+        <Badge variant="success">Advanced</Badge>
+      </td>
+    </tr>
+  </tbody>
+</TableWrapper>
+
+---
+
+## 7. Animations
+
+Subtle micro-animations to improve engagement.
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <Animate type="fade-in">
+    <div className="p-6 bg-surface rounded-xl border border-custom">
+      <h3 className="font-bold">Fade In Animation</h3>
+      <p className="text-sm opacity-80">Transitions smoothly into view.</p>
+    </div>
+  </Animate>
+  <Animate type="pulse">
+    <div className="p-6 bg-primary/10 rounded-xl border border-primary/20">
+      <h3 className="font-bold">Pulse Animation</h3>
+      <p className="text-sm opacity-80">Draws attention to critical info.</p>
+    </div>
+  </Animate>
+</div>
+
+---
+
+## 8. Fancy Blockquotes
+
+Styled blockquotes with headers and footers.
+
+<FancyQuote header="Pro Tip" footer="Senior Software Engineer @ TechCorp" icon="Lightbulb">
+  Always prioritize readability and maintainability over clever micro-optimizations. Your future
+  self will thank you.
+</FancyQuote>
+
+---
+
+## 9. Streak Sections
+
+Full-width highlights for major announcements or CTA sections.
+
+<Streak
+  title="Ready to Start Your Journey?"
+  description="Join 5,000+ developers building the future with our blog engine."
+/>
+
+---
+
+## 10. Badges
+
+Small status indicators in multiple variants.
+
+<div className="flex gap-2">
+  <Badge variant="primary">New</Badge>
+  <Badge variant="success">Success</Badge>
+  <Badge variant="danger">Critical</Badge>
+  <Badge variant="warning">Warning</Badge>
+  <Badge variant="info">Info</Badge>
+</div>
+
+---
+
+## 11. Video Player
+
+Responsive video embedding.
+
+<Video
+  src="https://www.w3schools.com/html/mov_bbb.mp4"
+  poster="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1200"
+  title="Platform Introduction Video"
+/>
+
+---
+
+## 12. Carousel
+
+Interactive image sliders.
+
+<Carousel
+  items={[
+    {
+      image:
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200",
+      title: "Workspace Perfection",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=1200",
+      title: "Clean Code Environment",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200",
+      title: "Modern Development",
+    },
+  ]}
+/>
+
+---
+
+## Conclusion
+
+These components are ready to be used in your blog posts. Simply add them to your MDX files and they will be rendered with all their interactivity and styling.
+
+Happy writing!
