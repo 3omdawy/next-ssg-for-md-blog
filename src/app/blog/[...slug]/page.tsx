@@ -25,6 +25,17 @@ export const dynamicParams = false;
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
+  // Support single slug build for conversion script
+  if (process.env.ONLY_BUILD_SLUG) {
+    console.log(`Building only slug: ${process.env.ONLY_BUILD_SLUG}`);
+    const slugArray = process.env.ONLY_BUILD_SLUG.split("/");
+    return [
+      {
+        slug: slugArray,
+      },
+    ];
+  }
+
   const slugs = getAllPostSlugs();
 
   return slugs.map((slug) => {

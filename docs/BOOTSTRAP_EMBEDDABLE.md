@@ -33,6 +33,16 @@ The Bootstrap-embeddable mode generates **clean HTML fragments** with Bootstrap 
 npm run build:embeddable-bootstrap
 ```
 
+### 1b. Fast Build (Single Post)
+
+If you only want to convert a specific post, use the fast conversion script:
+
+```bash
+npm run convert:md content/blog/your-post.md
+```
+
+This will automatically generate the HTML fragment and its associated CSS/JS in the `out/` directory.
+
 This generates:
 
 - HTML fragments in `out/blog/*.html` with Bootstrap classes
@@ -398,27 +408,32 @@ All premium components work with Bootstrap. They use `premium-*` classes that ar
 
 ## 📐 Layout Recommendations
 
-### Two-Column Layout (TOC + Content)
+### Two-Column Side-by-Side Layout (Recommended)
+
+To achieve the side-by-side sticky layout (as seen in the main app), wrap the ToC and Content fragments in a `.blog-embed-wrapper` div. This is already handled for you if you use the `convert:md` script or the latest build tools.
 
 ```html
-<div class="container my-5">
-  <div class="row">
-    <!-- Sidebar with TOC -->
-    <div class="col-lg-3 col-md-4">
-      <div class="blog-toc-snippet">
-        <!-- TOC content -->
-      </div>
-    </div>
+<div class="blog-embed-wrapper">
+  <!-- Sidebar part -->
+  <div class="blog-toc-snippet">
+    <!-- TOC content -->
+  </div>
 
-    <!-- Main content -->
-    <div class="col-lg-9 col-md-8">
-      <div class="blog-content-snippet">
-        <!-- Article content -->
-      </div>
-    </div>
+  <!-- Main content part -->
+  <div class="blog-content-snippet">
+    <!-- Article content -->
   </div>
 </div>
 ```
+
+**Customization:**
+
+- **Sticky ToC**: The ToC is sticky by default on screens ≥ 992px.
+- **ToC on Left**: Use `<div class="blog-embed-wrapper blog-toc-left">` to move the ToC to the left side on large screens.
+
+### Manual Two-Column Layout (Custom Rows/Cols)
+
+If you prefer to use standard Bootstrap row/column classes manually:
 
 ### Full-Width Layout (No TOC)
 

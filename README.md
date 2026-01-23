@@ -111,8 +111,9 @@ A **minimalist blog framework** that:
 - ✅ **Dark & Light Mode** - Automatic theme switching with persistence
 - ✅ **Responsive Design** - Mobile-first approach
 - ✅ **Modern Typography** - Tailwind Typography plugin
-- ✅ **Fully Customizable Theme** - Easy color customization via CSS variables
+- ✅ **Fully Customizable Theme** - Easy color customization via CSS variables (MDB 5 based)
 - ✅ **Smooth Transitions** - Polished user experience
+- ✅ **Single Post Conversion** - Fast Markdown to HTML conversion script
 
 ### 🌍 Key Differentiators
 
@@ -434,9 +435,15 @@ npm run build:embeddable          # Pure HTML fragments (custom CSS)
 npm run build:embeddable-bootstrap # Bootstrap-compatible fragments
 npm run build:both                # Builds standalone + embeddable
 npm run build:all                 # Builds all three modes
+
+# Single file conversion (FAST)
+npm run convert:md content/blog/your-post.md
 ```
 
 Output: Static files in the `out/` directory.
+
+> [!TIP]
+> **Single Post Conversion**: Use `npm run convert:md` to quickly convert a single Markdown file to Bootstrap-embeddable HTML without rebuilding the entire project.
 
 > [!NOTE]
 > **Embeddable Modes**:

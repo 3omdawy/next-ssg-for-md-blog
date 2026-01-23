@@ -137,21 +137,20 @@ export const config = {
 
 #### 4. `src/app/globals.css` - Theme Colors
 
-Customize the color scheme to match your brand.
+The blog uses the **Material Design for Bootstrap (MDB 5)** color palette for its light theme.
 
 ```css
 @theme {
-  /* Change these to your brand colors */
-  --color-primary: #3b82f6; /* Your primary color */
-  --color-accent: #8b5cf6; /* Your accent color */
+  /* MDB 5 Color Palette */
+  --color-primary: #3b71ca;
+  --color-secondary: #9fa6b2;
+  --color-success: #14a44d;
+  --color-danger: #dc4c64;
+  --color-warning: #e4a11b;
+  --color-info: #54b4d3;
   --color-background: #ffffff;
-  /* ... more colors ... */
-}
-
-.dark {
-  /* Adjust for dark mode */
-  --color-primary: #60a5fa;
-  /* ... */
+  --color-surface: #fbfbfb; /* MDB Light */
+  --color-text: #332d2d; /* MDB Dark */
 }
 ```
 
@@ -353,6 +352,14 @@ If you are integrating this blog into another application (like a dashboard or C
 
 - Standard embeddable: [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md)
 - Bootstrap mode: [docs/BOOTSTRAP_EMBEDDABLE.md](./docs/BOOTSTRAP_EMBEDDABLE.md)
+
+### 9. Fast Conversion Script
+
+Instead of building the entire project, you can convert a single markdown file to a Bootstrap-embeddable HTML fragment:
+
+```bash
+npm run convert:md content/blog/your-post.md
+```
 
 ## 🔧 Advanced: Extending the Framework
 

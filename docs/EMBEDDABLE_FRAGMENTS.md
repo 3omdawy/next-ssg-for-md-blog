@@ -32,6 +32,18 @@ This project offers **two embeddable modes** to suit different integration needs
 
 ---
 
+### ⚡ Single Post Fast Conversion
+
+Instead of rebuilding the entire blog, you can convert a single `.md` or `.mdx` file to its embeddable version (either standard or Bootstrap) using:
+
+```bash
+npm run convert:md content/blog/your-post.md
+```
+
+This script automatically triggers a filtered build for that specific post and runs the fragment extractor, significantly reducing development time.
+
+---
+
 ## 🚀 How it Works
 
 When you run `npm run build:embeddable`, the following workflow is triggered:
