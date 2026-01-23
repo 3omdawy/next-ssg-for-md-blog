@@ -8,7 +8,7 @@
 
 > **A modern, production-ready blog framework** built with Next.js 16. Fork it, add your content, and you're ready to publish!
 
-🔗 **[Live Demo](https://next-ssg-for-md-blog.vercel.app/)** | 📖 **[Documentation](./docs/)** | ⚖️ **[Attributions](./ATTRIBUTIONS.md)**
+🔗 **[Live Demo](https://next-ssg-for-md-blog.vercel.app/)** | 📖 **[Documentation](./docs/)** | 🏗️ **[Architecture](./docs/ARCHITECTURE.md)** | ⚖️ **[Attributions](./ATTRIBUTIONS.md)**
 ![Coverage](https://img.shields.io/badge/coverage-75%25-green)
 🚀 **[Quick Start](#-quick-start-5-minutes-to-your-blog)**
 
@@ -496,6 +496,7 @@ The blog is pure static HTML/CSS/JS. Deploy to:
 - **[docs/SERIES_FEATURE.md](./docs/SERIES_FEATURE.md)** - Guide for creating series
 - **[docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)** - Detailed deployment instructions
 - **[docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md)** - Embeddable mode guide
+- **[docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)** - Visual architecture & design flows
 - **[docs/](./docs/)** - Additional guides & documentation
 
 ---
