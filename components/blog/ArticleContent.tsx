@@ -37,11 +37,21 @@ function isArabicText(text: string): boolean {
   return totalChars > 0 && arabicChars / totalChars > 0.3;
 }
 
-// Define custom components for MDX
-const components = {
-  // You can add custom components here
-  // MyComponent: () => <div className="p-4 bg-primary text-white rounded-lg">Hello from Component!</div>,
-};
+import {
+  Accordion,
+  AccordionGroup,
+  Checkbox,
+  Badge,
+  Button,
+  Icon,
+  FancyQuote,
+  Streak,
+  Audio,
+  Video,
+  Carousel,
+  Animate,
+  TableWrapper,
+} from "./MDXComponents";
 
 export async function ArticleContent({
   content,
@@ -49,6 +59,23 @@ export async function ArticleContent({
   className = "",
   language,
 }: ArticleContentProps) {
+  // Define custom components for MDX
+  const components = {
+    Accordion,
+    AccordionGroup,
+    Checkbox,
+    Badge,
+    Button,
+    Icon,
+    FancyQuote,
+    Streak,
+    Audio,
+    Video,
+    Carousel,
+    Animate,
+    TableWrapper,
+  };
+
   // Auto-detect direction if language is specified or detect from content
   const shouldBeRTL = language === "ar" || language === "arabic" || isArabicText(content || "");
 

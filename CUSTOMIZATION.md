@@ -60,7 +60,39 @@ date: "2026-01-08"
 </div>
 ```
 
-You can define custom components in `components/blog/ArticleContent.tsx` to use them globally in your MDX files.
+#### ✨ Premium UI Components (Bespoke Design System)
+
+We've upgraded the blog engine with a **Premium Bespoke Design System**. While these components are inspired by the **Bootstrap 5** API, they use a custom implementation (`premium-*` classes) to deliver high-end features like glassmorphism, dynamic gradients, and buttery-smooth animations that standard Bootstrap cannot provide.
+
+**What is Compatible:**
+
+- ✅ **API Familiarity**: Props like `variant="primary"` or `size="lg"` follow standard Bootstrap conventions.
+- ✅ **Utility Classes**: Standard utility classes like `.btn-primary`, `.badge-success`, and `.bg-primary` are mapped to our premium design tokens.
+- ✅ **Responsive & RTL**: Full support for mobile layouts and RTL (Right-to-Left) languages.
+
+**What is Bespoke:**
+
+- 🎨 **Visual Design**: Uses custom shadows, blurs, and weighted transitions.
+- 🏗️ **DOM Structure**: Complex components (Accordion, Carousel) use a bespoke internal structure to support advanced animations and avoid visibility issues found in standard Bootstrap/MDB ports.
+- 🚀 **Performance**: Optimized React components that handle state and transitions more reliably.
+
+**Available Components:**
+
+- `<AccordionGroup>` & `<Accordion title="...">` - Premium collapsible sections
+- `<Checkbox label="..." checked={true} />` - Interactive animated checkboxes
+- `<Icon name="..." size={20} color="..." />` - 1000+ Lucide icons
+- `<Audio src="..." title="..." />` - Glass-styled media player
+- `<Video src="..." poster="..." title="..." />` - Responsive HD video player
+- `<Button variant="primary/secondary/outline-primary" size="sm/lg">` - High-impact buttons
+- `<Badge variant="primary/success/danger/warning/info">` - Vibrant status tags
+- `<FancyQuote header="..." footer="..." icon="...">` - Cinematic blockquotes
+- `<Streak title="..." description="..." />` - Full-width "Wow" sections
+- `<Carousel items={[{image, title}, ...]} />` - Animated image showcase with overlays
+- `<Animate type="fade-in/pulse">` - High-intent micro-animations
+- `<TableWrapper>` - Elegant responsive data tables
+
+**How to use:**
+Check the `content/blog/ui-components-showcase.mdx` file for live examples and interactive demos.
 
 #### 2. `/public/` - Your Assets
 

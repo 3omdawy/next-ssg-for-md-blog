@@ -20,6 +20,7 @@ This project makes use of the following open-source libraries. We are grateful t
 
 - **[Fuse.js](https://www.fusejs.io/)** (Apache 2.0 License) - Lightweight fuzzy-search library.
 - **[date-fns](https://date-fns.org/)** (MIT License) - Modern JavaScript date utility library.
+- **[Lucide React](https://lucide.dev/)** (ISC License) - Beautiful & consistent icons.
 - **[reading-time](https://github.com/ngryman/reading-time)** (MIT License) - Medium-like reading time estimation.
 
 ## Testing & Quality
