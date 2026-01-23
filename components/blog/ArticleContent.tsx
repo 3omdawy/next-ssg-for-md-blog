@@ -80,7 +80,7 @@ export async function ArticleContent({
   const shouldBeRTL = language === "ar" || language === "arabic" || isArabicText(content || "");
 
   return (
-    <article
+    <div
       dir={shouldBeRTL ? "rtl" : "ltr"}
       className={`prose prose-lg dark:prose-invert max-w-none ${
         shouldBeRTL ? "lang-ar" : ""
@@ -104,7 +104,7 @@ export async function ArticleContent({
       ) : (
         <div dangerouslySetInnerHTML={{ __html: content }} />
       )}
-    </article>
+    </div>
   );
 }
 

@@ -116,12 +116,13 @@ A **minimalist blog framework** that:
 
 ### 🌍 Key Differentiators
 
-#### 1. **Dual Deployment Modes** ⭐
+#### 1. **Triple Deployment Modes** ⭐
 
 - **Standalone Website** - Full-featured blog with navigation system
-- **Embeddable Content** - Pure HTML fragments for seamless integration into other apps
+- **Embeddable Content** - Pure HTML fragments for custom CSS integration
+- **Bootstrap-Compatible** - Drop-in ready fragments for Bootstrap/MDB projects
 
-**Use Case**: Build your blog once, embed articles anywhere (corporate dashboards, learning management systems).
+**Use Case**: Build your blog once, embed articles anywhere (corporate dashboards, learning management systems, Bootstrap apps).
 
 #### 2. **First-Class RTL Support** ⭐
 
@@ -428,14 +429,22 @@ npm run dev          # Start dev server (localhost:3000)
 npm run build
 
 # Specialized build modes
-npm run build:standalone  # Complete blog site with full pages
-npm run build:embeddable  # Pure HTML fragments (extracts content only)
-npm run build:both        # Builds both modes sequentially
+npm run build:standalone           # Complete blog site with full pages
+npm run build:embeddable          # Pure HTML fragments (custom CSS)
+npm run build:embeddable-bootstrap # Bootstrap-compatible fragments
+npm run build:both                # Builds standalone + embeddable
+npm run build:all                 # Builds all three modes
 ```
 
 Output: Static files in the `out/` directory.
 
-> [!NOTE] > **Embeddable Mode** generates clean HTML snippets (ToC and Body) without `<html>` or `<body>` tags, ideal for embedding. See [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md) for details.
+> [!NOTE]
+> **Embeddable Modes**:
+>
+> - `build:embeddable` - Clean HTML fragments for custom CSS integration
+> - `build:embeddable-bootstrap` - Bootstrap 5-compatible fragments with included CSS
+>
+> See [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md) and [docs/BOOTSTRAP_EMBEDDABLE.md](./docs/BOOTSTRAP_EMBEDDABLE.md) for details.
 
 To test the **standalone** build locally, you need to serve the files via an HTTP server (e.g., `npx serve out`). The **embeddable** fragments can be viewed directly as they are pure HTML snippets.
 

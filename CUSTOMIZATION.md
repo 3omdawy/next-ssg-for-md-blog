@@ -64,6 +64,15 @@ date: "2026-01-08"
 
 We've upgraded the blog engine with a **Premium Bespoke Design System**. While these components are inspired by the **Bootstrap 5** API, they use a custom implementation (`premium-*` classes) to deliver high-end features like glassmorphism, dynamic gradients, and buttery-smooth animations that standard Bootstrap cannot provide.
 
+**Bootstrap Compatibility:**
+
+When using `npm run build:embeddable-bootstrap`, all premium components are rendered with Bootstrap 5-compatible markup and classes. This allows seamless integration into existing Bootstrap/MDB projects without any code changes.
+
+- **Standalone/Embeddable Mode**: Uses Tailwind CSS with custom design system
+- **Bootstrap-Embeddable Mode**: Uses Bootstrap 5 classes with `embeddable-bootstrap.css`
+
+See [docs/BOOTSTRAP_EMBEDDABLE.md](./docs/BOOTSTRAP_EMBEDDABLE.md) for Bootstrap integration details.
+
 **What is Compatible:**
 
 - ✅ **API Familiarity**: Props like `variant="primary"` or `size="lg"` follow standard Bootstrap conventions.
@@ -331,9 +340,19 @@ export const config = {
 
 If you are integrating this blog into another application (like a dashboard or CMS), you can generate **pure HTML fragments** instead of full pages.
 
-- **How to Build**: Run `npm run build:embeddable`
-- **What it does**: Extracts only the article content and Table of Contents, strips site-navigation links, and removes all boilerplate (`<html>`, `<body>`, etc.).
-- **Full Guide**: See [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md).
+**Two Embeddable Modes:**
+
+- **`build:embeddable`**: Clean HTML fragments for custom CSS integration
+  - Best for: Complete control over styling
+  - Output: HTML only (you provide CSS)
+- **`build:embeddable-bootstrap`**: Bootstrap 5-compatible fragments
+  - Best for: Existing Bootstrap/MDB projects
+  - Output: HTML + `embeddable-bootstrap.css`
+
+**Guides:**
+
+- Standard embeddable: [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md)
+- Bootstrap mode: [docs/BOOTSTRAP_EMBEDDABLE.md](./docs/BOOTSTRAP_EMBEDDABLE.md)
 
 ## 🔧 Advanced: Extending the Framework
 

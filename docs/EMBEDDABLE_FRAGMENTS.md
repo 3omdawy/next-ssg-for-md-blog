@@ -4,6 +4,34 @@ The **Embeddable Content** mode allows you to use this blog framework as a high-
 
 Instead of generating a full website with its own layout and navigation, this mode produces **pure HTML fragments** that contain only the article's body and its Table of Contents.
 
+## 📋 Embeddable Modes Comparison
+
+This project offers **two embeddable modes** to suit different integration needs:
+
+| Feature                | `build:embeddable`       | `build:embeddable-bootstrap`                         |
+| ---------------------- | ------------------------ | ---------------------------------------------------- |
+| **CSS Framework**      | None (custom)            | Bootstrap 5 compatible                               |
+| **Best For**           | Full styling control     | Existing Bootstrap/MDB projects                      |
+| **CSS Included**       | No (you provide)         | Yes (`embeddable-bootstrap.css`)                     |
+| **Class Names**        | Tailwind utilities       | Bootstrap utilities                                  |
+| **File Size**          | Smaller                  | Slightly larger (includes CSS)                       |
+| **Integration Effort** | High (custom CSS needed) | Low (drop-in ready)                                  |
+| **Documentation**      | This file                | [BOOTSTRAP_EMBEDDABLE.md](./BOOTSTRAP_EMBEDDABLE.md) |
+
+**Choose `build:embeddable`** when:
+
+- You want complete control over styling
+- You're integrating into a non-Bootstrap project
+- You prefer minimal file sizes
+
+**Choose `build:embeddable-bootstrap`** when:
+
+- You're using Bootstrap 5 or MDB
+- You want drop-in ready fragments
+- You prefer convenience over customization
+
+---
+
 ## 🚀 How it Works
 
 When you run `npm run build:embeddable`, the following workflow is triggered:
