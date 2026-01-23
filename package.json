@@ -7,7 +7,9 @@
     "build": "next build",
     "build:standalone": "cross-env BUILD_MODE=standalone next build",
     "build:embeddable": "cross-env BUILD_MODE=embeddable next build && node scripts/fragment-fixer.js",
+    "build:embeddable-bootstrap": "cross-env BUILD_MODE=embeddable-bootstrap next build && node scripts/bootstrap-fragment-fixer.js",
     "build:both": "npm run build:standalone && npm run build:embeddable",
+    "build:all": "npm run build:standalone && npm run build:embeddable && npm run build:embeddable-bootstrap",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
@@ -18,7 +20,8 @@
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "check-size": "bundlesize"
+    "check-size": "bundlesize",
+    "convert:md": "node scripts/convert-md-to-bootstrap.js"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

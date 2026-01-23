@@ -30,6 +30,10 @@ This project makes use of the following open-source libraries. We are grateful t
 - **[Prettier](https://prettier.io/)** (MIT License) - An opinionated code formatter.
 - **[ESLint](https://eslint.org/)** (MIT License) - Find and fix problems in your JavaScript code.
 
+## Design & Aesthetics
+
+- **[Material Design for Bootstrap (MDB)](https://mdbootstrap.com/)** - The color palette for the light theme is based on MDB 5.
+
 ---
 
 _Verified as of v1.0.0_

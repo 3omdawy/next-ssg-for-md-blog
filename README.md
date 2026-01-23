@@ -8,7 +8,7 @@
 
 > **A modern, production-ready blog framework** built with Next.js 16. Fork it, add your content, and you're ready to publish!
 
-🔗 **[Live Demo](https://next-ssg-for-md-blog.vercel.app/)** | 📖 **[Documentation](./docs/)** | ⚖️ **[Attributions](./ATTRIBUTIONS.md)**
+🔗 **[Live Demo](https://next-ssg-for-md-blog.vercel.app/)** | 📖 **[Documentation](./docs/)** | 🏗️ **[Architecture](./docs/ARCHITECTURE.md)** | ⚖️ **[Attributions](./ATTRIBUTIONS.md)**
 ![Coverage](https://img.shields.io/badge/coverage-75%25-green)
 🚀 **[Quick Start](#-quick-start-5-minutes-to-your-blog)**
 
@@ -111,17 +111,19 @@ A **minimalist blog framework** that:
 - ✅ **Dark & Light Mode** - Automatic theme switching with persistence
 - ✅ **Responsive Design** - Mobile-first approach
 - ✅ **Modern Typography** - Tailwind Typography plugin
-- ✅ **Fully Customizable Theme** - Easy color customization via CSS variables
+- ✅ **Fully Customizable Theme** - Easy color customization via CSS variables (MDB 5 based)
 - ✅ **Smooth Transitions** - Polished user experience
+- ✅ **Single Post Conversion** - Fast Markdown to HTML conversion script
 
 ### 🌍 Key Differentiators
 
-#### 1. **Dual Deployment Modes** ⭐
+#### 1. **Triple Deployment Modes** ⭐
 
 - **Standalone Website** - Full-featured blog with navigation system
-- **Embeddable Content** - Pure HTML fragments for seamless integration into other apps
+- **Embeddable Content** - Pure HTML fragments for custom CSS integration
+- **Bootstrap-Compatible** - Drop-in ready fragments for Bootstrap/MDB projects
 
-**Use Case**: Build your blog once, embed articles anywhere (corporate dashboards, learning management systems).
+**Use Case**: Build your blog once, embed articles anywhere (corporate dashboards, learning management systems, Bootstrap apps).
 
 #### 2. **First-Class RTL Support** ⭐
 
@@ -428,14 +430,28 @@ npm run dev          # Start dev server (localhost:3000)
 npm run build
 
 # Specialized build modes
-npm run build:standalone  # Complete blog site with full pages
-npm run build:embeddable  # Pure HTML fragments (extracts content only)
-npm run build:both        # Builds both modes sequentially
+npm run build:standalone           # Complete blog site with full pages
+npm run build:embeddable          # Pure HTML fragments (custom CSS)
+npm run build:embeddable-bootstrap # Bootstrap-compatible fragments
+npm run build:both                # Builds standalone + embeddable
+npm run build:all                 # Builds all three modes
+
+# Single file conversion (FAST)
+npm run convert:md content/blog/your-post.md
 ```
 
 Output: Static files in the `out/` directory.
 
-> [!NOTE] > **Embeddable Mode** generates clean HTML snippets (ToC and Body) without `<html>` or `<body>` tags, ideal for embedding. See [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md) for details.
+> [!TIP]
+> **Single Post Conversion**: Use `npm run convert:md` to quickly convert a single Markdown file to Bootstrap-embeddable HTML without rebuilding the entire project.
+
+> [!NOTE]
+> **Embeddable Modes**:
+>
+> - `build:embeddable` - Clean HTML fragments for custom CSS integration
+> - `build:embeddable-bootstrap` - Bootstrap 5-compatible fragments with included CSS
+>
+> See [docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md) and [docs/BOOTSTRAP_EMBEDDABLE.md](./docs/BOOTSTRAP_EMBEDDABLE.md) for details.
 
 To test the **standalone** build locally, you need to serve the files via an HTTP server (e.g., `npx serve out`). The **embeddable** fragments can be viewed directly as they are pure HTML snippets.
 
@@ -480,6 +496,7 @@ The blog is pure static HTML/CSS/JS. Deploy to:
 - **[docs/SERIES_FEATURE.md](./docs/SERIES_FEATURE.md)** - Guide for creating series
 - **[docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)** - Detailed deployment instructions
 - **[docs/EMBEDDABLE_FRAGMENTS.md](./docs/EMBEDDABLE_FRAGMENTS.md)** - Embeddable mode guide
+- **[docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)** - Visual architecture & design flows
 - **[docs/](./docs/)** - Additional guides & documentation
 
 ---

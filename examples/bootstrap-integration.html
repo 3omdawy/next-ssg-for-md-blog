@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Blog Integration Example</title>
+
+    <!-- Bootstrap 5 CSS from CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Blog Embeddable CSS (include after Bootstrap) -->
+    <link rel="stylesheet" href="embeddable-bootstrap.css" />
+
+    <!-- Blog Embeddable JavaScript (for interactive components) -->
+    <script src="embeddable-bootstrap.js" defer></script>
+
+    <style>
+      /* Optional: Custom styling for your app */
+      .app-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+      }
+
+      .blog-sidebar {
+        position: sticky;
+        top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Your App Header -->
+    <header class="app-header">
+      <div class="container">
+        <h1 class="mb-0">My Bootstrap Dashboard</h1>
+        <p class="mb-0">Embedded Blog Content Example</p>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="container my-5">
+      <div class="row">
+        <!-- Sidebar with Table of Contents -->
+        <div class="col-lg-3 col-md-4 mb-4">
+          <div class="blog-sidebar">
+            <div class="card shadow-sm">
+              <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Navigation</h5>
+              </div>
+              <div class="card-body">
+                <!-- TOC will be injected here -->
+                <div id="toc-container">
+                  <p class="text-muted">Loading table of contents...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Article Content -->
+        <div class="col-lg-9 col-md-8">
+          <div class="card shadow">
+            <div class="card-body">
+              <!-- Article will be injected here -->
+              <div id="article-container">
+                <div class="text-center py-5">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <p class="mt-3 text-muted">Loading blog post...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Your App Footer -->
+    <footer class="bg-light py-4 mt-5">
+      <div class="container text-center text-muted">
+        <p class="mb-0">&copy; 2026 My Dashboard. Blog content powered by Next.js SSG Framework.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Blog Content Loader -->
+    <script>
+      /**
+       * Load and inject blog content
+       * Replace 'blog/welcome.html' with the path to your generated blog fragment
+       */
+      async function loadBlogPost(postPath) {
+        try {
+          const response = await fetch(postPath);
+          if (!response.ok) throw new Error("Failed to load blog post");
+
+          const html = await response.text();
+
+          // Extract Table of Contents
+          const tocMatch = html.match(
+            /<!-- TABLE OF CONTENTS START -->([\s\S]*?)<!-- TABLE OF CONTENTS END -->/
+          );
+          if (tocMatch) {
+            document.getElementById("toc-container").innerHTML = tocMatch[1];
+          } else {
+            document.getElementById("toc-container").innerHTML =
+              '<p class="text-muted">No table of contents available</p>';
+          }
+
+          // Extract Article Content
+          const articleMatch = html.match(
+            /<!-- ARTICLE CONTENT START -->([\s\S]*?)<!-- ARTICLE CONTENT END -->/
+          );
+          if (articleMatch) {
+            document.getElementById("article-container").innerHTML = articleMatch[1];
+          } else {
+            throw new Error("Article content not found");
+          }
+
+          // Important: Re-initialize interactive components (accordions, carousels, etc.)
+          if (window.initPremiumComponents) {
+            window.initPremiumComponents();
+          }
+
+          // Smooth scroll for TOC links
+          setupSmoothScroll();
+        } catch (error) {
+          console.error("Error loading blog post:", error);
+          document.getElementById("article-container").innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error Loading Content</h4>
+                        <p>Failed to load the blog post. Please check the console for details.</p>
+                        <hr>
+                        <p class="mb-0">Error: ${error.message}</p>
+                    </div>
+                `;
+        }
+      }
+
+      /**
+       * Setup smooth scrolling for TOC links
+       */
+      function setupSmoothScroll() {
+        document.querySelectorAll('.blog-toc-snippet a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+
+              // Update URL hash without jumping
+              history.pushState(null, null, targetId);
+            }
+          });
+        });
+      }
+
+      /**
+       * Dark mode toggle (optional)
+       */
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute("data-bs-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        html.setAttribute("data-bs-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+      }
+
+      // Load saved theme preference
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        document.documentElement.setAttribute("data-bs-theme", savedTheme);
+      }
+
+      // Load blog post on page load
+      // IMPORTANT: Replace 'blog/welcome.html' with your actual blog post path
+      // For testing, you'll need to run the build first: npm run build:embeddable-bootstrap
+      document.addEventListener("DOMContentLoaded", () => {
+        // Example: Load a specific post
+        loadBlogPost("blog/welcome.html");
+
+        // Or load based on URL parameter
+        // const urlParams = new URLSearchParams(window.location.search);
+        // const postSlug = urlParams.get('post') || 'welcome';
+        // loadBlogPost(`blog/${postSlug}.html`);
+      });
+    </script>
+
+    <!-- Optional: Add dark mode toggle button -->
+    <button
+      onclick="toggleDarkMode()"
+      class="btn btn-outline-secondary position-fixed bottom-0 end-0 m-3"
+      style="z-index: 1000"
+      title="Toggle Dark Mode"
+    >
+      🌓
+    </button>
+  </body>
+</html>

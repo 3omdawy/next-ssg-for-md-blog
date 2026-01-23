@@ -80,12 +80,19 @@ function processFragments() {
       const finalToc = cleanHtml(tocHtml);
 
       // 3. Assemble the final output
-      // We output a structured fragment. You can easily parse this or just use the body.
       let output = "";
       if (finalToc) {
         output += `<!-- TABLE OF CONTENTS START -->\n<div class="blog-toc-snippet">\n${finalToc}\n</div>\n<!-- TABLE OF CONTENTS END -->\n\n`;
       }
-      output += `<!-- ARTICLE CONTENT START -->\n<div class="blog-content-snippet">\n${finalFragment}\n</div>\n<!-- ARTICLE CONTENT END -->`;
+
+      // Detect direction and language from fragment if possible
+      const dirMatch = fragmentHtml.match(/dir="(rtl|ltr)"/);
+      const langMatch = fragmentHtml.match(/class="[^"]*(lang-[a-z]{2})[^"]*"/);
+
+      const dirAttr = dirMatch ? ` dir="${dirMatch[1]}"` : "";
+      const langClass = langMatch ? ` ${langMatch[1]}` : "";
+
+      output += `<!-- ARTICLE CONTENT START -->\n<div class="blog-content-snippet${langClass}">\n<article${dirAttr}>\n${finalFragment}\n</article>\n</div>\n<!-- ARTICLE CONTENT END -->`;
 
       fs.writeFileSync(filePath, output);
     } else {
