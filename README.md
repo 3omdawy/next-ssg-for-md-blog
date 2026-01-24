@@ -6,7 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-> **A modern, production-ready blog framework** built with Next.js 16. Fork it, add your content, and you're ready to publish!
+> **A modern, stable blog framework** built with Next.js 16. Fork it, add your content, and you're ready to publish!
 
 🔗 **[Live Demo](https://next-ssg-for-md-blog.vercel.app/)** | 📖 **[Documentation](./docs/)** | 🏗️ **[Architecture](./docs/ARCHITECTURE.md)** | ⚖️ **[Attributions](./ATTRIBUTIONS.md)**
 ![Coverage](https://img.shields.io/badge/coverage-75%25-green)

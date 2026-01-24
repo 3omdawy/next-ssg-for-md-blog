@@ -9,7 +9,7 @@ I'm a full stack engineer passionate about web development, and building useful 
 
 ### About this Project
 
-This is modern, production-ready blog framework built with Next.js 16. Fork it, add your content, and you're ready to publish!.
+This is modern, stable blog framework built with Next.js 16. Fork it, add your content, and you're ready to publish!.
 
 ### Get in Touch
 
