@@ -539,6 +539,7 @@ This blog framework is perfect for:
 - [ ] RSS feed
 - [ ] Sitemap generation
 - [ ] Enhanced SEO
+- [ ] UI Refinement: Integrate Shadcn UI and modern design patterns (v0/Lovable inspired)
 
 ### 🔮 Phase 3: Advanced (Future)
 
@@ -547,6 +548,7 @@ This blog framework is perfect for:
 - [ ] Newsletter integration
 - [ ] Social sharing
 - [ ] Performance monitoring
+- [ ] Admin Interface: Web-based CRUD for articles using `react-md-editor`
 
 ---
 
