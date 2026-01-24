@@ -21,8 +21,8 @@ export function Header() {
           {config.site.name}
         </Link>
 
-        <div className="flex items-center gap-6">
-          <nav className="flex items-center gap-6 text-sm font-medium">
+        <div className="flex items-center gap-4 md:gap-6">
+          <nav className="flex items-center gap-4 md:gap-6 text-sm font-medium">
             <Link prefetch={false} href="/blog" className="hover:text-primary transition-colors">
               Blog
             </Link>
