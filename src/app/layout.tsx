@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: config.site.name,
     images: [
       {
-        url: "/og-image.png",
+        url: "/blog-image.jpg",
         width: 1200,
         height: 630,
         alt: config.site.name,
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: config.site.name,
     description: config.site.description,
-    images: ["/og-image.png"],
+    images: ["/blog-image.jpg"],
   },
 };
 
