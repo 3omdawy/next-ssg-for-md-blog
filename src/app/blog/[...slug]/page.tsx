@@ -188,7 +188,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       } ${shouldBeRTL ? "lang-ar" : ""}`}
       dir={shouldBeRTL ? "rtl" : "ltr"}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
         {/* Main Content */}
         <div className="lg:col-span-3">
           <article id="article-content-fragment">

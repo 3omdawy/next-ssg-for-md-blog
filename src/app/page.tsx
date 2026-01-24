@@ -23,18 +23,18 @@ export default async function Home() {
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       {/* Hero Section */}
       <section className="mb-12">
-        <h1 className="text-5xl font-bold mb-4">{config.site.name}</h1>
-        <p className="text-xl text-secondary">{config.site.description}</p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">{config.site.name}</h1>
+        <p className="text-lg md:text-xl text-secondary">{config.site.description}</p>
       </section>
 
       {/* Latest Posts */}
       <section>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold">Latest Posts</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">Latest Posts</h2>
           <Link
             prefetch={false}
             href="/blog"
-            className="text-primary hover:text-primary-hover transition-colors"
+            className="text-primary hover:text-primary-hover transition-colors font-medium"
           >
             View all →
           </Link>

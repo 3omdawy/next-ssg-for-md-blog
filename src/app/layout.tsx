@@ -6,7 +6,7 @@
  */
 
 import type { Metadata } from "next";
-import { Cairo } from "next/font/google";
+import { Cairo, Montserrat } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { ThemeScript } from "@/components/layout/ThemeScript";
 import config from "@/config";
@@ -16,6 +16,13 @@ const cairo = Cairo({
   variable: "--font-cairo",
   subsets: ["arabic", "latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
   display: "swap",
 });
 
@@ -61,7 +68,7 @@ export default function RootLayout({
     <html
       lang={language}
       dir={direction}
-      className={`${cairo.className} ${cairo.variable}`}
+      className={`${montserrat.variable} ${cairo.variable} font-sans`}
       suppressHydrationWarning
     >
       <head>
@@ -77,10 +84,18 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
 
         {!isEmbeddable && (
-          <footer className="border-t border-border py-8 mt-12">
-            <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-gray-500">
-              <p>
-                © {new Date().getFullYear()} {config.site.name}. All rights reserved.
+          <footer className="border-t border-border py-12 mt-20">
+            <div className="container mx-auto px-4 max-w-6xl text-center">
+              <p className="text-xs text-gray-400 dark:text-gray-500">
+                Made with ❤️ by{" "}
+                <a
+                  href="https://github.com/3omdawy/next-ssg-for-md-blog"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium hover:underline text-primary"
+                >
+                  next-ssg-for-md-blog
+                </a>
               </p>
             </div>
           </footer>

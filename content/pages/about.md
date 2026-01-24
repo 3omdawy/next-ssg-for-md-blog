@@ -3,14 +3,14 @@ title: "About Me"
 description: "Learn more about the author and this blog."
 ---
 
-## Hi, I'm [Your Name]! 👋
+## Hi, I'm Emad Ashraf! 👋
 
-I'm a software engineer passionate about web development, performance, and security.
+I'm a full stack engineer passionate about web development, and building useful products.
 
-### About this Blog
+### About this Project
 
-This blog serves as a collection of my technical notes, tutorials, and insights. I built it to share knowledge and help others learn modern web development.
+This is modern, production-ready blog framework built with Next.js 16. Fork it, add your content, and you're ready to publish!.
 
 ### Get in Touch
 
-Feel free to reach out to me on [GitHub](https://github.com/your-github) or [LinkedIn](https://www.linkedin.com/in/your-name/).
+Feel free to reach out to me on [GitHub](https://github.com/3omdawy) or [LinkedIn](https://www.linkedin.com/in/emad-ashraf/).
